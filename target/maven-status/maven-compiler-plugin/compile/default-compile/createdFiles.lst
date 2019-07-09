@@ -1,0 +1,10 @@
+com\colcocoa\wallet\Block.class
+ar\com\magm\web\primefaces\WalletBean.class
+ar\com\magm\web\primefaces\LoginBean.class
+com\colcocoa\wallet\Transaction.class
+com\colcocoa\wallet\TransactionInput.class
+com\colcocoa\wallet\StringUtil.class
+com\colcocoa\wallet\Wallet.class
+com\colcocoa\editor\EditorBean.class
+com\colcocoa\wallet\NoobChain.class
+com\colcocoa\wallet\TransactionOutput.class
