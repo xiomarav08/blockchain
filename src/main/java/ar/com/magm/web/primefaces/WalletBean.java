@@ -1,5 +1,6 @@
 package ar.com.magm.web.primefaces;
 
+import java.io.Serializable;
 import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,10 +9,7 @@ import javax.ejb.Init;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
-import javax.inject.Inject;
 
-import com.colcocoa.entities.Usuarios;
-import com.colcocoa.manejadores.ManejadorUsuarios;
 import com.colcocoa.wallet.Block;
 import com.colcocoa.wallet.StringUtil;
 import com.colcocoa.wallet.Transaction;
@@ -20,10 +18,10 @@ import com.colcocoa.wallet.Wallet;
 
 @ManagedBean(name = "WalletBean")
 @SessionScoped
-public class WalletBean {
-	@Inject
-	private ManejadorUsuarios manejadorUsuarios;
+public class WalletBean implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	private Boolean habilitarLlave = Boolean.FALSE;
 	
 	private Boolean habilitarSaldo = Boolean.FALSE;
@@ -78,10 +76,7 @@ public class WalletBean {
 		habilitarSaldo = Boolean.FALSE;
 	}
 	
-	public void generateWallet() {
-		Usuarios u=manejadorUsuarios.consultarUsuario();
-		System.out.println(u.toString());
-		
+	public void generateWallet() {		
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); //Setup Bouncey castle as a Security Provider
 		this.billeteraUsuario = new Wallet();
 		this.billeteraAdmin = new Wallet();

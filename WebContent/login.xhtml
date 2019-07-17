@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
-<html xmlns:h="http://java.sun.com/jsf/html"
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
@@ -12,7 +13,7 @@
 		<p:panel header="Login" style="width:300px">
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="username" value="Usuario:" />
-				<p:inputText value="#{loginBean.nombre}" id="username"
+				<p:inputText value="#{loginBean.usuario}" id="username"
 					required="true" label="username" />
 				<h:outputLabel for="password" value="Clave:" />
 				<p:password value="#{loginBean.clave}" id="password" required="true"

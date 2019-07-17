@@ -9,42 +9,45 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity(name = "Usuarios")
-@Table(name = "USUARIOS")
+@Table(name="USUARIOS")
 public class Usuarios implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "NOMBRE")
+	@Column(name = "nombre")
 	private String nombre;
 	
-	@Column(name = "APELLIDOS")
+	@Column(name = "apellidos")
 	private String apellidos;
 	
-	@Column(name = "NUMERODEIDENTIFICACION")
-	private Integer numeroDeIdentificacion;
+	@Column(name = "numerodeidentificacion")
+	private String numeroDeIdentificacion;
 	
-	@Column(name = "TELEFONO")
+	@Column(name = "telefono")
 	private String telefono;
 	
-	@Column(name = "EMAIL")
+	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "USUARIO")
+	@Column(name = "usuario")
 	private String usuario;
 	
-	@Column(name = "CLAVE")
+	@Column(name = "clave")
 	private String clave;
 	
-	@Column(name = "PUBLICKEY")
+	@Column(name = "publicKey")
 	private String publicKey;
 	
-	@Column(name = "PRIVATEKEY")
+	@Column(name = "privateKey")
 	private String privateKey;
 	
 	public Integer getId() {
@@ -65,10 +68,10 @@ public class Usuarios implements Serializable {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public Integer getNumeroDeIdentificacion() {
+	public String getNumeroDeIdentificacion() {
 		return numeroDeIdentificacion;
 	}
-	public void setNumeroDeIdentificacion(Integer numeroDeIdentificacion) {
+	public void setNumeroDeIdentificacion(String numeroDeIdentificacion) {
 		this.numeroDeIdentificacion = numeroDeIdentificacion;
 	}
 	public String getTelefono() {
