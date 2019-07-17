@@ -6,6 +6,7 @@ com\colcocoa\wallet\Wallet.class
 com\colcocoa\editor\EditorBean.class
 com\colcocoa\wallet\NoobChain.class
 com\colcocoa\entities\Usuarios.class
+ar\com\magm\web\primefaces\RegistrarUsuarioBean.class
 com\colcocoa\wallet\Block.class
 ar\com\magm\web\primefaces\LoginBean.class
 com\colcocoa\wallet\Transaction.class

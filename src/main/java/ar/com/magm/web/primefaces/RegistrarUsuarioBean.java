@@ -26,8 +26,8 @@ public class RegistrarUsuarioBean {
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
 		if(usuario != null && usuario.getClave().equals(clave)) {
-			WalletBean
-			manejadorUsuarios.almacenarUsuario(usuario);
+//			WalletBean
+//			manejadorUsuarios.almacenarUsuario(usuario);
 		}else {
 			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Las contraseñas no coinciden.", "Error");
 		}
