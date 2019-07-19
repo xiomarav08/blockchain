@@ -1,27 +1,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"><h:head>
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
 	<title>Index</title>
+	<meta charset= "UTF-8"> </meta>
+	<meta name="viewport" content="width=device-width, initial -scale=1"> </meta>
+	
+	 <link href= "style.css" rel="stylesheet"> </link>
 </h:head>
+
 <h:body>
-	<div>
-		<p:link outcome="login" value="Iniciar Sesiòn">
-			
-		</p:link>
-	</div>
-	<div>
-		<p:link value="Registrarse" outcome="registrarUsuario">
-			
-		</p:link>
-	</div>
-	<div style="">
-		<p:breadCrumb>
-			<p:menuitem value="Nuestro proyecto" url="#" />
-			<p:menuitem value="Planta un Arbol" url="billetera.xhtmml" />
-			<p:menuitem value="Impacto" url="#" />
-			<p:menuitem value="Green Chain" url="#" />
-		</p:breadCrumb>
-	</div>
+
+<header class= "header">
+<div class = "container plantree-nav-container">
+<a href = "#" class="plantree">Plan Tree</a>
+<SPAN class="menu-icon"> Ver Menù </SPAN>
+<nav class= "navigation">
+<ul class="show">
+<li><a href="#">Nuestro Proyecto</a></li> 
+<li><a href="#">Planta Un Arbol</a></li>
+<li><a href="#">Impacto</a></li>
+<li><a href="#">Iniciar Sesiòn</a></li>
+<li><a href="#">Registrar</a></li>
+
+
+ 
+</ul>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<main class="main">
+ <div class="container">
+ 
+ <h1>Green Furniture</h1>
+ <p>Nuestro vivero posee una capacidad de 5,000 árboles de Abarco, Guayacán Rosado y Moncoro (Solera), debido a que son especies nativas de la región.
+En el se garantiza la germinación, el crecimiento y cuidado de las plantas hasta que tengan la altura recomendada (entre 15 a 25 cm), para ser trasplantadas a su lugar definitivo.
+Se estima un tiempo de tres (3) meses para esta actividad. </p>
+ 
+ <p>Los árboles de reforestación de Green Furniture se van a sembrar en los lotes de nuestra hacienda: 7,40, 46, 47, 48, 49, 58, 59 y 60.
+ Se va a destinar un área de 1,5 hectáreas para una densidad total de 5,000 árboles, esta ubicación es estratégica debido a que limita con los recursos hídricos y garantiza el cumplimiento del objetivo del proyecto.</p>
+ 
+ </div>
+
+</main>
+<footer class="footer">
+<div class= "container">
+<p><br> Hacienda la Tentaciòn </br>
+ <br> Todos los derechos reservados </br>
+  <br> 2019 </br>
+ </p> 
+</div> 
+
+</footer> 
+
 </h:body>
 </html>
