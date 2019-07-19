@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import ar.com.magm.web.primefaces.WalletBean;
+import com.colcoa.beans.WalletBean;
 
 public class Wallet {
-	public PrivateKey privateKey;
-	public PublicKey publicKey;
+	private PrivateKey privateKey;
+	private PublicKey publicKey;
 	
 	public HashMap<String,TransactionOutput> UTXOs = new HashMap<String,TransactionOutput>(); //only UTXOs owned by this wallet
 	
@@ -31,8 +31,8 @@ public class Wallet {
 			keyGen.initialize(ecSpec, random);   //256 bytes provides an acceptable security level
 	        	KeyPair keyPair = keyGen.generateKeyPair();
 	        	// Set the public and private keys from the keyPair
-	        	privateKey = keyPair.getPrivate();
-	        	publicKey = keyPair.getPublic();
+	        	this.setPrivateKey(keyPair.getPrivate());
+	        	this.setPublicKey(keyPair.getPublic());
 		}catch(Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -74,4 +74,20 @@ public class Wallet {
 		}
 		return newTransaction;
 	}
+
+	public PrivateKey getPrivateKey() {
+		return privateKey;
+	}
+
+	public void setPrivateKey(PrivateKey privateKey) {
+		this.privateKey = privateKey;
+	}
+
+	public PublicKey getPublicKey() {
+		return publicKey;
+	}
+
+	public void setPublicKey(PublicKey publicKey) {
+		this.publicKey = publicKey;
+	}	
 }

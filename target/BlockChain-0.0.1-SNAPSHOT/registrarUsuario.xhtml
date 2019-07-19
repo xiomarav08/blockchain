@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body style="text-align:center">
+	<p:growl id="mensajes" showDetail="true" life="2000" />
+	<h:form>
+	
+		<p:panel header="Registrar Usuario" style="width:300px">
+			<h:panelGrid columns="2" cellpadding="5">
+			
+				<h:outputLabel for="nombres" value="Nombres:" />
+				<p:inputText value="#{registrarUsuarioBean.usuario.nombre}" id="nombres"
+					required="true" label="nombres" />
+					
+				<h:outputLabel for="apellidos" value="Apellidos:" />
+				<p:inputText value="#{registrarUsuarioBean.usuario.apellidos}" id="apellidos" 
+					required="true" label="apellidos" />
+					
+				<h:outputLabel for="numeroDeIdentificacion" value="Numero de Identificacion:" />
+				<p:inputText value="#{registrarUsuarioBean.usuario.numeroDeIdentificacion}" id="numeroDeIdentificacion" 
+					required="true" label="numeroDeIdentificacion" />
+					
+				<h:outputLabel for="telefono" value="Telefono:" />
+				<p:inputText value="#{registrarUsuarioBean.usuario.telefono}" id="telefono" 
+					required="true" label="telefono" />
+					
+				<h:outputLabel for="email" value="Email:" />
+				<p:inputText value="#{registrarUsuarioBean.usuario.email}" id="email" 
+					required="true" label="email" />
+					
+				<h:outputLabel for="usuario" value="Usuario:" />
+				<p:inputText value="#{registrarUsuarioBean.usuario.usuario}" id="usuario" 
+					required="true" label="usuario" />
+					
+				<h:outputLabel for="clave" value="Contraseña:" />
+				<p:password value="#{registrarUsuarioBean.usuario.clave}" id="clave" 
+					required="true" label="clave" />
+					
+				<h:outputLabel for="clave2" value="Repita su Contraseña:" />
+				<p:password value="#{registrarUsuarioBean.clave}" id="clave2" 
+					required="true" label="clave2" />
+					
+				<f:facet name="footer">
+					<p:commandButton id="loginButton" value="Registrar usuario"
+						actionListener="#{registrarUsuarioBean.registrarUsuario}" update=":mensajes"/>
+				</f:facet>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

@@ -4,7 +4,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
 
-import ar.com.magm.web.primefaces.WalletBean;
+import com.colcoa.beans.WalletBean;
 
 public class Transaction {
 	
