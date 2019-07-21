@@ -10,8 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
-import org.primefaces.context.RequestContext;
-
 import com.colcocoa.entities.Usuarios;
 import com.colcocoa.manejadores.ManejadorUsuarios;
 import com.colcocoa.wallet.StringUtil;
@@ -35,13 +33,17 @@ public class RegistrarUsuarioBean implements Serializable{
 	}
 	
 	public void registrarUsuario(ActionEvent actionEvent) {
-		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage msg = null;
-		if(usuario != null && usuario.getClave().equals(clave)) {
-			usuario = generarClavesUsuario(usuario);
-			manejadorUsuarios.almacenarUsuario(usuario);
+		Usuarios usuarioBD = manejadorUsuarios.consultarUsuario(usuario.getUsuario());
+		if(usuarioBD == null) {
+			if(usuario != null && usuario.getClave().equals(clave)) {
+				usuario = generarClavesUsuario(usuario);
+				manejadorUsuarios.almacenarUsuario(usuario);
+			}else {
+				msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Las contraseñas no coinciden.", "Error");
+			}
 		}else {
-			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Las contraseñas no coinciden.", "Error");
+			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario ya existe", "Error");	
 		}
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}

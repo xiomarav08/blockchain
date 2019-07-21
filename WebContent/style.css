@@ -23,7 +23,7 @@ margin-bottom:1.6em;
 	}
 
 .header {
-	background: #75b54a;
+	background: white;
 	color: white;
 	padding: 2rem 0;
 	
@@ -80,7 +80,7 @@ margin-bottom:1.6em;
 	}
 	
 	.footer {
-	background:#75b54a;
+	background:white;
 	padding:0.9 0;
 	text-align:center;
 	margen-top:6rem;

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Wallet Virtual</title>
+</h:head>
+<h:body>
+	<h:form id="formAdmin">
+		<p:breadCrumb homeDisplay="text">
+			<p:menuitem value="Historial" outcome="historialContratos" />
+			<p:menuitem value="Usuarios" outcome="usuarios" />
+		</p:breadCrumb>
+		<p:panel header="Usuarios registrados">
+			<p:dataTable id="tableUsuarios" var="usuario" value="#{usuariosAdminBean.listaUsuarios}">
+				<p:column headerText="Nombres">
+					<h:outputText value="#{usuario.nombre}" />
+				</p:column>
+	
+				<p:column headerText="Apellidos">
+					<h:outputText value="#{usuario.apellidos}" />
+				</p:column>
+	
+				<p:column headerText="Numero de identificacion">
+					<h:outputText value="#{usuario.numeroDeIdentificacion}" />
+				</p:column>
+	
+				<p:column headerText="Email">
+					<h:outputText value="#{usuario.email}" />
+				</p:column>
+	
+				<p:column headerText="Saldo">
+					<h:outputText value="#{usuario.balance}" />
+				</p:column>
+	
+				<p:column headerText="Eliminar Usuario">
+					<p:commandLink value="Eliminar" action="#{usuariosAdminBean.deleteUser(usuario)}" update="@form">
+						<p:confirm header="Confirmation" message="Are you sure?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandLink>
+				</p:column>
+			</p:dataTable>
+	
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" update="@form"/>
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

@@ -2,6 +2,7 @@ package com.colcoa.beans;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -23,7 +24,14 @@ public class LoginBean implements Serializable {
 	
 	private String clave;
 	
-	private boolean logeado = false;
+	private Boolean logeado;
+	
+	private final String USUARIO_ADMIN = "admin";
+	
+	@PostConstruct
+	private void Init() {
+		logeado = Boolean.FALSE;
+	}
 	
 	@Inject
 	private ManejadorUsuarios manejadorUsuarios;
@@ -40,16 +48,18 @@ public class LoginBean implements Serializable {
 		Usuarios usuarioBD = manejadorUsuarios.consultarUsuario(usuario);
 		if (usuario != null && clave != null && usuarioBD != null && usuarioBD.getClave().equals(this.clave)) {
 			logeado = true;
-			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", usuarioBD.getNombre());
+			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", usuarioBD.getNombre() +" "+ usuarioBD.getApellidos());
 		} else {
 			logeado = false;
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Credenciales no válidas");
 		}
-
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		context.addCallbackParam("estaLogeado", logeado);
-		if (logeado) {
-			context.addCallbackParam("view", "billetera.xhtml");
+		
+		if (logeado && usuarioBD.getUsuario().equals(USUARIO_ADMIN)) {
+			context.addCallbackParam("view", "admin.xhtml");
+		}else {
+			context.addCallbackParam("view", "index.xhtml");
 		}
 	}
 
@@ -61,17 +71,25 @@ public class LoginBean implements Serializable {
 		session.invalidate();
 		logeado = false;
 	}
-
+	
 	public boolean estaLogeado() {
 		return logeado;
 	}
+	
+	public Boolean getLogeado() {
+		return logeado;
+	}
 
-	public String getNombre() {
+	public void setLogeado(Boolean logeado) {
+		this.logeado = logeado;
+	}
+
+	public String getUsuario() {
 		return usuario;
 	}
 
-	public void setNombre(String nombre) {
-		this.usuario = nombre;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getClave() {

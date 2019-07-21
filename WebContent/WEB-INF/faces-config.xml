@@ -10,5 +10,33 @@
 			<to-view-id>registrarUsuario.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>admin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>saldo</from-outcome>
+			<to-view-id>adminMenu/saldo.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>admin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>historialContratos</from-outcome>
+			<to-view-id>adminMenu/historialContratos.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>admin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>usuarios</from-outcome>
+			<to-view-id>adminMenu/usuarios.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
 

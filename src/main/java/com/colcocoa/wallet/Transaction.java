@@ -42,6 +42,7 @@ public class Transaction {
 		String data = StringUtil.getStringFromKey(sender) + StringUtil.getStringFromKey(reciepient) + Float.toString(value)	;
 		signature = StringUtil.applyECDSASig(privateKey,data);		
 	}
+	
 	//Verifies the data we signed hasnt been tampered with
 	public boolean verifiySignature() {
 		String data = StringUtil.getStringFromKey(sender) + StringUtil.getStringFromKey(reciepient) + Float.toString(value)	;
