@@ -10,7 +10,7 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
 import com.colcocoa.entities.Usuarios;
 import com.colcocoa.manejadores.ManejadorUsuarios;
@@ -43,7 +43,7 @@ public class LoginBean implements Serializable {
 	 * @param actionEvent
 	 */
 	public void login(ActionEvent actionEvent) {
-		RequestContext context = RequestContext.getCurrentInstance();
+		PrimeFaces context = PrimeFaces.current();
 		FacesMessage msg = null;
 		Usuarios usuarioBD = manejadorUsuarios.consultarUsuario(usuario);
 		if (usuario != null && clave != null && usuarioBD != null && usuarioBD.getClave().equals(this.clave)) {
@@ -54,12 +54,12 @@ public class LoginBean implements Serializable {
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Credenciales no válidas");
 		}
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-		context.addCallbackParam("estaLogeado", logeado);
+		context.ajax().addCallbackParam("estaLogeado", logeado);
 		
 		if (logeado && usuarioBD.getUsuario().equals(USUARIO_ADMIN)) {
-			context.addCallbackParam("view", "admin.xhtml");
+			context.ajax().addCallbackParam("view", "adminMenu/historialContratos.xhtml");
 		}else {
-			context.addCallbackParam("view", "index.xhtml");
+			context.ajax().addCallbackParam("view", "plantar.xhtml");
 		}
 	}
 

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15636726707950" configfile="/blockchain/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="370" id="pf15636730621881" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15636730621882 pf15636730621893" path="/index.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="registrarUsuario.xhtml" x="338" y="178" id="pf15636730621894" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15636730621882" path="registrarUsuario.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="562" id="pf15636730621895" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf15636730621893" path="login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin.xhtml" id="pf156367366310915" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf156367366310916 pf156367382014818 pf156367382581620" path="admin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="registrarUsuario.xhtml" x="338" y="178" id="pf15636730621894" referenceLink="//@navigationRule.6/@fromViewId|" inlinks="pf15636730621882" path="registrarUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="562" id="pf15636730621895" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf15636730621893 pf15638363420080" path="login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin.xhtml" id="pf156367366310915" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf156367366310916 pf156367382014818 pf156367382581620" path="admin.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="adminMenu/saldo.xhtml" id="pf156367366310917" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf156367366310916" path="adminMenu/saldo.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="adminMenu/historialContratos.xhtml" id="pf156367382014819" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf156367382014818" path="adminMenu/historialContratos.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="adminMenu/usuarios.xhtml" id="pf156367382581621" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf156367382581620" path="adminMenu/usuarios.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="adminMenu/usuarios.xhtml" id="pf156367382581621" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf156367382581620" path="adminMenu/usuarios.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="historialContratos.xhtml" id="pf15638363420081" referenceLink="//@navigationRule.6/@fromViewId|" outlinks="pf15638363420080" path="historialContratos.xhtml"/>
   <links id="pf15636730621882" target="pf15636730621894" source="pf15636730621881" outcome="registrarUsuario"/>
   <links id="pf15636730621893" target="pf15636730621895" source="pf15636730621881" outcome="login"/>
   <links id="pf156367366310916" target="pf156367366310917" source="pf156367366310915" outcome="saldo"/>
   <links id="pf156367382014818" target="pf156367382014819" source="pf156367366310915" outcome="historialContratos"/>
   <links id="pf156367382581620" target="pf156367382581621" source="pf156367366310915" outcome="usuarios"/>
+  <links id="pf15638363420080" target="pf15636730621895" source="pf15638363420081" outcome="salir"/>
 </pageflow:Pageflow>

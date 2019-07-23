@@ -6,9 +6,10 @@ import java.security.Security;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
+
+import org.primefaces.PrimeFaces;
 
 import com.colcocoa.entities.Usuarios;
 import com.colcocoa.manejadores.ManejadorUsuarios;
@@ -39,13 +40,17 @@ public class RegistrarUsuarioBean implements Serializable{
 			if(usuario != null && usuario.getClave().equals(clave)) {
 				usuario = generarClavesUsuario(usuario);
 				manejadorUsuarios.almacenarUsuario(usuario);
+				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ahora puedes plantar un árbol", "Inicia Sesión");
+				PrimeFaces.current().dialog().showMessageDynamic(msg);
+				PrimeFaces.current().ajax().addCallbackParam("view", "login.xhtml");
+			    
 			}else {
 				msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Las contraseñas no coinciden.", "Error");
 			}
 		}else {
 			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario ya existe", "Error");	
 		}
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		PrimeFaces.current().dialog().showMessageDynamic(msg);
 	}
 	
 	private Usuarios generarClavesUsuario(Usuarios usuarios) {

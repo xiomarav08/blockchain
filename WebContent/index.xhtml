@@ -16,19 +16,13 @@
 	<h:form id="indexForm">
 	<header class="header">
 		<div class="container plantree-nav-container">
-			<a href="#" class="plantree">Plan Tree</a> <SPAN class="menu-icon">
-				Ver Menù </SPAN>
+			<a class="plantree">Plan Tree</a> <SPAN class="menu-icon"> 
+			 </SPAN>
 			<nav class="navigation">
 				<ul class="show">
-					<p:link value="Nuestro Proyecto "/>
+					<p:linkButton outcome="login" value="Iniciar Sesion "  style="margin-right:20px;" rendered="#{!loginBean.logeado}"/>
 					<br/>
-					<p:link value="Planta Un Arbol "/>
-					<br/>
-					<p:link value="Impacto "/>
-					<br/>
-					<p:link outcome="login" value="Iniciar Sesion " rendered="#{!loginBean.logeado}"/>
-					<br/>
-					<p:link outcome="registrarUsuario" value="Registrarse " rendered="#{!loginBean.logeado}"/>
+					<p:linkButton outcome="registrarUsuario" value="Registrarse "  style="margin-right:20px;" rendered="#{!loginBean.logeado}"/>
 				</ul>
 			</nav>
 		</div>
@@ -36,9 +30,8 @@
 
 	<main class="main">
 	<div class="container">
-
-		<p:outputLabel for="@next" value="#{indexBean.nameIndex}"/>
-		<p:outputLabel for="@next"  />
+	<h1> Green Furniture</h1>
+		
 		<p>Nuestro vivero posee una capacidad de 5,000 árboles de Abarco,
 			Guayacán Rosado y Moncoro (Solera), debido a que son especies nativas
 			de la región. En el se garantiza la germinación, el crecimiento y
@@ -52,7 +45,12 @@
 			total de 5,000 árboles, esta ubicación es estratégica debido a que
 			limita con los recursos hídricos y garantiza el cumplimiento del
 			objetivo del proyecto.</p>
-
+			
+			<p> Se determinan las actividades adecuadas para garantizar que la plántula crezca 
+			y se desarrolle satisfactoriamente esperando la supervivencia del 90% del cultivo,
+			 en donde se genera un plan correctivo con el fin de solucionar la causa de mortandad.
+              El manejo del cultivo tiene una duración de dos (2) años, de ahí en adelante la fundación 
+              se responsabiliza del monitoreo y control del cultivo.</p>
 	</div>
 
 	</main>

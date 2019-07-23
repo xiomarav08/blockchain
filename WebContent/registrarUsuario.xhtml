@@ -11,7 +11,7 @@
 	<h:form>
 	
 		<p:panel header="Registrar Usuario" style="width:300px">
-			<h:panelGrid columns="2" cellpadding="5">
+			<h:panelGrid columns="2" cellpadding="0">
 			
 				<h:outputLabel for="nombres" value="Nombres:" />
 				<p:inputText value="#{registrarUsuarioBean.usuario.nombre}" id="nombres"
@@ -47,8 +47,9 @@
 					
 				<f:facet name="footer">
 					<p:commandButton id="loginButton" value="Registrar usuario"
-						actionListener="#{registrarUsuarioBean.registrarUsuario}" update=":mensajes"/>
+						actionListener="#{registrarUsuarioBean.registrarUsuario}" update=":mensajes" />
 				</f:facet>
+				
 			</h:panelGrid>
 		</p:panel>
 	</h:form>
