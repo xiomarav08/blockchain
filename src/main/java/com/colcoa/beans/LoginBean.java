@@ -57,9 +57,9 @@ public class LoginBean implements Serializable {
 		context.ajax().addCallbackParam("estaLogeado", logeado);
 		
 		if (logeado && usuarioBD.getUsuario().equals(USUARIO_ADMIN)) {
-			context.ajax().addCallbackParam("view", "adminMenu/historialContratos.xhtml");
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "adminMenu/historialContratos.xhtml");
 		}else {
-			context.ajax().addCallbackParam("view", "plantar.xhtml");
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "plantar.xhtml");
 		}
 	}
 

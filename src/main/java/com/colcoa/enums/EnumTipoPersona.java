@@ -1,17 +1,18 @@
 package com.colcoa.enums;
 
-public enum EnumTipoTarjeta {
+public enum EnumTipoPersona {
 	
-	VISA("Visa"),
-	MASTERCARD("Mastercard");
+	NATURAL("Natural"),
+	JURIDICA("Juridica");
 	
 	private String message;
 	
-	private EnumTipoTarjeta(String message) {
+	private EnumTipoPersona(String message) {
 		this.message = message;
 	}
 	
 	public String getMessage() {
 		return message;
 	}
+
 }

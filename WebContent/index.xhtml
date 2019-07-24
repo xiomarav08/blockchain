@@ -13,66 +13,70 @@
 </h:head>
 
 <h:body>
-	
+
 	<h:form id="indexForm">
-	<header class="header">
-		<div class="container plantree-nav-container">
-			<a class="plantree">Plan Tree</a> <SPAN class="menu-icon"> 
-			 </SPAN>
-			<nav class="navigation">
-				<ul class="show">
-					<p:commandButton value="Iniciar Sesion" onclick="PF('dlg3').show();" style="margin-right:20px;" rendered="#{!loginBean.logeado}"/>
-					<br/>
-					<p:linkButton outcome="registrarUsuario" value="Registrarse "  style="margin-right:20px;" rendered="#{!loginBean.logeado}"/>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	
-	<p:dialog header="Salva el planeta" widgetVar="dlg3" showEffect="explode" minHeight="40" resizable="false" hideEffect="bounce">		
-		<h:panelGrid columns="2" cellpadding="5">
-			<h:outputLabel for="username" value="Usuario:" />
-			<p:inputText value="#{loginBean.usuario}" id="username" required="true" label="username" />
-			<h:outputLabel for="password" value="Clave:" />
-			<p:password value="#{loginBean.clave}" id="password" required="true" label="password" />
-				<p:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" oncomplete="manejarLogin(xhr, status, args)" type="submit"/>
-		</h:panelGrid>
-	</p:dialog>
-
-	<main class="main">
-	<div class="container">
-	<h1> Green Furniture</h1>
-		
-		<p>Nuestro vivero posee una capacidad de 5,000 árboles de Abarco,
-			Guayacán Rosado y Moncoro (Solera), debido a que son especies nativas
-			de la región. En el se garantiza la germinación, el crecimiento y
-			cuidado de las plantas hasta que tengan la altura recomendada (entre
-			15 a 25 cm), para ser trasplantadas a su lugar definitivo. Se estima
-			un tiempo de tres (3) meses para esta actividad.</p>
-
-		<p>Los árboles de reforestación de Green Furniture se van a
-			sembrar en los lotes de nuestra hacienda: 7,40, 46, 47, 48, 49, 58,
-			59 y 60. Se va a destinar un área de 1,5 hectáreas para una densidad
-			total de 5,000 árboles, esta ubicación es estratégica debido a que
-			limita con los recursos hídricos y garantiza el cumplimiento del
-			objetivo del proyecto.</p>
-			
-			<p> Se determinan las actividades adecuadas para garantizar que la plántula crezca 
-			y se desarrolle satisfactoriamente esperando la supervivencia del 90% del cultivo,
-			 en donde se genera un plan correctivo con el fin de solucionar la causa de mortandad.
-              El manejo del cultivo tiene una duración de dos (2) años, de ahí en adelante la fundación 
-              se responsabiliza del monitoreo y control del cultivo.</p>
-	</div>
-
-	</main>
-	<footer class="footer">
+		<header class="header">
+			<div class="container plantree-nav-container">
+				<a class="plantree">Plan Tree</a> <SPAN class="menu-icon"> </SPAN>
+				<nav class="navigation">
+					<ul class="show">
+						<p:commandButton value="Iniciar Sesion" onclick="PF('dlg3').show();" style="margin-right:20px;" rendered="#{!loginBean.logeado}" />
+						<br/>
+						<p:linkButton outcome="registrarUsuario" value="Registrarse" style="margin-right:20px;" rendered="#{!loginBean.logeado}" />
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<main class="main">
 		<div class="container">
-			<p>
-				<br> Hacienda la Tentaciòn </br> <br> Todos los derechos reservados </br> <br> 2019 </br>
-			</p>
+			<h1>Green Furniture</h1>
+
+			<p>Nuestro vivero posee una capacidad de 5,000 árboles de Abarco,
+				Guayacán Rosado y Moncoro (Solera), debido a que son especies
+				nativas de la región. En el se garantiza la germinación, el
+				crecimiento y cuidado de las plantas hasta que tengan la altura
+				recomendada (entre 15 a 25 cm), para ser trasplantadas a su lugar
+				definitivo. Se estima un tiempo de tres (3) meses para esta
+				actividad.</p>
+
+			<p>Los árboles de reforestación de Green Furniture se van a
+				sembrar en los lotes de nuestra hacienda: 7,40, 46, 47, 48, 49, 58,
+				59 y 60. Se va a destinar un área de 1,5 hectáreas para una densidad
+				total de 5,000 árboles, esta ubicación es estratégica debido a que
+				limita con los recursos hídricos y garantiza el cumplimiento del
+				objetivo del proyecto.</p>
+
+			<p>Se determinan las actividades adecuadas para garantizar que la
+				plántula crezca y se desarrolle satisfactoriamente esperando la
+				supervivencia del 90% del cultivo, en donde se genera un plan
+				correctivo con el fin de solucionar la causa de mortandad. El manejo
+				del cultivo tiene una duración de dos (2) años, de ahí en adelante
+				la fundación se responsabiliza del monitoreo y control del cultivo.</p>
 		</div>
 
-	</footer>
-</h:form>
-</h:body>
+		</main>
+		<footer class="footer">
+			<div class="container">
+				<p>
+					<br> Hacienda la Tentación </br> <br> Todos los derechos
+						reservados </br> <br> 2019 </br>
+				</p>
+			</div>
+
+		</footer>
+	</h:form>
+	</h:body>
+	<p:dialog header="Salva el planeta" widgetVar="dlg3" showEffect="explode" minHeight="40" resizable="false" hideEffect="bounce">
+		<h:form id="formModal">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="username" value="Usuario:" />
+				<p:inputText value="#{loginBean.usuario}" id="username" required="true" label="username" />
+				
+				<h:outputLabel for="password" value="Clave:" />
+				<p:password value="#{loginBean.clave}" id="password" required="true" label="password" />
+				
+				<p:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" update="formModal"/>
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
 </html>
