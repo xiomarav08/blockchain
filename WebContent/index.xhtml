@@ -13,6 +13,7 @@
 </h:head>
 
 <h:body>
+	
 	<h:form id="indexForm">
 	<header class="header">
 		<div class="container plantree-nav-container">
@@ -20,13 +21,23 @@
 			 </SPAN>
 			<nav class="navigation">
 				<ul class="show">
-					<p:linkButton outcome="login" value="Iniciar Sesion "  style="margin-right:20px;" rendered="#{!loginBean.logeado}"/>
+					<p:commandButton value="Iniciar Sesion" onclick="PF('dlg3').show();" style="margin-right:20px;" rendered="#{!loginBean.logeado}"/>
 					<br/>
 					<p:linkButton outcome="registrarUsuario" value="Registrarse "  style="margin-right:20px;" rendered="#{!loginBean.logeado}"/>
 				</ul>
 			</nav>
 		</div>
 	</header>
+	
+	<p:dialog header="Salva el planeta" widgetVar="dlg3" showEffect="explode" minHeight="40" resizable="false" hideEffect="bounce">		
+		<h:panelGrid columns="2" cellpadding="5">
+			<h:outputLabel for="username" value="Usuario:" />
+			<p:inputText value="#{loginBean.usuario}" id="username" required="true" label="username" />
+			<h:outputLabel for="password" value="Clave:" />
+			<p:password value="#{loginBean.clave}" id="password" required="true" label="password" />
+				<p:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" oncomplete="manejarLogin(xhr, status, args)" type="submit"/>
+		</h:panelGrid>
+	</p:dialog>
 
 	<main class="main">
 	<div class="container">
