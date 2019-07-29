@@ -19,6 +19,8 @@ public class PayUPSEDTO implements Serializable{
 	
 	private String indicativo;
 	
+	private String email;
+	
 	private Integer Telefono;
 
 	public EnumBanco getBanco() {
@@ -59,6 +61,14 @@ public class PayUPSEDTO implements Serializable{
 
 	public void setIndicativo(String indicativo) {
 		this.indicativo = indicativo;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Integer getTelefono() {

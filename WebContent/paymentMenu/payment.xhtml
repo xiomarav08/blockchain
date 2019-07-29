@@ -7,7 +7,7 @@
 	<title>Metodos de pago</title>
 </h:head>
 <h:body>
-	<h:form>
+	<h:form id="formPagos">
 		<p:panel header="Elija el metodo de pago">
 			<h:panelGrid columns="3">
 				<p:commandButton value="Tarjeta de credito" onclick="PF('creditDialog').show();"/>
@@ -15,8 +15,9 @@
 				<p:commandButton value="Consignacion" onclick="PF('consignDialog').show();"/>
 			</h:panelGrid>
 		</p:panel>
-		
-		<p:dialog header="Tarjeta de Credito" modal="true" widgetVar="creditDialog" minHeight="40" resizable="false" >
+	</h:form>
+	<p:dialog header="Tarjeta de Credito" modal="true" widgetVar="creditDialog" minHeight="40" resizable="false" >
+		<h:form id="creditForm">
 			<h:panelGrid columns="2">
 				<p:outputLabel for="tipoTarjeta" value="Tipo Tarjeta: " />
 				<p:selectOneMenu id="tipoTarjeta" value="#{pagosBean.payUDTO.tipoTarjeta}">
@@ -36,12 +37,13 @@
 				<p:outputLabel for="CVC" value="CVC: " />
 				<p:inputNumber id="CVC" value="#{pagosBean.payUDTO.cvc}" maxValue="999" maxlength="3"/>
 				
-				<p:commandButton style="text-align:center" value="Aceptar" action="#{pagosBean.creditCard}" immediate="true"/>
-					
-			</h:panelGrid>	
-		</p:dialog>
-		
-		<p:dialog header="PSE" widgetVar="pseDialog" modal="true" minHeight="40" resizable="false">
+				<p:commandButton value="Aceptar" actionListener="#{pagosBean.creditCard}"/>
+			</h:panelGrid>
+		</h:form>	
+	</p:dialog>
+	
+	<p:dialog header="PSE" modal="true" widgetVar="pseDialog"  minHeight="40" resizable="false">
+		<h:form id="pseForm">
 			<h:panelGrid columns="2">
 				<p:outputLabel for="banco" value="Banco: " />
 				<p:selectOneMenu id="banco" value="#{pagosBean.payUPSEDTO.banco}">
@@ -51,20 +53,28 @@
 				<p:outputLabel for="nombreTitularBanco" value="Nombre del titular: " />
 				<p:inputText id="nombreTitularBanco" value="#{pagosBean.payUPSEDTO.nombreTitular}"/>
 				
-				<p:outputLabel for="tipPersona" value="Banco: " />
+				<p:outputLabel for="tipPersona" value="Persona: " />
 				<p:selectOneMenu id="tipPersona" value="#{pagosBean.payUPSEDTO.tipocliente}">
 					<f:selectItems value="#{pagosBean.tiposPersona}" var="tiposPersonaItem" itemValue="#{tiposPersona}" itemLabel="#{tiposPersona.message}"/>
 				</p:selectOneMenu>
 				
 				<p:outputLabel for="numeroIdentificacion" value="Numero de identificacion: " />
 				<p:inputNumber id="numeroIdentificacion" value="#{pagosBean.payUPSEDTO.numeroIdentificacion}"/>
+				
+				<p:outputLabel for="email" value="Email: " />
+				<p:inputText id="email" value="#{pagosBean.payUPSEDTO.email}"/>
 			
 				<p:outputLabel for="telefono" value="Telefono: " />
 				<p:inputText id="telefono" value="#{pagosBean.payUPSEDTO.telefono}"/>
+				
+				<p:commandButton value="Aceptar" actionListener="#{pagosBean.psePayment}"/>
 			</h:panelGrid>
-		</p:dialog>
+		</h:form>
 		
-		<p:dialog header="Consignacion Bancaria" widgetVar="consignDialog" modal="true" minHeight="40" resizable="false" >
+	</p:dialog>
+	
+	<p:dialog header="Consignacion" modal="true" widgetVar="consignDialog"  minHeight="40" resizable="false" >
+		<h:form id="consigForm">
 			<h:panelGrid columns="2">
 				<p:outputLabel for="medioPago" value="Medio Pago: " />
 				<p:selectOneMenu id="medioPago" value="#{pagosBean.payUConsignacionDTO.medioPago}">
@@ -72,9 +82,11 @@
 				</p:selectOneMenu>
 				
 				<p:outputLabel for="numeroConsignacion" value="Numero consignacion: " />
-				<p:inputNumber id="numeroConsignacion" value="#{pagosBean.payUConsignacionDTO.numeroConsignacion}" />			
+				<p:inputNumber id="numeroConsignacion" value="#{pagosBean.payUConsignacionDTO.numeroConsignacion}" />
+				
+				<p:commandButton value="Aceptar" actionListener="#{pagosBean.consignacion}"/>
 			</h:panelGrid>
-		</p:dialog>
-	</h:form>
+		</h:form>
+	</p:dialog>
 </h:body>
 </html>

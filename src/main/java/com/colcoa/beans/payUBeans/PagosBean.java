@@ -1,8 +1,13 @@
 package com.colcoa.beans.payUBeans;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -21,9 +26,14 @@ import com.payu.sdk.PayUPayments;
 import com.payu.sdk.exceptions.ConnectionException;
 import com.payu.sdk.exceptions.InvalidParametersException;
 import com.payu.sdk.exceptions.PayUException;
+import com.payu.sdk.model.Bank;
 import com.payu.sdk.model.Currency;
+import com.payu.sdk.model.DocumentType;
+import com.payu.sdk.model.Language;
 import com.payu.sdk.model.PaymentCountry;
 import com.payu.sdk.model.TransactionResponse;
+import com.payu.sdk.model.TransactionState;
+import com.payu.sdk.utils.LoggerUtil;
 
 
 @ManagedBean(name = "pagosBean")
@@ -50,7 +60,7 @@ public class PagosBean implements Serializable{
 		payUConsignacionDTO = new PayUConsignacionDTO();
 	}
 	
-	public void creditCard() {
+	public void creditCard(ActionEvent actionEvent) {
 		// Ingrese aquí el identificador de la cuenta.
 		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, "512321");
 		// Ingrese aquí el código de referencia.
@@ -127,7 +137,9 @@ public class PagosBean implements Serializable{
 		// Ingrese aquí el número de la tarjeta de crédito
 		parameters.put(PayU.PARAMETERS.CREDIT_CARD_NUMBER, payUDTO.getNumeroTarjeta().replaceAll("-", ""));
 		// Ingrese aquí la fecha de vencimiento de la tarjeta de crédito
-		parameters.put(PayU.PARAMETERS.CREDIT_CARD_EXPIRATION_DATE, ""+ payUDTO.getVencimientoTarjeta().getYear() + "/" + payUDTO.getVencimientoTarjeta().getMonth());
+		LocalDateTime localTime = payUDTO.getVencimientoTarjeta().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+		String expirateDate = localTime.getYear() + "/" + (localTime.getMonth().getValue() <= 9 ? "0"+ localTime.getMonth().getValue() : localTime.getMonth().getValue());
+		parameters.put(PayU.PARAMETERS.CREDIT_CARD_EXPIRATION_DATE, expirateDate);
 		// Ingrese aquí el código de seguridad de la tarjeta de crédito
 		parameters.put(PayU.PARAMETERS.CREDIT_CARD_SECURITY_CODE, payUDTO.getCvc().toString());
 		// Ingrese aquí el nombre de la tarjeta de crédito
@@ -146,10 +158,11 @@ public class PagosBean implements Serializable{
 		parameters.put(PayU.PARAMETERS.COOKIE, "pt1t38347bs6jc9ruv2ecpv7o2");
 		// Cookie de la sesión actual.
 		parameters.put(PayU.PARAMETERS.USER_AGENT, "Mozilla/5.0 (Windows NT 5.1; rv:18.0) Gecko/20100101 Firefox/18.0");
-
+		
 		// Solicitud de autorización y captura
 		TransactionResponse response;
 		try {
+			instancePayU();
 			response = PayUPayments.doAuthorizationAndCapture(parameters);
 			// Respuesta
 			if (response != null) {
@@ -169,6 +182,215 @@ public class PagosBean implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void psePayment(ActionEvent actionEvent) {
+		//Ingrese aquí el nombre del medio de pago
+		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, "PSE");
+	
+		//Ingrese aquí el nombre del pais.
+		parameters.put(PayU.PARAMETERS.COUNTRY, PaymentCountry.CO.name());
+		
+		//Ingrese aquí el identificador de la cuenta.
+		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, "512321");
+		//Ingrese aquí el código de referencia.
+		parameters.put(PayU.PARAMETERS.REFERENCE_CODE, ""+reference);
+		//Ingrese aquí la descripción.
+		parameters.put(PayU.PARAMETERS.DESCRIPTION, "payment test");
+		//Ingrese aquí el idima de la orden.
+		parameters.put(PayU.PARAMETERS.LANGUAGE, "Language.es");
+
+		// -- Valores --
+		//Ingrese aquí el valor de la transacción.
+		parameters.put(PayU.PARAMETERS.VALUE, ""+value);
+		//Ingrese aquí el valor del IVA (Impuesto al Valor Agregado solo valido para Colombia) de la transacción,
+		//si se envía el IVA nulo el sistema aplicará el 19% automáticamente. Puede contener dos dígitos decimales.
+		//Ej: 19000.00. En caso de no tener IVA debe enviarse en 0.
+		parameters.put(PayU.PARAMETERS.TAX_VALUE, "3193");
+		//Ingrese aquí el valor base sobre el cual se calcula el IVA (solo valido para Colombia).
+		//En caso de que no tenga IVA debe enviarse en 0.
+		parameters.put(PayU.PARAMETERS.TAX_RETURN_BASE, "16806");
+		//Ingrese aquí la moneda.
+		parameters.put(PayU.PARAMETERS.CURRENCY, ""+Currency.COP.name());
+
+		//Ingrese aquí el email del comprador.
+		parameters.put(PayU.PARAMETERS.BUYER_EMAIL, "buyer_test@test.com");
+
+		// -- pagador --
+		//Ingrese aquí el nombre del pagador.
+		parameters.put(PayU.PARAMETERS.PAYER_NAME, payUPSEDTO.getNombreTitular());
+		//Ingrese aquí el email del pagador.
+		parameters.put(PayU.PARAMETERS.PAYER_EMAIL, payUPSEDTO.getEmail());
+		//Ingrese aquí el teléfono de contacto del pagador.
+		parameters.put(PayU.PARAMETERS.PAYER_CONTACT_PHONE, payUPSEDTO.getTelefono().toString());
+
+		// -- infarmación obligatoria para PSE --
+		//Ingrese aquí el código pse del banco.
+		List banks = getPseBanks();
+		Iterator banks_iterator=banks.iterator();
+		String pseBankCode = "";
+		while(banks_iterator.hasNext()){
+			Bank bank = (Bank) banks_iterator.next();
+			
+			if(bank.getId().equals(payUPSEDTO.getBanco().getMessage())) {
+				pseBankCode = bank.getPseCode();
+			}
+		}
+		
+		parameters.put(PayU.PARAMETERS.PSE_FINANCIAL_INSTITUTION_CODE, pseBankCode);
+		//Ingrese aquí el tipo de persona (natural o jurídica)
+		parameters.put(PayU.PARAMETERS.PAYER_PERSON_TYPE, payUPSEDTO.getTipocliente().getMessage());
+		//o parameters.put(PayU.PARAMETERS.PAYER_PERSON_TYPE, PersonType.LEGAL.toString() );
+		//Ingrese aquí el documento de contacto del pagador.
+		parameters.put(PayU.PARAMETERS.PAYER_DNI, payUPSEDTO.getNumeroIdentificacion().toString());
+		//Ingrese aquí el tipo de documento del pagador.
+		parameters.put(PayU.PARAMETERS.PAYER_DOCUMENT_TYPE, DocumentType.CC.toString());
+		//IP del pagadador
+		parameters.put(PayU.PARAMETERS.IP_ADDRESS, "127.0.0.1");
+
+		//Ingrese aquí el nombre del medio de pago
+		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, "PSE");
+
+		//Ingrese aquí el nombre del pais.
+		parameters.put(PayU.PARAMETERS.COUNTRY, PaymentCountry.CO.name());
+
+		//Cookie de la sesión actual.
+		parameters.put(PayU.PARAMETERS.COOKIE, "pt1t38347bs6jc9ruv2ecpv7o2");
+		//Cookie de la sesión actual.
+		parameters.put(PayU.PARAMETERS.USER_AGENT, "Mozilla/5.0 (Windows NT 5.1; rv:18.0) Gecko/20100101 Firefox/18.0");
+
+		//Página de respuesta a la cual será redirigido el pagador.
+		parameters.put(PayU.PARAMETERS.RESPONSE_URL, "http://www.test.com/response");
+
+		//Solicitud de autorización y captura
+		TransactionResponse response;
+		try {
+			response = PayUPayments.doAuthorizationAndCapture(parameters);
+			//Respuesta
+			if(response != null){
+				response.getOrderId();
+				response.getTransactionId();
+				response.getState();
+				if(response.getState().equals(TransactionState.PENDING)){
+					response.getPendingReason();
+					Map extraParameters = response.getExtraParameters();
+
+					//obtener la url del banco
+					String url=(String)extraParameters.get("BANK_URL");
+
+				}
+				response.getPaymentNetworkResponseCode();
+				response.getPaymentNetworkResponseErrorMessage();
+				response.getTrazabilityCode();
+				response.getResponseCode();
+				response.getResponseMessage();
+			}
+		} catch (PayUException | InvalidParametersException | ConnectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private List getPseBanks() {
+		//Ingrese aquí el nombre del medio de pago
+		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, "PSE");
+	
+		//Ingrese aquí el nombre del pais.
+		parameters.put(PayU.PARAMETERS.COUNTRY, PaymentCountry.CO.name());
+	
+		//Obtener el listado de bancos disponibles
+		List banks;
+		try {
+			banks = PayUPayments.getPSEBanks(parameters);
+			return banks;
+		} catch (PayUException | InvalidParametersException | ConnectionException e) {
+			e.printStackTrace();
+			return null;
+		}		
+	}
+
+	private void instancePayU() {
+		PayU.apiKey = "8KB94yZmS1xu19eF8aKGYG9Nd4"; //Ingresa aquí tu apiKey.
+		PayU.apiLogin = "bYC5fH2p5T270G6"; //Ingresa aquí tu apiLogin.
+		PayU.language = Language.es; //Ingresa aquí el idioma que prefieras.
+		PayU.isTest = true; //Dejarlo verdadero cuando sean pruebas.
+		LoggerUtil.setLogLevel(Level.ALL); //Incluirlo únicamente si desea ver toda la traza del log; si solo se desea ver la respuesta, se puede eliminar.
+		PayU.paymentsUrl = "https://api.payulatam.com/payments-api/"; //Incluirlo únicamente si desea probar en un servidor de pagos específico, e indicar la ruta del mismo.
+		PayU.reportsUrl = "https://api.payulatam.com/reports-api/"; //Incluirlo únicamente si desea probar en un servidor de reportes específico, e indicar la ruta del mismo
+	}
+	
+	public void consignacion(ActionEvent actionEvent) {
+		Map<String, String> parameters = new HashMap<String, String>();
+
+		//Ingrese aquí el identificador de la cuenta.
+		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, "512321");
+		//Ingrese aquí el código de referencia.
+		parameters.put(PayU.PARAMETERS.REFERENCE_CODE, ""+reference);
+		//Ingrese aquí la descripción.
+		parameters.put(PayU.PARAMETERS.DESCRIPTION, "payment test");
+		//Ingrese aquí el idima de la orden.
+		parameters.put(PayU.PARAMETERS.LANGUAGE, "Language.es");
+
+		// -- Valores --
+		//Ingrese aquí el valor de la transacción.
+		parameters.put(PayU.PARAMETERS.VALUE, ""+value);
+		//Ingrese aquí el valor del IVA (Impuesto al Valor Agregado solo valido para Colombia) de la transacción,
+		//si se envía el IVA nulo el sistema aplicará el 19% automáticamente. Puede contener dos dígitos decimales.
+		//Ej: 19000.00. En caso de no tener IVA debe enviarse en 0.
+		parameters.put(PayU.PARAMETERS.TAX_VALUE, "3193");
+		//Ingrese aquí el valor base sobre el cual se calcula el IVA (solo valido para Colombia).
+		//En caso de que no tenga IVA debe enviarse en 0.
+		parameters.put(PayU.PARAMETERS.TAX_RETURN_BASE, "16806");
+		//Ingrese aquí la moneda.
+		parameters.put(PayU.PARAMETERS.CURRENCY, ""+Currency.COP.name());
+
+		//Ingrese aquí el email del comprador.
+		parameters.put(PayU.PARAMETERS.BUYER_EMAIL, "buyer_test@test.com");
+
+		//Ingrese aquí el nombre del pagador.
+		parameters.put(PayU.PARAMETERS.PAYER_NAME, "First name and second payer name");
+
+		//Ingrese aquí el nombre del medio de pago en efectivo
+		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, payUConsignacionDTO.getMedioPago().getMessage());
+
+		//Ingrese aquí el nombre del pais.
+		parameters.put(PayU.PARAMETERS.COUNTRY, PaymentCountry.CO.name());
+
+		//Ingrese aquí la fecha de expiración.
+		parameters.put(PayU.PARAMETERS.EXPIRATION_DATE,"2014-05-20T00:00:00");
+
+		//IP del pagadador
+		parameters.put(PayU.PARAMETERS.IP_ADDRESS, "127.0.0.1");
+
+		//Solicitud de autorización y captura
+		TransactionResponse response;
+		try {
+			response = PayUPayments.doAuthorizationAndCapture(parameters);
+			
+			//Respuesta
+			if(response != null){
+				response.getOrderId();
+				response.getTransactionId();
+				response.getState();
+				if(response.getState().equals(TransactionState.PENDING)){
+					response.getPendingReason();
+					Map extraParameters = response.getExtraParameters();
+
+					//obtener la url del comprobante de pago
+					String url=(String)extraParameters.get("URL_PAYMENT_RECEIPT_HTML");
+				}
+				response.getPaymentNetworkResponseCode();
+				response.getPaymentNetworkResponseErrorMessage();
+				response.getTrazabilityCode();
+				response.getResponseCode();
+				response.getResponseMessage();
+			}
+		} catch (PayUException | InvalidParametersException | ConnectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
 	}
 
 	public PayUPSEDTO getPayUPSEDTO() {
