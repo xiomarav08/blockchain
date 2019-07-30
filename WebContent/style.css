@@ -23,8 +23,8 @@ margin-bottom:1.6em;
 	}
 
 .header {
-	background:white;
-	color: blue;
+	background:#4E8426;
+	color: white;
 	padding: 2rem 0;
 	
 	position:fixed;
@@ -76,9 +76,9 @@ margin-bottom:1.6em;
 	}
 	
 	.footer {
-	background:white;
-	color: blue;
-	padding:0.9 0;
+	background:#4E8426;
+	color: white;
+	padding:40px;
 	text-align:center;
 	margen-top:6rem;
 	line-height: 100%;

@@ -8,48 +8,47 @@
 </h:head>
 <h:body style="text-align:center">
 	<p:growl id="mensajes" showDetail="true" life="2000" />
-	<h:form>
+	<h:form >
 	
-		<p:panel header="Registrar Usuario" style="width:300px">
+		<p:panel header="Registrar Usuario" style="width:350px">
 			<h:panelGrid columns="2" cellpadding="0">
 			
-				<h:outputLabel for="nombres" value="Nombres:" />
+				<h:outputLabel for="nombres" value="Nombres:" style="color:white;" />
 				<p:inputText value="#{registrarUsuarioBean.usuario.nombre}" id="nombres"
 					required="true" label="nombres" />
 					
-				<h:outputLabel for="apellidos" value="Apellidos:" />
+				<h:outputLabel for="apellidos" value="Apellidos:" style="color:white;"/>
 				<p:inputText value="#{registrarUsuarioBean.usuario.apellidos}" id="apellidos" 
-					required="true" label="apellidos" />
+					required="true" label="apellidos"/>
 					
-				<h:outputLabel for="numeroDeIdentificacion" value="Numero de Identificacion:" />
+				<h:outputLabel for="numeroDeIdentificacion" value="Numero de Identificacion:" style="color:white;" />
 				<p:inputText value="#{registrarUsuarioBean.usuario.numeroDeIdentificacion}" id="numeroDeIdentificacion" 
 					required="true" label="numeroDeIdentificacion" />
 					
-				<h:outputLabel for="telefono" value="Telefono:" />
+				<h:outputLabel for="telefono" value="Telefono:" style="color:white;"/>
 				<p:inputText value="#{registrarUsuarioBean.usuario.telefono}" id="telefono" 
 					required="true" label="telefono" />
 					
-				<h:outputLabel for="email" value="Email:" />
+				<h:outputLabel for="email" value="Email:" style="color:white;"/>
 				<p:inputText value="#{registrarUsuarioBean.usuario.email}" id="email" 
-					required="true" label="email" />
+					required="true" label="email"/>
 					
-				<h:outputLabel for="usuario" value="Usuario:" />
+				<h:outputLabel for="usuario" value="Usuario:" style="color:white;" />
 				<p:inputText value="#{registrarUsuarioBean.usuario.usuario}" id="usuario" 
-					required="true" label="usuario" />
+					required="true" label="usuario"/>
 					
-				<h:outputLabel for="clave" value="Contraseña:" />
+				<h:outputLabel for="clave" value="Contraseña:" style="color:white;" />
 				<p:password value="#{registrarUsuarioBean.usuario.clave}" id="clave" 
-					required="true" label="clave" />
+					required="true" label="clave"/>
 					
-				<h:outputLabel for="clave2" value="Repita su Contraseña:" />
+				<h:outputLabel for="clave2" value="Repita su Contraseña:" style="color:white;"/>
 				<p:password value="#{registrarUsuarioBean.clave}" id="clave2" 
-					required="true" label="clave2" />
-					
+					required="true" label="clave2"/>
+				<br/>
 				<f:facet name="footer">
 					<p:commandButton id="loginButton" value="Registrar usuario"
 						actionListener="#{registrarUsuarioBean.registrarUsuario}" update=":mensajes" />
-				</f:facet>
-				
+				</f:facet>			
 			</h:panelGrid>
 		</p:panel>
 	</h:form>
