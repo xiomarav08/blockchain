@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Index</title>
+	<meta charset="UTF-8"></meta>
+	<meta name="viewport" content="width=device-width, initial -scale=1">
+	</meta>
+
+	<link href="style.css" rel="stylesheet"></link>
+</h:head>
+
+<h:body>
+
+	<h:form id="indexForm">
+		<header class="header">
+			<div class="container plantree-nav-container">
+				<a class="plantree">plant</a> <SPAN class="menu-icon"> </SPAN>
+				<nav class="navigation">
+					<ul class="show">
+					</ul>
+				</nav>
+			</div>
+			<br />
+			<div style= "text-align: center;">
+					 
+					 <p:linkButton value="Compra Tcoins" outcome="payment"
+					style="margin-right:20px;" icon="fa fa-fw fa-dollar"/>
+
+				<p:linkButton value="Plantar" outcome="billetera"
+					style="margin-right:20px;" icon="fa fa-fw fa-leaf"/>
+			</div>
+		</header>
+		<main class="main">
+		<div class="container">
+			<h1>Tcoins</h1>
+            <div style= "text-align: center;">
+			<p>Nuestro sistema de compra, es un sistema blockchain, en el podràs comprar y salvar el planeta
+			sembrando un àrbol. </p>
+
+			<p>TCoins es la moneda virtual de Hacienda la Tentaciòn, para adquirirla debes comprarla.</p>
+
+			<p>1Tcoins=$2 <br/>
+			   1 Arbol= 1Coins</p>
+			   
+			  <p>Compra minina de Tcoins= $10</p>
+			   </div>
+		</div>
+
+		</main>
+		<footer class="footer">
+			<div class="container">
+				<div id="copyright">© 2019 - Hacienda la Tentación</div>
+			</div>
+
+		</footer>
+	</h:form>
+</h:body>
+</html>

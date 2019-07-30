@@ -9,11 +9,18 @@ xmlns:h="http://java.sun.com/jsf/html">
 </h:head>
 
   <h:body style="text-align:center">
-	  	<h:form id="formWallet">
-	  		<h:outputText value=" Proyecto Green Furniture Chain" />
-	  		<h:outputText value=" Hacienda la Tentaciòn" />
-	  		
-		  	<div id="menu" style="height: 200%; width: 305px;z-index: 1;left: 0;background-color: #ffffff;overflow-x: hidden;position: absolute;">
+  
+  <h:form id="formWallet">
+		<header class="header">
+			<div class="container plantree-nav-container">
+				<a class="plantree">plant</a> <SPAN class="menu-icon"> </SPAN>
+				<nav class="navigation">
+					<ul class="show">
+					</ul>
+				</nav>
+			</div>
+			<br />
+			 	<div id="menu" style="height: 200%; width: 305px;z-index: 1;left: 0;background-color: #ffffff;overflow-x: hidden;position: absolute;">
 			  	<p:panelMenu style="width:300px">
 					<p:submenu label="Acciones">
 						<p:menuitem value="Ver Saldo" icon="ui-icon-document" actionListener="#{transactionBeanverSaldo}" update="formWallet"/>
@@ -46,7 +53,7 @@ xmlns:h="http://java.sun.com/jsf/html">
 							<p:confirm header="Confirmacion" message="Esta seguro que desea realizar la compra?" icon="pi pi-exclamation-triangle" />
 						</p:commandButton>
 						
-						<h:outputText value="El valor de cada arbol es de 1 tcoins"></h:outputText>
+						<h:outputText value="El valor de cada arbol es de 5 tcoins"></h:outputText>
 						
 						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 					        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
@@ -55,6 +62,15 @@ xmlns:h="http://java.sun.com/jsf/html">
 					</h:panelGrid>
 				</h:panelGrid>
 			</p:panel>
+  
+		 
+		</main>
+		<footer class="footer">
+			<div class="container">
+				<div id="copyright">© 2019 - Hacienda la Tentación</div>
+			</div>
+
+		</footer>
 		</h:form>
     </h:body> 
 </html>
