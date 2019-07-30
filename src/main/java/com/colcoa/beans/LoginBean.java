@@ -1,6 +1,7 @@
 package com.colcoa.beans;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -54,7 +55,9 @@ public class LoginBean implements Serializable {
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Credenciales no válidas");
 		}
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-		context.ajax().addCallbackParam("estaLogeado", logeado);
+		
+		Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+	    session.put("LOGGEDIN_USER", usuarioBD);
 		
 		if (logeado && usuarioBD.getUsuario().equals(USUARIO_ADMIN)) {
 			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "adminMenu/historialContratos.xhtml");

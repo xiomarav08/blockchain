@@ -34,6 +34,7 @@ public class UsuariosAdminBean implements Serializable{
 		FacesMessage msg = null;
 		if(manejadorUsuarios.deleteUser(usuario)) {
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario eliminado", "Usuario eliminado con exito");
+			listaUsuarios = manejadorUsuarios.findAll();
 		}else {
 			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al eliminar", "El usuario no ha sido eliminado, consulte con un administrador");
 		}

@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import com.colcoa.beans.payUBeans.dto.PayUConsignacionDTO;
@@ -32,6 +33,7 @@ import com.payu.sdk.model.DocumentType;
 import com.payu.sdk.model.Language;
 import com.payu.sdk.model.PaymentCountry;
 import com.payu.sdk.model.TransactionResponse;
+import com.payu.sdk.model.TransactionResponseCode;
 import com.payu.sdk.model.TransactionState;
 import com.payu.sdk.utils.LoggerUtil;
 
@@ -52,6 +54,14 @@ public class PagosBean implements Serializable{
 	private PayUPSEDTO payUPSEDTO;
 	
 	private PayUConsignacionDTO payUConsignacionDTO;
+	
+	private Boolean renderCreditCard;
+	
+	private Boolean renderPSE;
+	
+	private Boolean renderConsignacion;
+	
+	private String headerModal;
 
 	@PostConstruct
 	public void Init() {
@@ -59,8 +69,17 @@ public class PagosBean implements Serializable{
 		payUPSEDTO = new PayUPSEDTO();
 		payUConsignacionDTO = new PayUConsignacionDTO();
 	}
+	public void processPay(String optionValue) {
+		if(optionValue.equals("creditCard")) {
+			creditCard();
+		}else if(optionValue.equals("pse")) {
+			psePayment();
+		}else if(optionValue.equals("consignacion")) {
+			consignacion();
+		}
+	}
 	
-	public void creditCard(ActionEvent actionEvent) {
+	private void creditCard() {
 		// Ingrese aquí el identificador de la cuenta.
 		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, "512321");
 		// Ingrese aquí el código de referencia.
@@ -177,6 +196,10 @@ public class PagosBean implements Serializable{
 				response.getTrazabilityCode();
 				response.getResponseCode();
 				response.getResponseMessage();
+				response.setResponseCode(TransactionResponseCode.APPROVED);
+				if(TransactionResponseCode.APPROVED.equals(response.getResponseCode())) {
+					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
+				}
 			}
 		} catch (PayUException | InvalidParametersException | ConnectionException e) {
 			// TODO Auto-generated catch block
@@ -184,7 +207,7 @@ public class PagosBean implements Serializable{
 		}
 	}
 	
-	public void psePayment(ActionEvent actionEvent) {
+	private void psePayment() {
 		//Ingrese aquí el nombre del medio de pago
 		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, "PSE");
 	
@@ -284,6 +307,10 @@ public class PagosBean implements Serializable{
 				response.getTrazabilityCode();
 				response.getResponseCode();
 				response.getResponseMessage();
+				response.setResponseCode(TransactionResponseCode.APPROVED);
+				if(TransactionResponseCode.APPROVED.equals(response.getResponseCode())) {
+					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
+				}
 			}
 		} catch (PayUException | InvalidParametersException | ConnectionException e) {
 			// TODO Auto-generated catch block
@@ -319,7 +346,7 @@ public class PagosBean implements Serializable{
 		PayU.reportsUrl = "https://api.payulatam.com/reports-api/"; //Incluirlo únicamente si desea probar en un servidor de reportes específico, e indicar la ruta del mismo
 	}
 	
-	public void consignacion(ActionEvent actionEvent) {
+	private void consignacion() {
 		Map<String, String> parameters = new HashMap<String, String>();
 
 		//Ingrese aquí el identificador de la cuenta.
@@ -384,6 +411,10 @@ public class PagosBean implements Serializable{
 				response.getTrazabilityCode();
 				response.getResponseCode();
 				response.getResponseMessage();
+				response.setResponseCode(TransactionResponseCode.APPROVED);
+				if(TransactionResponseCode.APPROVED.equals(response.getResponseCode())) {
+					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
+				}
 			}
 		} catch (PayUException | InvalidParametersException | ConnectionException e) {
 			// TODO Auto-generated catch block
@@ -391,6 +422,59 @@ public class PagosBean implements Serializable{
 		}
 
 		
+	}
+	
+	public void renderModal(String modal) {
+		if(modal.equals("creditCard")) {
+			setRenderCreditCard(Boolean.TRUE);
+			setRenderPSE(Boolean.FALSE);
+			setRenderConsignacion(Boolean.FALSE);
+			setHeaderModal("Tarjeta de credito");
+			
+		} else if(modal.equals("pse")) {
+			setRenderCreditCard(Boolean.FALSE);
+			setRenderPSE(Boolean.TRUE);
+			setRenderConsignacion(Boolean.FALSE);
+			setHeaderModal("PSE");
+			
+		} else if(modal.equals("consignacion")) {
+			setRenderCreditCard(Boolean.FALSE);
+			setRenderPSE(Boolean.FALSE);
+			setRenderConsignacion(Boolean.TRUE);
+			setHeaderModal("Consignacion");
+		}
+	}
+	
+	public String getHeaderModal() {
+		return headerModal;
+	}
+	
+	public void setHeaderModal(String headerModal) {
+		this.headerModal = headerModal;
+	}
+
+	public Boolean getRenderCreditCard() {
+		return renderCreditCard;
+	}
+
+	public void setRenderCreditCard(Boolean renderCreditCard) {
+		this.renderCreditCard = renderCreditCard;
+	}
+
+	public Boolean getRenderPSE() {
+		return renderPSE;
+	}
+
+	public void setRenderPSE(Boolean renderPSE) {
+		this.renderPSE = renderPSE;
+	}
+
+	public Boolean getRenderConsignacion() {
+		return renderConsignacion;
+	}
+
+	public void setRenderConsignacion(Boolean renderConsignacion) {
+		this.renderConsignacion = renderConsignacion;
 	}
 
 	public PayUPSEDTO getPayUPSEDTO() {

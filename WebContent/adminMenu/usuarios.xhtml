@@ -35,10 +35,9 @@
 				</p:column>
 	
 				<p:column headerText="Eliminar Usuario">
-					<p:commandLink value="Eliminar" action="#{usuariosAdminBean.deleteUser(usuario)}" update="@form">
-						<p:confirm header="Confirmation" message="Are you sure?"
-							icon="pi pi-exclamation-triangle" />
-					</p:commandLink>
+					<p:commandButton value="Eliminar" actionListener="#{usuariosAdminBean.deleteUser(usuario)}" update="formAdmin:tableUsuarios">
+						<p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
