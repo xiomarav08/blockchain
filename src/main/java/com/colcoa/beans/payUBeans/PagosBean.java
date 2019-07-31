@@ -439,6 +439,7 @@ public class PagosBean implements Serializable{
 		Integer valorDolar = Integer.parseInt(properties.getProperty("DOLLAR_COP_VALUE"));
 		Double valorReal = Double.valueOf(valor * valorDolar);
 		setValue(valorReal.toString());
+		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "paymentMenu/payment.xhtml");
 	}
 	
 	public Integer getNumeroArboles() {
