@@ -1,13 +1,20 @@
 package com.colcoa.beans;
 
+import java.security.PublicKey;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
 
+import com.colcocoa.entities.TransactionEntity;
 import com.colcocoa.entities.Usuarios;
+import com.colcocoa.manejadores.ManejadorUsuarios;
+import com.colcocoa.wallet.StringUtil;
+import com.colcocoa.wallet.Transaction;
 
 @ManagedBean(name = "transactionBean")
 @SessionScoped
@@ -21,7 +28,14 @@ public class TransactionBean {
 	
 	private Usuarios usuario;
 	
+	private String publicKeyIn;
+	
 	private Integer numeroArboles;
+	
+	private final String USUARIO_ADMIN = "admin";
+	
+	@Inject
+	private ManejadorUsuarios manejadorUsuarios;
 	
 	@PostConstruct
 	public void Init() {
@@ -36,6 +50,26 @@ public class TransactionBean {
 	
 	public void comprarArbol() {
 		
+	}
+	
+	public void cargarBalance(Integer value) {
+		try {
+			TransactionEntity transactionEntity = new TransactionEntity();
+			Usuarios usuarioAdmin = manejadorUsuarios.consultarUsuario(USUARIO_ADMIN);
+			PublicKey publicKeyAdmin = StringUtil.getPublicKey(usuarioAdmin.getPublicKey().getBytes());
+			PublicKey publicKeyUsuario = StringUtil.getPublicKey(usuarioAdmin.getPublicKey().getBytes());
+			Transaction transaction = new Transaction(publicKeyAdmin, publicKeyUsuario, value, null);
+		}catch (Exception e) {
+			e.printStackTrace();;
+		}
+	}
+	
+	public String getPublicKeyIn() {
+		return publicKeyIn;
+	}
+	
+	public void setPublicKeyIn(String publicKeyIn) {
+		this.publicKeyIn = publicKeyIn;
 	}
 	
 	public void verSaldo(ActionEvent actionEvent) {

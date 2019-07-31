@@ -18,7 +18,7 @@ import com.colcoa.enums.EnumTipoTransacion;
 
 @Entity(name = "Transaction")
 @Table(name="TRANSACTION")
-public class Transaction implements Serializable{
+public class TransactionEntity implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -112,7 +112,7 @@ public class Transaction implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Transaction other = (Transaction) obj;
+		TransactionEntity other = (TransactionEntity) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

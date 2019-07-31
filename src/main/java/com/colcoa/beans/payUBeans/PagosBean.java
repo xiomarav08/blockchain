@@ -1,5 +1,7 @@
 package com.colcoa.beans.payUBeans;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -7,14 +9,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.logging.Level;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
 
+import com.colcoa.beans.TransactionBean;
 import com.colcoa.beans.payUBeans.dto.PayUConsignacionDTO;
 import com.colcoa.beans.payUBeans.dto.PayUCreditCardDTO;
 import com.colcoa.beans.payUBeans.dto.PayUPSEDTO;
@@ -44,10 +48,10 @@ public class PagosBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	String reference = "payment_test_00000001";
-	String value = "20000";
-
-	Map<String, String> parameters = new HashMap<String, String>();
+	//TODO generar un numero de referencia de cada transaccion
+	private String reference = "payment_test_00000001";
+	
+	private String value;
 	
 	private PayUCreditCardDTO payUDTO;
 	
@@ -62,13 +66,30 @@ public class PagosBean implements Serializable{
 	private Boolean renderConsignacion;
 	
 	private String headerModal;
+	
+	private Properties properties;
+	
+	private Integer numeroArboles;
+	
+	@Inject
+	private TransactionBean transactionBean;
+	
 
 	@PostConstruct
 	public void Init() {
 		payUDTO = new PayUCreditCardDTO();
 		payUPSEDTO = new PayUPSEDTO();
 		payUConsignacionDTO = new PayUConsignacionDTO();
+		try {
+			properties = new Properties();
+			InputStream inputStream = getClass().getClassLoader().getResourceAsStream("payment.properties");
+			properties.load(inputStream);
+		}catch (IOException e) {
+			// TODO: handle exception
+		}
 	}
+	
+	
 	public void processPay(String optionValue) {
 		if(optionValue.equals("creditCard")) {
 			creditCard();
@@ -80,58 +101,12 @@ public class PagosBean implements Serializable{
 	}
 	
 	private void creditCard() {
-		// Ingrese aquí el identificador de la cuenta.
-		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, "512321");
-		// Ingrese aquí el código de referencia.
-		parameters.put(PayU.PARAMETERS.REFERENCE_CODE, "" + reference);
-		// Ingrese aquí la descripción.
-		parameters.put(PayU.PARAMETERS.DESCRIPTION, "payment test");
-		// Ingrese aquí el idima de la orden.
-		parameters.put(PayU.PARAMETERS.LANGUAGE, "Language.es");
-
+		Map<String, String> parameters = buyerInformation();
+		
 		// -- Valores --
-		// Ingrese aquí el valor de la transacción.
-		parameters.put(PayU.PARAMETERS.VALUE, "" + value);
+		//Ingrese aquí el valor de la transacción.
+		parameters.put(PayU.PARAMETERS.VALUE, ""+value);
 		
-		// Ingrese aquí el valor del IVA (Impuesto al Valor Agregado solo valido para
-		// Colombia) de la transacción,
-		// si se envía el IVA nulo el sistema aplicará el 19% automáticamente. Puede
-		// contener dos dígitos decimales.
-		// Ej: 19000.00. En caso de no tener IVA debe enviarse en 0.
-		parameters.put(PayU.PARAMETERS.TAX_VALUE, "0");
-		
-		// Ingrese aquí el valor base sobre el cual se calcula el IVA (solo valido para
-		// Colombia).
-		// En caso de que no tenga IVA debe enviarse en 0.
-		parameters.put(PayU.PARAMETERS.TAX_RETURN_BASE, "0");
-		
-		// Ingrese aquí la moneda.
-		parameters.put(PayU.PARAMETERS.CURRENCY, "" + Currency.COP.name());
-
-		// -- Comprador --
-		// Ingrese aquí el id del comprador.
-		parameters.put(PayU.PARAMETERS.BUYER_ID, "1");
-		
-		// Ingrese aquí el nombre del comprador.
-		parameters.put(PayU.PARAMETERS.BUYER_NAME, "First name and second buyer  name");
-		
-		// Ingrese aquí el email del comprador.
-		parameters.put(PayU.PARAMETERS.BUYER_EMAIL, "buyer_test@test.com");
-		// Ingrese aquí el teléfono de contacto del comprador.
-		parameters.put(PayU.PARAMETERS.BUYER_CONTACT_PHONE, "7563126");
-		
-		// Ingrese aquí el documento de contacto del comprador.
-		parameters.put(PayU.PARAMETERS.BUYER_DNI, "5415668464654");
-		
-		// Ingrese aquí la dirección del comprador.
-		parameters.put(PayU.PARAMETERS.BUYER_STREET, "calle 100");
-		parameters.put(PayU.PARAMETERS.BUYER_STREET_2, "5555487");
-		parameters.put(PayU.PARAMETERS.BUYER_CITY, "Medellin");
-		parameters.put(PayU.PARAMETERS.BUYER_STATE, "Antioquia");
-		parameters.put(PayU.PARAMETERS.BUYER_COUNTRY, "CO");
-		parameters.put(PayU.PARAMETERS.BUYER_POSTAL_CODE, "000000");
-		parameters.put(PayU.PARAMETERS.BUYER_PHONE, "7563126");
-
 		// -- Pagador --
 		// Ingrese aquí el id del pagador.
 		parameters.put(PayU.PARAMETERS.PAYER_ID, "1");
@@ -208,37 +183,20 @@ public class PagosBean implements Serializable{
 	}
 	
 	private void psePayment() {
+		
+		Map<String, String> parameters = buyerInformation();
+		
 		//Ingrese aquí el nombre del medio de pago
 		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, "PSE");
 	
 		//Ingrese aquí el nombre del pais.
 		parameters.put(PayU.PARAMETERS.COUNTRY, PaymentCountry.CO.name());
 		
-		//Ingrese aquí el identificador de la cuenta.
-		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, "512321");
-		//Ingrese aquí el código de referencia.
-		parameters.put(PayU.PARAMETERS.REFERENCE_CODE, ""+reference);
-		//Ingrese aquí la descripción.
-		parameters.put(PayU.PARAMETERS.DESCRIPTION, "payment test");
-		//Ingrese aquí el idima de la orden.
-		parameters.put(PayU.PARAMETERS.LANGUAGE, "Language.es");
-
+		
 		// -- Valores --
 		//Ingrese aquí el valor de la transacción.
 		parameters.put(PayU.PARAMETERS.VALUE, ""+value);
-		//Ingrese aquí el valor del IVA (Impuesto al Valor Agregado solo valido para Colombia) de la transacción,
-		//si se envía el IVA nulo el sistema aplicará el 19% automáticamente. Puede contener dos dígitos decimales.
-		//Ej: 19000.00. En caso de no tener IVA debe enviarse en 0.
-		parameters.put(PayU.PARAMETERS.TAX_VALUE, "3193");
-		//Ingrese aquí el valor base sobre el cual se calcula el IVA (solo valido para Colombia).
-		//En caso de que no tenga IVA debe enviarse en 0.
-		parameters.put(PayU.PARAMETERS.TAX_RETURN_BASE, "16806");
-		//Ingrese aquí la moneda.
-		parameters.put(PayU.PARAMETERS.CURRENCY, ""+Currency.COP.name());
-
-		//Ingrese aquí el email del comprador.
-		parameters.put(PayU.PARAMETERS.BUYER_EMAIL, "buyer_test@test.com");
-
+		
 		// -- pagador --
 		//Ingrese aquí el nombre del pagador.
 		parameters.put(PayU.PARAMETERS.PAYER_NAME, payUPSEDTO.getNombreTitular());
@@ -271,12 +229,6 @@ public class PagosBean implements Serializable{
 		//IP del pagadador
 		parameters.put(PayU.PARAMETERS.IP_ADDRESS, "127.0.0.1");
 
-		//Ingrese aquí el nombre del medio de pago
-		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, "PSE");
-
-		//Ingrese aquí el nombre del pais.
-		parameters.put(PayU.PARAMETERS.COUNTRY, PaymentCountry.CO.name());
-
 		//Cookie de la sesión actual.
 		parameters.put(PayU.PARAMETERS.COOKIE, "pt1t38347bs6jc9ruv2ecpv7o2");
 		//Cookie de la sesión actual.
@@ -288,6 +240,7 @@ public class PagosBean implements Serializable{
 		//Solicitud de autorización y captura
 		TransactionResponse response;
 		try {
+			instancePayU();
 			response = PayUPayments.doAuthorizationAndCapture(parameters);
 			//Respuesta
 			if(response != null){
@@ -318,7 +271,63 @@ public class PagosBean implements Serializable{
 		}
 	}
 	
+	private Map<String, String> buyerInformation() {			
+		Map<String, String> parameters = new HashMap<>();
+		
+		// Ingrese aquí el identificador de la cuenta.
+		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, properties.getProperty("ACCOUNT_ID"));
+		// Ingrese aquí el código de referencia.
+		parameters.put(PayU.PARAMETERS.REFERENCE_CODE, properties.getProperty("REFERENCE_CODE"));
+		// Ingrese aquí la descripción.
+		parameters.put(PayU.PARAMETERS.DESCRIPTION, properties.getProperty("DESCRIPTION"));
+		// Ingrese aquí el idima de la orden.
+		parameters.put(PayU.PARAMETERS.LANGUAGE, properties.getProperty("LANGUAGE"));
+		
+		// Ingrese aquí el valor del IVA (Impuesto al Valor Agregado solo valido para
+		// Colombia) de la transacción,
+		// si se envía el IVA nulo el sistema aplicará el 19% automáticamente. Puede
+		// contener dos dígitos decimales.
+		// Ej: 19000.00. En caso de no tener IVA debe enviarse en 0.
+		parameters.put(PayU.PARAMETERS.TAX_VALUE, properties.getProperty("TAX_VALUE"));
+		
+		// Ingrese aquí el valor base sobre el cual se calcula el IVA (solo valido para
+		// Colombia).
+		// En caso de que no tenga IVA debe enviarse en 0.
+		parameters.put(PayU.PARAMETERS.TAX_RETURN_BASE, properties.getProperty("TAX_RETURN_BASE"));
+		
+		// Ingrese aquí la moneda.
+		parameters.put(PayU.PARAMETERS.CURRENCY, "" + Currency.COP.name());
+
+		// -- Comprador --
+		// Ingrese aquí el id del comprador.
+		parameters.put(PayU.PARAMETERS.BUYER_ID, properties.getProperty("BUYER_ID"));
+		
+		// Ingrese aquí el nombre del comprador.
+		parameters.put(PayU.PARAMETERS.BUYER_NAME, properties.getProperty("BUYER_NAME"));
+		
+		// Ingrese aquí el email del comprador.
+		parameters.put(PayU.PARAMETERS.BUYER_EMAIL, properties.getProperty("BUYER_EMAIL"));
+		// Ingrese aquí el teléfono de contacto del comprador.
+		parameters.put(PayU.PARAMETERS.BUYER_CONTACT_PHONE, properties.getProperty("BUYER_CONTACT_PHONE"));
+		
+		// Ingrese aquí el documento de contacto del comprador.
+		parameters.put(PayU.PARAMETERS.BUYER_DNI, properties.getProperty("BUYER_DNI"));
+		
+		// Ingrese aquí la dirección del comprador.
+		parameters.put(PayU.PARAMETERS.BUYER_STREET, properties.getProperty("BUYER_STREET"));
+		parameters.put(PayU.PARAMETERS.BUYER_STREET_2, properties.getProperty("BUYER_STREET_2"));
+		parameters.put(PayU.PARAMETERS.BUYER_CITY, properties.getProperty("BUYER_CITY"));
+		parameters.put(PayU.PARAMETERS.BUYER_STATE, properties.getProperty("BUYER_STATE"));
+		parameters.put(PayU.PARAMETERS.BUYER_COUNTRY, properties.getProperty("BUYER_COUNTRY"));
+		parameters.put(PayU.PARAMETERS.BUYER_POSTAL_CODE, properties.getProperty("BUYER_POSTAL_CODE"));
+		parameters.put(PayU.PARAMETERS.BUYER_PHONE, properties.getProperty("BUYER_PHONE"));
+		
+		return parameters;	
+	}
+	
 	private List getPseBanks() {
+		Map<String, String> parameters = new HashMap<>();
+		
 		//Ingrese aquí el nombre del medio de pago
 		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, "PSE");
 	
@@ -335,45 +344,14 @@ public class PagosBean implements Serializable{
 			return null;
 		}		
 	}
-
-	private void instancePayU() {
-		PayU.apiKey = "8KB94yZmS1xu19eF8aKGYG9Nd4"; //Ingresa aquí tu apiKey.
-		PayU.apiLogin = "bYC5fH2p5T270G6"; //Ingresa aquí tu apiLogin.
-		PayU.language = Language.es; //Ingresa aquí el idioma que prefieras.
-		PayU.isTest = true; //Dejarlo verdadero cuando sean pruebas.
-		LoggerUtil.setLogLevel(Level.ALL); //Incluirlo únicamente si desea ver toda la traza del log; si solo se desea ver la respuesta, se puede eliminar.
-		PayU.paymentsUrl = "https://api.payulatam.com/payments-api/"; //Incluirlo únicamente si desea probar en un servidor de pagos específico, e indicar la ruta del mismo.
-		PayU.reportsUrl = "https://api.payulatam.com/reports-api/"; //Incluirlo únicamente si desea probar en un servidor de reportes específico, e indicar la ruta del mismo
-	}
 	
 	private void consignacion() {
-		Map<String, String> parameters = new HashMap<String, String>();
-
-		//Ingrese aquí el identificador de la cuenta.
-		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, "512321");
-		//Ingrese aquí el código de referencia.
-		parameters.put(PayU.PARAMETERS.REFERENCE_CODE, ""+reference);
-		//Ingrese aquí la descripción.
-		parameters.put(PayU.PARAMETERS.DESCRIPTION, "payment test");
-		//Ingrese aquí el idima de la orden.
-		parameters.put(PayU.PARAMETERS.LANGUAGE, "Language.es");
-
+		Map<String, String> parameters = buyerInformation();
+		
 		// -- Valores --
 		//Ingrese aquí el valor de la transacción.
 		parameters.put(PayU.PARAMETERS.VALUE, ""+value);
-		//Ingrese aquí el valor del IVA (Impuesto al Valor Agregado solo valido para Colombia) de la transacción,
-		//si se envía el IVA nulo el sistema aplicará el 19% automáticamente. Puede contener dos dígitos decimales.
-		//Ej: 19000.00. En caso de no tener IVA debe enviarse en 0.
-		parameters.put(PayU.PARAMETERS.TAX_VALUE, "3193");
-		//Ingrese aquí el valor base sobre el cual se calcula el IVA (solo valido para Colombia).
-		//En caso de que no tenga IVA debe enviarse en 0.
-		parameters.put(PayU.PARAMETERS.TAX_RETURN_BASE, "16806");
-		//Ingrese aquí la moneda.
-		parameters.put(PayU.PARAMETERS.CURRENCY, ""+Currency.COP.name());
-
-		//Ingrese aquí el email del comprador.
-		parameters.put(PayU.PARAMETERS.BUYER_EMAIL, "buyer_test@test.com");
-
+		
 		//Ingrese aquí el nombre del pagador.
 		parameters.put(PayU.PARAMETERS.PAYER_NAME, "First name and second payer name");
 
@@ -392,6 +370,7 @@ public class PagosBean implements Serializable{
 		//Solicitud de autorización y captura
 		TransactionResponse response;
 		try {
+			instancePayU();
 			response = PayUPayments.doAuthorizationAndCapture(parameters);
 			
 			//Respuesta
@@ -413,15 +392,24 @@ public class PagosBean implements Serializable{
 				response.getResponseMessage();
 				response.setResponseCode(TransactionResponseCode.APPROVED);
 				if(TransactionResponseCode.APPROVED.equals(response.getResponseCode())) {
+					transactionBean.cargarBalance(numeroArboles);
 					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
 				}
 			}
 		} catch (PayUException | InvalidParametersException | ConnectionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-
-		
+		}		
+	}
+	
+	private void instancePayU() {
+		PayU.apiKey = "8KB94yZmS1xu19eF8aKGYG9Nd4"; //Ingresa aquí tu apiKey.
+		PayU.apiLogin = "bYC5fH2p5T270G6"; //Ingresa aquí tu apiLogin.
+		PayU.language = Language.es; //Ingresa aquí el idioma que prefieras.
+		PayU.isTest = true; //Dejarlo verdadero cuando sean pruebas.
+		LoggerUtil.setLogLevel(Level.ALL); //Incluirlo únicamente si desea ver toda la traza del log; si solo se desea ver la respuesta, se puede eliminar.
+		PayU.paymentsUrl = "https://api.payulatam.com/payments-api/"; //Incluirlo únicamente si desea probar en un servidor de pagos específico, e indicar la ruta del mismo.
+		PayU.reportsUrl = "https://api.payulatam.com/reports-api/"; //Incluirlo únicamente si desea probar en un servidor de reportes específico, e indicar la ruta del mismo
 	}
 	
 	public void renderModal(String modal) {
@@ -443,6 +431,30 @@ public class PagosBean implements Serializable{
 			setRenderConsignacion(Boolean.TRUE);
 			setHeaderModal("Consignacion");
 		}
+	}
+	
+	public void actualizarMonto(String montoDolares) {
+		Integer valor = Integer.parseInt(montoDolares);
+		setNumeroArboles(valor/2);
+		Integer valorDolar = Integer.parseInt(properties.getProperty("DOLLAR_COP_VALUE"));
+		Double valorReal = Double.valueOf(valor * valorDolar);
+		setValue(valorReal.toString());
+	}
+	
+	public Integer getNumeroArboles() {
+		return numeroArboles;
+	}
+	
+	public void setNumeroArboles(Integer numeroArboles) {
+		this.numeroArboles = numeroArboles;
+	}
+	
+	public String getValue() {
+		return value;
+	}
+	
+	public void setValue(String value) {
+		this.value = value;
 	}
 	
 	public String getHeaderModal() {

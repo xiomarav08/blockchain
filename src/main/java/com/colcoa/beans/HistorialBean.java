@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import com.colcoa.dto.SaldoDTO;
-import com.colcocoa.entities.Transaction;
+import com.colcocoa.entities.TransactionEntity;
 import com.colcocoa.entities.Usuarios;
 import com.colcocoa.manejadores.ManejadorTransacciones;
 import com.colcocoa.manejadores.ManejadorUsuarios;
@@ -20,7 +20,7 @@ public class HistorialBean {
 	
 	private final String USUARIO_ADMIN = "admin";
 	
-	private List<Transaction> listTransactions;
+	private List<TransactionEntity> listTransactions;
 	
 	@Inject
 	private ManejadorUsuarios manejadorUsuarios;
@@ -49,12 +49,12 @@ public class HistorialBean {
 	}
 
 
-	public List<Transaction> getListTransactions() {
+	public List<TransactionEntity> getListTransactions() {
 		return listTransactions;
 	}
 
 
-	public void setListTransactions(List<Transaction> listTransactions) {
+	public void setListTransactions(List<TransactionEntity> listTransactions) {
 		this.listTransactions = listTransactions;
 	}
 	

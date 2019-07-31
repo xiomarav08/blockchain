@@ -1,76 +1,79 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
-<html 
-xmlns:p="http://primefaces.org/ui"
-xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-
-<title>Wallet Virtual</title>
+	<title>Wallet Virtual</title>
 </h:head>
 
-  <h:body style="text-align:center">
-  
-  <h:form id="formWallet">
-		<header class="header">
-			<div class="container plantree-nav-container">
-				<a class="plantree">plant</a> <SPAN class="menu-icon"> </SPAN>
-				<nav class="navigation">
+<h:body style="text-align:center">
+
+	<h:form id="formWallet">
+			<div class="header">
+				<div class="container plantree-nav-container">
+					<a class="plantree">plant</a> <SPAN class="menu-icon"> </SPAN>
+					<nav class="navigation">
 					<ul class="show">
 					</ul>
-				</nav>
-			</div>
-			<br />
-			 	<div id="menu" style="height: 200%; width: 305px;z-index: 1;left: 0;background-color: #ffffff;overflow-x: hidden;position: absolute;">
-			  	<p:panelMenu style="width:300px">
-					<p:submenu label="Acciones">
-						<p:menuitem value="Ver Saldo" icon="ui-icon-document" actionListener="#{transactionBeanverSaldo}" update="formWallet"/>
-						<p:menuitem value="Comprar Arbol" icon="ui-icon-document" actionListener="#{transactionBeanverArbol}" update="formWallet"/>
-					</p:submenu>
-				</p:panelMenu>
-			</div>
-	  		
-	  		<p:panel style="margin-left: 290px;padding-left: 20px;">
-			  	<h:panelGrid columns="3" cellpadding="5" >
-					<h:panelGrid columns="2" cellpadding="5" rendered="#{transactionBean.habilitarSaldo}">
-						<h:outputText value="Llave publica transaccional"></h:outputText>
-						<p:inputText id="publicKey" value="#{transactionBean.usuario.publicKey}" disabled="true" style="width: 700px;;margin: auto;"></p:inputText>
-						
-						<h:outputText value="Llave privada transaccional"></h:outputText>
-						<p:inputText id="privateKey" value="#{transactionBean.usuario.privateKey}" disabled="true" style="width: 700px;;margin: auto;"></p:inputText>
-						
-				    	<h:outputText value="Saldo Usuario"></h:outputText>
-						<h:outputText id="saldo" value="#{transactionBean.usuario.saldo}" disabled="true"></h:outputText>
-					</h:panelGrid>
-					<h:panelGrid columns="2" cellpadding="5" rendered="#{transactionBean.habilitarArbol}">
-					
-						<h:outputText value="Ingrese public key"></h:outputText>
-						<h:inputText id="publicKeyIn" value="#{transactionBean.publicKeyIn}"></h:inputText>
-						
-						<h:outputText value="Numero de arboles"></h:outputText>
-						<p:spinner id="basic" value="#{transactionBean.numeroArboles}" />
-						
-						<p:commandButton id="buyButton" value="Comprar Arbol" actionListener="#{transactionBean.comprarArbol}" update="formWallet">
-							<p:confirm header="Confirmacion" message="Esta seguro que desea realizar la compra?" icon="pi pi-exclamation-triangle" />
-						</p:commandButton>
-						
-						<h:outputText value="El valor de cada arbol es de 5 tcoins"></h:outputText>
-						
-						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-					        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-    					</p:confirmDialog>
-					</h:panelGrid>
-				</h:panelGrid>
-			</p:panel>
-  
-		 
-		</main>
-		<footer class="footer">
-			<div class="container">
-				<div id="copyright">© 2019 - Hacienda la Tentación</div>
+					</nav>
+				</div>
+				<br />
+				<div id="menu"
+					style="height: 200%; width: 305px; z-index: 1; left: 0; background-color: #ffffff; overflow-x: hidden; position: absolute;">
+					<p:panelMenu style="width:300px">
+						<p:submenu label="Acciones">
+							<p:menuitem value="Ver Saldo" icon="ui-icon-document"
+								actionListener="#{transactionBean.verSaldo}" update="formWallet" />
+							<p:menuitem value="Comprar Arbol" icon="ui-icon-document"
+								actionListener="#{transactionBean.verArbol}" update="formWallet" />
+						</p:submenu>
+					</p:panelMenu>
+				</div>
 			</div>
 
-		</footer>
-		</h:form>
-    </h:body> 
+		<p:panel style="margin-left: 290px;padding-left: 20px;">
+			<h:panelGrid columns="3" cellpadding="5">
+				<h:panelGrid columns="2" cellpadding="5" rendered="#{transactionBean.habilitarSaldo}">
+					<h:outputText value="Llave publica transaccional"></h:outputText>
+					<p:inputText id="publicKey" value="#{transactionBean.usuario.publicKey}" disabled="true"
+						style="width: 700px;;margin: auto;"></p:inputText>
+
+					<h:outputText value="Llave privada transaccional"></h:outputText>
+					<p:inputText id="privateKey"
+						value="#{transactionBean.usuario.privateKey}" disabled="true"
+						style="width: 700px;;margin: auto;"></p:inputText>
+
+					<h:outputText value="Saldo Usuario"></h:outputText>
+					<h:outputText id="saldo" value="#{transactionBean.usuario.balance}"
+						disabled="true"></h:outputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2" cellpadding="5" rendered="#{transactionBean.habilitarArbol}">
+
+					<h:outputText value="Ingrese public key"></h:outputText>
+					<h:inputText id="publicKeyIn" value="#{transactionBean.publicKeyIn}"></h:inputText>
+
+					<h:outputText value="Numero de arboles"></h:outputText>
+					<p:spinner id="basic" value="#{transactionBean.numeroArboles}" />
+
+					<p:commandButton id="buyButton" value="Comprar Arbol"
+						actionListener="#{transactionBean.comprarArbol}"
+						update="formWallet">
+						<p:confirm header="Confirmacion"
+							message="Esta seguro que desea realizar la compra?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+
+					<h:outputText value="El valor de cada arbol es de 5 tcoins"></h:outputText>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Si" type="button"
+							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					</p:confirmDialog>
+				</h:panelGrid>
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</h:body>
 </html>

@@ -4,27 +4,6 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
 	version="2.0">
 	<navigation-rule>
-		<from-view-id>/index.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>registrarUsuario</from-outcome>
-			<to-view-id>registrarUsuario.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/index.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>login</from-outcome>
-			<to-view-id>login.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>admin.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>saldo</from-outcome>
-			<to-view-id>adminMenu/saldo.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<from-view-id>admin.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>historialContratos</from-outcome>
@@ -45,6 +24,19 @@
 			<to-view-id>login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+	<navigation-rule>
+		<from-view-id>plantar.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>payment</from-outcome>
+			<to-view-id>paymentMenu/payment.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>plantar.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>billetera</from-outcome>
+			<to-view-id>billetera.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
 

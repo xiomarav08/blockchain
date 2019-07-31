@@ -1,10 +1,14 @@
 package com.colcocoa.wallet;
 
 import java.security.Key;
+import java.security.KeyFactory;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Signature;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.Base64;
 
@@ -54,6 +58,12 @@ public class StringUtil {
 			}catch(Exception e) {
 				throw new RuntimeException(e);
 			}
+		}
+		
+		public static PublicKey getPublicKey(byte[] encodedKey) throws NoSuchAlgorithmException, InvalidKeySpecException{
+		    KeyFactory factory = KeyFactory.getInstance("ECDSA");
+		    X509EncodedKeySpec encodedKeySpec = new X509EncodedKeySpec(encodedKey);
+		    return factory.generatePublic(encodedKeySpec);
 		}
 
 		public static String getStringFromKey(Key key) {
