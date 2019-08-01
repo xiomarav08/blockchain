@@ -5,13 +5,10 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-	<title>Index</title>
-	<meta charset="UTF-8"></meta>
-	<meta name="viewport" content="width=device-width, initial -scale=1">
-	</meta>
-
-	<link href="style.css" rel="stylesheet"></link>
-</h:head>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="style.css" rel="stylesheet"></link>
+  <title><ui:insert name="title" /></title>
+  </h:head>
 
 <h:body>
 
@@ -29,19 +26,18 @@
 				icon="fa fa-fw fa-user-times" />
 		</div>
 	</header>
+	<main class="main">
+	<div class="container">
 	<div id="content">
 			<ui:insert name="content">
 			</ui:insert>
 		</div>
-	<main class="main">
-	<div class="container"></div>
+	</div>
 	</main>
 	<footer class="footer">
 		<div class="container">
 			<div id="copyright">© 2019 - Hacienda la Tentación</div>
 		</div>
-
 	</footer>
-
 </h:body>
 </html>
