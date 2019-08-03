@@ -18,13 +18,23 @@ public class ManejadorTransacciones {
 
 	public List<TransactionEntity> consultarTransaccionesPorUsuario(Usuarios usuario) {
 		try {
-			Query query=em.createQuery("SELECT u FROM Transaction t WHERE t.userSender = :usuario");
+			Query query=em.createQuery("SELECT u FROM TransactionEntity t WHERE t.userSender = :usuario");
 			query.setParameter("usuario", usuario);
 			List<TransactionEntity> listTransaction =(List<TransactionEntity>)query.getResultList();
 			return listTransaction;
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
+		}
+	}
+	
+	public Boolean almacenarTransaccion(TransactionEntity transactionEntity) {
+		try {
+			em.persist(transactionEntity);
+			return Boolean.TRUE;
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			return Boolean.FALSE;
 		}
 	}
 }

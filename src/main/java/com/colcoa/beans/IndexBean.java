@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.security.Security;
+import java.util.Base64;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +12,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 
+import com.colcoa.enums.EnumTipoTransacion;
+import com.colcocoa.entities.TransactionEntity;
 import com.colcocoa.entities.Usuarios;
+import com.colcocoa.manejadores.ManejadorTransacciones;
 import com.colcocoa.manejadores.ManejadorUsuarios;
 import com.colcocoa.wallet.StringUtil;
 import com.colcocoa.wallet.Transaction;
@@ -27,6 +31,9 @@ public class IndexBean implements Serializable{
 	
 	@Inject
 	private ManejadorUsuarios manejadorUsuarios;
+	
+	@Inject
+	private ManejadorTransacciones manejadorTransacciones;
 	
 	@PostConstruct
 	private void init() {
@@ -53,19 +60,34 @@ public class IndexBean implements Serializable{
 		        usuarioAdmin.setEmail(prop.getProperty("email"));
 		        usuarioAdmin.setUsuario(prop.getProperty("usuario"));
 		        usuarioAdmin.setClave(prop.getProperty("clave"));
-		        usuarioAdmin.setBalance(Float.parseFloat(prop.getProperty("balance")));
+		        Float balance = Float.parseFloat(prop.getProperty("balance"));
 		        
 		        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); //Setup Bouncey castle as a Security Provider
 		        Wallet genesisWallet = new Wallet();
 		        genesisWallet.generateKeyPair();
-		        Transaction genesisTransaction = new Transaction(genesisWallet.getPublicKey(), genesisWallet.getPublicKey(), usuarioAdmin.getBalance(), null);
+		        Transaction genesisTransaction = new Transaction(genesisWallet.getPublicKey(), genesisWallet.getPublicKey(), balance, null);
+		        genesisTransaction.setTransactionId("0");
+		        byte[] signature = genesisTransaction.generateSignature(genesisWallet.getPrivateKey());
 				usuarioAdmin.setPrivateKey(StringUtil.getStringFromKey(genesisWallet.getPublicKey()));
 				usuarioAdmin.setPublicKey(StringUtil.getStringFromKey(genesisWallet.getPrivateKey()));
 				manejadorUsuarios.almacenarUsuario(usuarioAdmin);
+				realizarGenesisTransaction(balance, usuarioAdmin.getUsuario(), genesisTransaction, signature);
 			}
 	    } catch (IOException ex) {
 	        ex.printStackTrace();
 	    }
+	}
+	
+	private void realizarGenesisTransaction(Float balance, String userAdmin, Transaction genesisTransaction, byte[] signature) {
+		TransactionEntity transactionEntity = new TransactionEntity();
+		Usuarios usuarioAdmin = manejadorUsuarios.consultarUsuario(userAdmin);
+		transactionEntity.setUserSender(usuarioAdmin);
+		transactionEntity.setUserRecipient(usuarioAdmin);
+		transactionEntity.setSignature(Base64.getEncoder().encodeToString(signature));
+		transactionEntity.setTransactionId(genesisTransaction.getTransactionId());
+		transactionEntity.setValue(balance);
+		transactionEntity.setTipoTransacion(EnumTipoTransacion.RECARGA);
+		manejadorTransacciones.almacenarTransaccion(transactionEntity);
 	}
 
 	public String getNameIndex() {

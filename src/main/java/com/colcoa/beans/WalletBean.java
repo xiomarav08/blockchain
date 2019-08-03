@@ -88,9 +88,9 @@ public class WalletBean implements Serializable{
 		Wallet coinbase = new Wallet();
 		genesisTransaction = new Transaction(coinbase.getPublicKey(), this.billeteraUsuario.getPublicKey(), 100f, null);
 		genesisTransaction.generateSignature(coinbase.getPrivateKey());	 //manually sign the genesis transaction	
-		genesisTransaction.transactionId = "0"; //manually set the transaction id
-		genesisTransaction.outputs.add(new TransactionOutput(genesisTransaction.reciepient, genesisTransaction.value, genesisTransaction.transactionId)); //manually add the Transactions Output
-		UTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0)); //its important to store our first transaction in the UTXOs list.
+		genesisTransaction.setTransactionId("0"); //manually set the transaction id
+		genesisTransaction.getOutputs().add(new TransactionOutput(genesisTransaction.getReciepient(), genesisTransaction.getValue(), genesisTransaction.getTransactionId())); //manually add the Transactions Output
+		UTXOs.put(genesisTransaction.getOutputs().get(0).id, genesisTransaction.getOutputs().get(0)); //its important to store our first transaction in the UTXOs list.
 		genesis = new Block("0");
 		genesis.addTransaction(genesisTransaction);
 		addBlock(genesis);

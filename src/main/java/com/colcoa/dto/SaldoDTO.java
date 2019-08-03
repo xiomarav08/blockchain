@@ -8,8 +8,6 @@ public class SaldoDTO {
 	
 	private String nit;
 	
-	private String saldoTotal;
-	
 	private Date fechaIngreso;
 
 	public String getNombre() {
@@ -26,14 +24,6 @@ public class SaldoDTO {
 
 	public void setNit(String nit) {
 		this.nit = nit;
-	}
-
-	public String getSaldoTotal() {
-		return saldoTotal;
-	}
-
-	public void setSaldoTotal(String saldoTotal) {
-		this.saldoTotal = saldoTotal;
 	}
 
 	public Date getFechaIngreso() {

@@ -35,7 +35,7 @@ public class TransactionEntity implements Serializable{
 	@JoinColumn(name="ID_USUARIO_RECIPIENT")
 	private Usuarios userRecipient;
 	
-	@Column(name = "TRANSACTIONID")
+	@Column(name = "TRANSACTION_ID")
 	private String transactionId;
 	
 	@Column(name = "VALUE")
@@ -45,7 +45,7 @@ public class TransactionEntity implements Serializable{
 	private String signature;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "TYPETRANSACTION")
+	@Column(name = "TYPE_TRANSACTION")
 	private EnumTipoTransacion tipoTransacion;
 
 	public Integer getId() {
@@ -94,6 +94,14 @@ public class TransactionEntity implements Serializable{
 
 	public void setSignature(String signature) {
 		this.signature = signature;
+	}
+	
+	public EnumTipoTransacion getTipoTransacion() {
+		return tipoTransacion;
+	}
+	
+	public void setTipoTransacion(EnumTipoTransacion tipoTransacion) {
+		this.tipoTransacion = tipoTransacion;
 	}
 
 	@Override

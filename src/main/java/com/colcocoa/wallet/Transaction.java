@@ -8,14 +8,14 @@ import com.colcoa.beans.WalletBean;
 
 public class Transaction {
 	
-	public String transactionId; // this is also the hash of the transaction.
-	public PublicKey sender; // senders address/public key.
-	public PublicKey reciepient; // Recipients address/public key.
-	public float value;
-	public byte[] signature; // this is to prevent anybody else from spending funds in our wallet.
+	private String transactionId; // this is also the hash of the transaction.
+	private PublicKey sender; // senders address/public key.
+	private PublicKey reciepient; // Recipients address/public key.
+	private float value;
+	private byte[] signature; // this is to prevent anybody else from spending funds in our wallet.
 	
-	public ArrayList<TransactionInput> inputs = new ArrayList<TransactionInput>();
-	public ArrayList<TransactionOutput> outputs = new ArrayList<TransactionOutput>();
+	private ArrayList<TransactionInput> inputs = new ArrayList<TransactionInput>();
+	private ArrayList<TransactionOutput> outputs = new ArrayList<TransactionOutput>();
 	
 	private static int sequence = 0; // a rough count of how many transactions have been generated. 
 	
@@ -38,9 +38,10 @@ public class Transaction {
 	}
 	
 	//Signs all the data we dont wish to be tampered with.
-	public void generateSignature(PrivateKey privateKey) {
+	public byte[] generateSignature(PrivateKey privateKey) {
 		String data = StringUtil.getStringFromKey(sender) + StringUtil.getStringFromKey(reciepient) + Float.toString(value)	;
-		signature = StringUtil.applyECDSASig(privateKey,data);		
+		signature = StringUtil.applyECDSASig(privateKey,data);
+		return signature;
 	}
 	
 	//Verifies the data we signed hasnt been tampered with
@@ -49,8 +50,10 @@ public class Transaction {
 		return StringUtil.verifyECDSASig(sender, data, signature);
 	}
 	
+    /**
+     * @return
+     */
     public boolean processTransaction() {
-		
 		if(verifiySignature() == false) {
 			System.out.println("#Transaction Signature failed to verify");
 			return false;
@@ -59,9 +62,7 @@ public class Transaction {
 		//gather transaction inputs (Make sure they are unspent):
 		for(TransactionInput i : inputs) {
 			i.UTXO = WalletBean.UTXOs.get(i.transactionOutputId);
-		}
-
-		
+		}		
 		
 		//generate transaction outputs:
 		float leftOver = getInputsValue() - value; //get value of inputs then the left over change:
@@ -101,4 +102,62 @@ public class Transaction {
 		}
 		return total;
 	}
+
+	public String getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+
+	public PublicKey getSender() {
+		return sender;
+	}
+
+	public void setSender(PublicKey sender) {
+		this.sender = sender;
+	}
+
+	public PublicKey getReciepient() {
+		return reciepient;
+	}
+
+	public void setReciepient(PublicKey reciepient) {
+		this.reciepient = reciepient;
+	}
+
+	public float getValue() {
+		return value;
+	}
+
+	public void setValue(float value) {
+		this.value = value;
+	}
+
+	public byte[] getSignature() {
+		return signature;
+	}
+
+	public void setSignature(byte[] signature) {
+		this.signature = signature;
+	}
+
+	public ArrayList<TransactionInput> getInputs() {
+		return inputs;
+	}
+
+	public void setInputs(ArrayList<TransactionInput> inputs) {
+		this.inputs = inputs;
+	}
+
+	public ArrayList<TransactionOutput> getOutputs() {
+		return outputs;
+	}
+
+	public void setOutputs(ArrayList<TransactionOutput> outputs) {
+		this.outputs = outputs;
+	}
+	
+	
 }

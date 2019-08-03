@@ -33,7 +33,6 @@ public class HistorialBean {
 	private void Init() {
 		saldo = new SaldoDTO();
 		Usuarios usuario = manejadorUsuarios.consultarUsuario(USUARIO_ADMIN);
-		saldo.setSaldoTotal(usuario.getBalance().toString());
 		saldo.setNit(usuario.getNumeroDeIdentificacion());
 		saldo.setNombre(usuario.getNombre() + " "+ usuario.getApellidos());
 		saldo.setFechaIngreso(new Date());

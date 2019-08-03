@@ -48,8 +48,6 @@ public class Usuarios extends BaseEntity{
 	@Column(name = "PRIVATEKEY")
 	private String privateKey;
 	
-	@Column(name = "BALANCE")
-	private Float balance;
 	
 	public Integer getId() {
 		return id;
@@ -131,13 +129,6 @@ public class Usuarios extends BaseEntity{
 		this.privateKey = privateKey;
 	}
 	
-	public Float getBalance() {
-		return balance;
-	}
-	
-	public void setBalance(Float balance) {
-		this.balance = balance;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
