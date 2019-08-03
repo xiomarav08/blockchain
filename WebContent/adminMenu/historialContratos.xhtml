@@ -2,12 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 
 	<title>Wallet Virtual</title>
 </h:head>
-
+<ui:composition template="../template.xhtml">
+	<ui:define name="content">
 <h:body style="text-align:center">
 	<h:form id="formAdmin">
 		<p:breadCrumb homeDisplay="text">
@@ -19,15 +21,11 @@
 				<p:outputLabel for="nombre" value="Nombre:" />
 				<p:outputLabel id="nombre" value="#{historialBean.saldo.nombre}" />
 
-				<p:outputLabel for="nit" value="Identificacion:" />
+				<p:outputLabel for="nit" value="Identificaciòn:" />
 				<p:outputLabel id="nit" value="#{historialBean.saldo.nit}" />
 
-				<p:outputLabel for="saldoTotal" value="Saldo Total: " />
-				<p:outputLabel id="saldoTotal"
-					value="#{historialBean.saldo.saldoTotal}" />
 
-
-				<p:outputLabel for="fecha" value="Fecha ultimo ingreso:" />
+				<p:outputLabel for="fecha" value="Fecha ùltimo ingreso:" />
 				<h:outputText id="fecha" value="#{historialBean.saldo.fechaIngreso}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
@@ -35,21 +33,26 @@
 			</h:panelGrid>
 		</p:panel>
 		<p:dataTable var="transaction" value="#{historialBean.listTransactions}">
-			<p:column headerText="Comprador">
+			<p:column headerText="Cliente">
 				<h:outputText value="#{transaction.userSender}" />
 			</p:column>
 
-			<p:column headerText="Vendedor">
-				<h:outputText value="#{transaction.userRecipient}" />
+			<p:column headerText="Valor Compra">
+				<h:outputText value="#{transaction.value}" />
 			</p:column>
-
-			<p:column headerText="Valor">
+			
+			<p:column headerText="Arboles Sembrados">
 				<h:outputText value="#{transaction.value}" />
 			</p:column>
 
-			<p:column headerText="Tipo Transaccion">
+			<p:column headerText="Tipo Transacciòn">
 				<h:outputText value="#{transaction.tipoTransacion}" />
 			</p:column>
+			
+			<p:column headerText="Contrato">
+				<h:outputText value="#{transaction.tipoTransacion}" />
+			</p:column>
+			
 		</p:dataTable>
 		<p:panel>
 
@@ -57,4 +60,6 @@
 
 	</h:form>
 </h:body>
+	</ui:define>
+	</ui:composition>
 </html>

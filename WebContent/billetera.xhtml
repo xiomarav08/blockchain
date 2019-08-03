@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns:p="http://primefaces.org/ui"
-	xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-	<title>Wallet Virtual</title>
-</h:head>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:body style="text-align:center">
-
-	<h:form id="formWallet">
-			<div class="header">
-				<div class="container plantree-nav-container">
-					<a class="plantree">plant</a> <SPAN class="menu-icon"> </SPAN>
-					<nav class="navigation">
-					<ul class="show">
-					</ul>
-					</nav>
-				</div>
-				<br />
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+	<h:body style="text-align:center">
+	<h:form id="formAdmin">
 				<div id="menu"
 					style="height: 200%; width: 305px; z-index: 1; left: 0; background-color: #ffffff; overflow-x: hidden; position: absolute;">
 					<p:panelMenu style="width:300px">
@@ -29,8 +19,6 @@
 						</p:submenu>
 					</p:panelMenu>
 				</div>
-			</div>
-
 		<p:panel style="margin-left: 290px;padding-left: 20px;">
 			<h:panelGrid columns="3" cellpadding="5">
 				<h:panelGrid columns="2" cellpadding="5" rendered="#{transactionBean.habilitarSaldo}">
@@ -74,6 +62,8 @@
 				</h:panelGrid>
 			</h:panelGrid>
 		</p:panel>
-	</h:form>
-</h:body>
+		</h:form>
+		</h:body>
+    	  </ui:define>
+  	  </ui:composition>
 </html>

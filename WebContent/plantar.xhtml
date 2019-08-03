@@ -25,31 +25,31 @@
 			</div>
 			<br />
 			<div style="text-align: center;">
-
-				<p:commandButton value="Compra 5 Tcoins" outcome="payment" style="margin-right:20px;" icon="fa fa-fw fa-dollar" actionListener="#{pagosBean.actualizarMonto('10')}"/>
-
-				<p:commandButton value="Compra 10 Tcoins" outcome="payment" style="margin-right:20px;" icon="fa fa-fw fa-dollar" actionListener="#{pagosBean.actualizarMonto('20')}"/>
-				
-				<p:commandButton value="Compra 20 Tcoins" outcome="payment" style="margin-right:20px;" icon="fa fa-fw fa-dollar" actionListener="#{pagosBean.actualizarMonto('40')}"/>
-
-				<p:linkButton value="Plantar" outcome="billetera" style="margin-right:20px;" icon="fa fa-fw fa-leaf" />
+				<p:commandButton value="Compra Tcoins" outcome="payment" style="margin-right:20px;" icon="fa fa-fw fa-dollar" actionListener="#{pagosBean.actualizarMonto('20')}"/>
+			<p:commandButton id="logoutButton" value="Cerrar Sesión"
+				actionListener="#{loginBean.logout}" style="margin-right:20px;"
+				icon="fa fa-fw fa-user-times" />
 			</div>
 		</header>
 		<main class="main">
 		<div class="container">
 			<h1>Tcoins</h1>
 			<div style="text-align: center;">
-				<p>Nuestro sistema de compra, es un sistema blockchain, en el
-					podràs comprar y salvar el planeta sembrando un àrbol.</p>
+				<p>Utilizamos tecnologìa Blockchain para plantar nuestros àrboles,
+				almacenamos las transacciones a traves de nuestra moneda 
+				virtual TCoins y de un Smart Contract que nos permite trabajar
+				con transparencia y trazabilidad en los procesos
+				de plantaciòn a traves de esta tecnologìa.  </p>
 
-				<p>TCoins es la moneda virtual de Hacienda la Tentaciòn, para
-					adquirirla debes comprarla.</p>
 
-				<p>
-					1Tcoins=U$2 <br /> 1 Arbol= 1Coins
+				<p>TCoins es la moneda virtual de Hacienda la Tentaciòn,
+				con ella, podràs comprar y salvar el planeta sembrando un àrbol.</p>
+				
+				<h1>Valor</h1>
+				
+				<p> 1Tcoins=U$2<br/> 
+				   1 Arbol= 1Coins
 				</p>
-
-				<p>Compra minina de Tcoins= $10</p>
 			</div>
 		</div>
 

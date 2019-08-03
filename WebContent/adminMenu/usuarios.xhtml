@@ -6,6 +6,7 @@
 
 <ui:composition template="../template.xhtml">
 	<ui:define name="content">
+	<h:body style="text-align:center">
 	<h:form id="formAdmin">		
 		<p:breadCrumb homeDisplay="text">
 			<p:menuitem value="Historial" outcome="historialContratos" />
@@ -21,18 +22,18 @@
 					<h:outputText value="#{usuario.apellidos}" />
 				</p:column>
 	
-				<p:column headerText="Numero de identificacion">
+				<p:column headerText="Nùmero de identificaciòn">
 					<h:outputText value="#{usuario.numeroDeIdentificacion}" />
 				</p:column>
 	
 				<p:column headerText="Email">
 					<h:outputText value="#{usuario.email}" />
 				</p:column>
-	
-				<p:column headerText="Saldo">
-					<h:outputText value="#{usuario.balance}" />
+				
+				<p:column headerText="Telèfono">
+					<h:outputText value="#{usuario.telefono}" />
 				</p:column>
-	
+				
 				<p:column headerText="Eliminar Usuario">
 					<p:commandButton value="Eliminar" actionListener="#{usuariosAdminBean.deleteUser(usuario)}" update="formAdmin:tableUsuarios">
 						<p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
@@ -45,6 +46,7 @@
 			</p:confirmDialog>
 		</p:panel>
 	</h:form>
+	</h:body>
 	</ui:define>
 	</ui:composition>
 </html>

@@ -2,10 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>Metodos de pago</title>
 </h:head>
+<ui:composition template="../template.xhtml">
+	<ui:define name="content">
 <h:body>
 	<h:form id="formPagos">
 		<p:panel header="Elija el metodo de pago">
@@ -86,11 +89,11 @@
 					
 					<p:commandButton value="Aceptar" actionListener="#{pagosBean.processPay('consignacion')}"/>		
 				</h:panelGrid>
-			</p:panel>
-			
-			
-			
+			</p:panel>		
 		</h:form>
 	</p:dialog>
 </h:body>
+</ui:define>
+</ui:composition>
+
 </html>
