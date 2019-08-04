@@ -36,9 +36,6 @@ import com.payu.sdk.model.Currency;
 import com.payu.sdk.model.DocumentType;
 import com.payu.sdk.model.Language;
 import com.payu.sdk.model.PaymentCountry;
-import com.payu.sdk.model.TransactionResponse;
-import com.payu.sdk.model.TransactionResponseCode;
-import com.payu.sdk.model.TransactionState;
 import com.payu.sdk.utils.LoggerUtil;
 
 
@@ -70,6 +67,8 @@ public class PagosBean implements Serializable{
 	private Properties properties;
 	
 	private Integer numeroArboles;
+	
+	private Integer numeroMonedas;
 	
 	@Inject
 	private TransactionBean transactionBean;
@@ -152,34 +151,36 @@ public class PagosBean implements Serializable{
 		parameters.put(PayU.PARAMETERS.COOKIE, "pt1t38347bs6jc9ruv2ecpv7o2");
 		// Cookie de la sesión actual.
 		parameters.put(PayU.PARAMETERS.USER_AGENT, "Mozilla/5.0 (Windows NT 5.1; rv:18.0) Gecko/20100101 Firefox/18.0");
+		transactionBean.cargarBalance(numeroArboles);
+		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
 		
-		// Solicitud de autorización y captura
-		TransactionResponse response;
-		try {
-			instancePayU();
-			response = PayUPayments.doAuthorizationAndCapture(parameters);
-			// Respuesta
-			if (response != null) {
-				response.getOrderId();
-				response.getTransactionId();
-				response.getState();
-				if (response.getState().toString().equalsIgnoreCase("PENDING")) {
-					response.getPendingReason();
-				}
-				response.getPaymentNetworkResponseCode();
-				response.getPaymentNetworkResponseErrorMessage();
-				response.getTrazabilityCode();
-				response.getResponseCode();
-				response.getResponseMessage();
-				response.setResponseCode(TransactionResponseCode.APPROVED);
-				if(TransactionResponseCode.APPROVED.equals(response.getResponseCode())) {
-					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
-				}
-			}
-		} catch (PayUException | InvalidParametersException | ConnectionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		// Solicitud de autorización y captura
+//		TransactionResponse response;
+//		try {
+//			instancePayU();
+//			response = PayUPayments.doAuthorizationAndCapture(parameters);
+//			// Respuesta
+//			if (response != null) {
+//				response.getOrderId();
+//				response.getTransactionId();
+//				response.getState();
+//				if (response.getState().toString().equalsIgnoreCase("PENDING")) {
+//					response.getPendingReason();
+//				}
+//				response.getPaymentNetworkResponseCode();
+//				response.getPaymentNetworkResponseErrorMessage();
+//				response.getTrazabilityCode();
+//				response.getResponseCode();
+//				response.getResponseMessage();
+//				response.setResponseCode(TransactionResponseCode.APPROVED);
+//				if(TransactionResponseCode.APPROVED.equals(response.getResponseCode())) {
+//					
+//				}
+//			}
+//		} catch (PayUException | InvalidParametersException | ConnectionException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	private void psePayment() {
@@ -236,39 +237,42 @@ public class PagosBean implements Serializable{
 
 		//Página de respuesta a la cual será redirigido el pagador.
 		parameters.put(PayU.PARAMETERS.RESPONSE_URL, "http://www.test.com/response");
+		
+		transactionBean.cargarBalance(numeroArboles);
+		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
 
 		//Solicitud de autorización y captura
-		TransactionResponse response;
-		try {
-			instancePayU();
-			response = PayUPayments.doAuthorizationAndCapture(parameters);
-			//Respuesta
-			if(response != null){
-				response.getOrderId();
-				response.getTransactionId();
-				response.getState();
-				if(response.getState().equals(TransactionState.PENDING)){
-					response.getPendingReason();
-					Map extraParameters = response.getExtraParameters();
-
-					//obtener la url del banco
-					String url=(String)extraParameters.get("BANK_URL");
-
-				}
-				response.getPaymentNetworkResponseCode();
-				response.getPaymentNetworkResponseErrorMessage();
-				response.getTrazabilityCode();
-				response.getResponseCode();
-				response.getResponseMessage();
-				response.setResponseCode(TransactionResponseCode.APPROVED);
-				if(TransactionResponseCode.APPROVED.equals(response.getResponseCode())) {
-					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
-				}
-			}
-		} catch (PayUException | InvalidParametersException | ConnectionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		TransactionResponse response;
+//		try {
+//			instancePayU();
+//			response = PayUPayments.doAuthorizationAndCapture(parameters);
+//			//Respuesta
+//			if(response != null){
+//				response.getOrderId();
+//				response.getTransactionId();
+//				response.getState();
+//				if(response.getState().equals(TransactionState.PENDING)){
+//					response.getPendingReason();
+//					Map extraParameters = response.getExtraParameters();
+//
+//					//obtener la url del banco
+//					String url=(String)extraParameters.get("BANK_URL");
+//
+//				}
+//				response.getPaymentNetworkResponseCode();
+//				response.getPaymentNetworkResponseErrorMessage();
+//				response.getTrazabilityCode();
+//				response.getResponseCode();
+//				response.getResponseMessage();
+//				response.setResponseCode(TransactionResponseCode.APPROVED);
+//				if(TransactionResponseCode.APPROVED.equals(response.getResponseCode())) {
+//					
+//				}
+//			}
+//		} catch (PayUException | InvalidParametersException | ConnectionException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	private Map<String, String> buyerInformation() {			
@@ -366,40 +370,42 @@ public class PagosBean implements Serializable{
 
 		//IP del pagadador
 		parameters.put(PayU.PARAMETERS.IP_ADDRESS, "127.0.0.1");
+		
+		transactionBean.cargarBalance(numeroArboles);
+		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
 
 		//Solicitud de autorización y captura
-		TransactionResponse response;
-		try {
-			instancePayU();
-			response = PayUPayments.doAuthorizationAndCapture(parameters);
-			
-			//Respuesta
-			if(response != null){
-				response.getOrderId();
-				response.getTransactionId();
-				response.getState();
-				if(response.getState().equals(TransactionState.PENDING)){
-					response.getPendingReason();
-					Map extraParameters = response.getExtraParameters();
-
-					//obtener la url del comprobante de pago
-					String url=(String)extraParameters.get("URL_PAYMENT_RECEIPT_HTML");
-				}
-				response.getPaymentNetworkResponseCode();
-				response.getPaymentNetworkResponseErrorMessage();
-				response.getTrazabilityCode();
-				response.getResponseCode();
-				response.getResponseMessage();
-				response.setResponseCode(TransactionResponseCode.APPROVED);
-				if(TransactionResponseCode.APPROVED.equals(response.getResponseCode())) {
-					transactionBean.cargarBalance(numeroArboles);
-					FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
-				}
-			}
-		} catch (PayUException | InvalidParametersException | ConnectionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+//		TransactionResponse response;
+//		try {
+//			instancePayU();
+//			response = PayUPayments.doAuthorizationAndCapture(parameters);
+//			
+//			//Respuesta
+//			if(response != null){
+//				response.getOrderId();
+//				response.getTransactionId();
+//				response.getState();
+//				if(response.getState().equals(TransactionState.PENDING)){
+//					response.getPendingReason();
+//					Map extraParameters = response.getExtraParameters();
+//
+//					//obtener la url del comprobante de pago
+//					String url=(String)extraParameters.get("URL_PAYMENT_RECEIPT_HTML");
+//				}
+//				response.getPaymentNetworkResponseCode();
+//				response.getPaymentNetworkResponseErrorMessage();
+//				response.getTrazabilityCode();
+//				response.getResponseCode();
+//				response.getResponseMessage();
+//				response.setResponseCode(TransactionResponseCode.APPROVED);
+//				if(TransactionResponseCode.APPROVED.equals(response.getResponseCode())) {
+//					
+//				}
+//			}
+//		} catch (PayUException | InvalidParametersException | ConnectionException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}		
 	}
 	
 	private void instancePayU() {
@@ -433,11 +439,9 @@ public class PagosBean implements Serializable{
 		}
 	}
 	
-	public void actualizarMonto(String montoDolares) {
-		Integer valor = Integer.parseInt(montoDolares);
-		setNumeroArboles(valor/2);
+	public void actualizarMonto() {
 		Integer valorDolar = Integer.parseInt(properties.getProperty("DOLLAR_COP_VALUE"));
-		Double valorReal = Double.valueOf(valor * valorDolar);
+		Double valorReal = Double.valueOf((numeroMonedas*2) * valorDolar);
 		setValue(valorReal.toString());
 		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "paymentMenu/payment.xhtml");
 	}
@@ -512,6 +516,14 @@ public class PagosBean implements Serializable{
 	
 	public void setPayUConsignacionDTO(PayUConsignacionDTO payUConsignacionDTO) {
 		this.payUConsignacionDTO = payUConsignacionDTO;
+	}
+	
+	public Integer getNumeroMonedas() {
+		return numeroMonedas;
+	}
+	
+	public void setNumeroMonedas(Integer numeroMonedas) {
+		this.numeroMonedas = numeroMonedas;
 	}
 
 	public EnumTipoTarjeta[] getTiposTarjeta() {

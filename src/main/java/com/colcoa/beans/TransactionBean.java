@@ -1,6 +1,7 @@
 package com.colcoa.beans;
 
 import java.security.PublicKey;
+import java.security.Security;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -54,6 +55,7 @@ public class TransactionBean {
 	
 	public void cargarBalance(Integer value) {
 		try {
+			Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); //Setup Bouncey castle as a Security Provider
 			TransactionEntity transactionEntity = new TransactionEntity();
 			Usuarios usuarioAdmin = manejadorUsuarios.consultarUsuario(USUARIO_ADMIN);
 			PublicKey publicKeyAdmin = StringUtil.getPublicKey(usuarioAdmin.getPublicKey().getBytes());

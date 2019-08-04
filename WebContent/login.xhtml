@@ -8,7 +8,7 @@
 <h:head>
 </h:head>
 <h:body style="text-align:center">
-	<p:growl id="mensajes" showDetail="true" life="2000" />
+	
 	<h:form>
 	
 		<p:panel header="Login" style="width:300px">
@@ -21,22 +21,11 @@
 					label="password" />
 				<f:facet name="footer">
 					<p:commandButton id="loginButton" value="Login"
-						actionListener="#{loginBean.login}" update="@form"
-						oncomplete="manejarLogin(xhr, status, args)"/>
+						actionListener="#{loginBean.login}" update="@form" oncomplete="manejarLogin(xhr, status, args)"/>
 				</f:facet>
 			</h:panelGrid>
 		</p:panel>
 	</h:form>
 </h:body>
-<script type="text/javascript">
-	//<![CDATA[
-	function manejarLogin(xhr, status, args) {
-		if (!args.validationFailed && args.estaLogeado) {
-			setTimeout(function() {
-				window.location = args.view;
-			}, 500);
-		}
-	}
-	//]]>
-</script>
+
 </html>

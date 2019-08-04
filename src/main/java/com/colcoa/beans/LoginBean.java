@@ -50,6 +50,7 @@ public class LoginBean implements Serializable {
 		if (usuario != null && clave != null && usuarioBD != null && usuarioBD.getClave().equals(this.clave)) {
 			logeado = true;
 			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", usuarioBD.getNombre() +" "+ usuarioBD.getApellidos());
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "plantar.xhtml");
 		} else {
 			logeado = false;
 			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Credenciales no válidas");
@@ -61,8 +62,6 @@ public class LoginBean implements Serializable {
 		
 		if (logeado && usuarioBD.getUsuario().equals(USUARIO_ADMIN)) {
 			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "adminMenu/historialContratos.xhtml");
-		}else {
-			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "plantar.xhtml");
 		}
 	}
 

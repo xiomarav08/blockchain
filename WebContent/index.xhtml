@@ -13,8 +13,8 @@
 </h:head>
 
 <h:body>
-
 	<h:form id="indexForm">
+		<p:growl id="mensajes" showDetail="true" life="3000" sticky="true"/>
 		<header class="header">
 			<div class="container plantree-nav-container">
 				<a class="plantree">plant</a> <SPAN class="menu-icon"> </SPAN>
@@ -86,7 +86,7 @@
 				label="password" />
 
 			<p:commandButton id="loginButton" value="Iniciar Sesión"
-				actionListener="#{loginBean.login}" update="loginModal" />
+				actionListener="#{loginBean.login}" update="indexForm"/>
 		</h:panelGrid>
 	</h:form>
 </p:dialog>
@@ -132,9 +132,7 @@
 			<p:password value="#{registrarUsuarioBean.clave}" id="clave2"
 				required="true" label="clave2" />
 			<br/>
-			<p:commandButton id="loginButton" value="Registrar usuario"
-				actionListener="#{registrarUsuarioBean.registrarUsuario}"
-				update="RegistrarModal" />
+			<p:commandButton id="loginButton" value="Registrar usuario" actionListener="#{registrarUsuarioBean.registrarUsuario}" update="indexForm" />
 		</h:panelGrid>
 	</h:form>
 </p:dialog>

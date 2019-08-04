@@ -25,10 +25,13 @@
 			</div>
 			<br />
 			<div style="text-align: center;">
-				<p:commandButton value="Compra Tcoins" outcome="payment" style="margin-right:20px;" icon="fa fa-fw fa-dollar" actionListener="#{pagosBean.actualizarMonto('20')}"/>
-			<p:commandButton id="logoutButton" value="Cerrar Sesión"
-				actionListener="#{loginBean.logout}" style="margin-right:20px;"
-				icon="fa fa-fw fa-user-times" />
+				<h:panelGrid columns="2">
+					<h:outputText value="Numero monedas:"></h:outputText>
+					<p:spinner id="basic" value="#{pagosBean.numeroMonedas}" prefix="T" min="5"/>
+					
+					<p:commandButton value="Compra Tcoins" outcome="payment" style="margin-right:20px;" icon="fa fa-fw fa-dollar" actionListener="#{pagosBean.actualizarMonto}"/>
+					
+				</h:panelGrid>
 			</div>
 		</header>
 		<main class="main">
