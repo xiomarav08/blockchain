@@ -26,33 +26,30 @@
 			<br />
 			<div style="text-align: center;">
 				<h:panelGrid columns="2">
-					<h:outputText value="Numero monedas:"></h:outputText>
-					<p:spinner id="basic" value="#{pagosBean.numeroMonedas}" prefix="T" min="5"/>
+				    
+					<h:outputText value="Elige cuàntas monedas comprar:" style="color:white ; font-size: x-large"></h:outputText>
+					<p:spinner id="suffix" value="#{pagosBean.numeroMonedas}" suffix="T" min="5"/>
 					
-					<p:commandButton value="Compra Tcoins" outcome="payment" style="margin-right:20px;" icon="fa fa-fw fa-dollar" actionListener="#{pagosBean.actualizarMonto}"/>
+					<h:outputText value="1TCoins =$2" style="color:white ; font-size: x-large"/>
+					<p:commandButton value="Compra Tcoins" outcome="paymentMenu/payment" style="margin-right:20px;" icon="fa fa-fw fa-dollar" actionListener="#{pagosBean.actualizarMonto}"/>
 					
 				</h:panelGrid>
 			</div>
 		</header>
 		<main class="main">
 		<div class="container">
-			<h1>Tcoins</h1>
+			<h1>Planta un àrbol por 1TCoins</h1>
 			<div style="text-align: center;">
 				<p>Utilizamos tecnologìa Blockchain para plantar nuestros àrboles,
 				almacenamos las transacciones a traves de nuestra moneda 
 				virtual TCoins y de un Smart Contract que nos permite trabajar
-				con transparencia y trazabilidad en los procesos
+				con transparencia y trazabilidad  los procesos
 				de plantaciòn a traves de esta tecnologìa.  </p>
 
 
 				<p>TCoins es la moneda virtual de Hacienda la Tentaciòn,
 				con ella, podràs comprar y salvar el planeta sembrando un àrbol.</p>
 				
-				<h1>Valor</h1>
-				
-				<p> 1Tcoins=U$2<br/> 
-				   1 Arbol= 1Coins
-				</p>
 			</div>
 		</div>
 

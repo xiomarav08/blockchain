@@ -43,7 +43,7 @@ margin-bottom:1.6em;
 	
 .plantree {
 	letter-spacing:10px;
-	font-size:3em;
+	font-size: 3em;
 	}
 	
 	.menu-icon{
@@ -73,6 +73,7 @@ margin-bottom:1.6em;
 	
 	.main{
 	padding-top:12rem;
+	padding-bottom:12rem;
 	}
 	
 	.footer {
@@ -80,8 +81,12 @@ margin-bottom:1.6em;
 	color: white;
 	padding:40px;
 	text-align:center;
-	margen-top:6rem;
+	margin-top:6rem;
 	line-height: 100%;
+	position:fixed;
+	left: 0;
+	bottom: 0;
+	right:0;
 	}
 	
 	

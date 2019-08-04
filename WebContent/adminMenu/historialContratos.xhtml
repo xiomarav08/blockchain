@@ -6,7 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 
-	<title>Wallet Virtual</title>
+	<title>Historial</title>
 </h:head>
 <ui:composition template="../template.xhtml">
 	<ui:define name="content">
@@ -15,23 +15,24 @@
 		<p:breadCrumb homeDisplay="text">
 			    <p:menuitem value="Usuarios" outcome="usuarios"/>
     		</p:breadCrumb>
-    		
-		<p:panel header="Información" >
-			<h:panelGrid columns="2">
-				<p:outputLabel for="nombre" value="Nombre:" />
-				<p:outputLabel id="nombre" value="#{historialBean.saldo.nombre}" />
+    	
+		<p:panel header="Historial siembra" >
+			<h:panelGrid columns="2">	
+				<p:outputLabel for="nombre" value="Nombre:" style= "color: white"/>
+				<p:outputLabel id="nombre" value="#{historialBean.saldo.nombre}" style="color: white"/>
 
-				<p:outputLabel for="nit" value="Identificaciòn:" />
-				<p:outputLabel id="nit" value="#{historialBean.saldo.nit}" />
+				<p:outputLabel for="nit" value="Identificaciòn:" style= "color: white"/>
+				<p:outputLabel id="nit" value="#{historialBean.saldo.nit}" style="color: white"/>
 
 
-				<p:outputLabel for="fecha" value="Fecha ùltimo ingreso:" />
-				<h:outputText id="fecha" value="#{historialBean.saldo.fechaIngreso}">
+				<p:outputLabel for="fecha" value="Fecha ùltimo ingreso:" style= "color: white"/>
+				<h:outputText id="fecha" value="#{historialBean.saldo.fechaIngreso}" style="color: white">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
 
 			</h:panelGrid>
 		</p:panel>
+			
 		<p:dataTable var="transaction" value="#{historialBean.listTransactions}">
 			<p:column headerText="Cliente">
 				<h:outputText value="#{transaction.userSender}" />
@@ -54,12 +55,8 @@
 			</p:column>
 			
 		</p:dataTable>
-		<p:panel>
-
-		</p:panel>
-
 	</h:form>
-</h:body>
+	</h:body>
 	</ui:define>
 	</ui:composition>
 </html>

@@ -53,7 +53,7 @@ public class LoginBean implements Serializable {
 			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "plantar.xhtml");
 		} else {
 			logeado = false;
-			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Credenciales no válidas");
+			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Usuario o contraseña incorrectos");
 		}
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		
@@ -61,7 +61,7 @@ public class LoginBean implements Serializable {
 	    session.put("LOGGEDIN_USER", usuarioBD);
 		
 		if (logeado && usuarioBD.getUsuario().equals(USUARIO_ADMIN)) {
-			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "adminMenu/historialContratos.xhtml");
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/adminMenu/historialContratos.xhtml");
 		}
 	}
 

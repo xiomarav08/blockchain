@@ -4,66 +4,45 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
+<h:head>
+
+	<title>Billetera</title>
+</h:head>
 <ui:composition template="template.xhtml">
 	<ui:define name="content">
-	<h:body style="text-align:center">
-	<h:form id="formAdmin">
-				<div id="menu"
-					style="height: 200%; width: 305px; z-index: 1; left: 0; background-color: #ffffff; overflow-x: hidden; position: absolute;">
-					<p:panelMenu style="width:300px">
-						<p:submenu label="Acciones">
-							<p:menuitem value="Ver Saldo" icon="ui-icon-document"
-								actionListener="#{transactionBean.verSaldo}" update="formWallet" />
-							<p:menuitem value="Comprar Arbol" icon="ui-icon-document"
-								actionListener="#{transactionBean.verArbol}" update="formWallet" />
-						</p:submenu>
-					</p:panelMenu>
-				</div>
-		<p:panel style="margin-left: 290px;padding-left: 20px;">
-			<h:panelGrid columns="3" cellpadding="5">
-				<h:panelGrid columns="2" cellpadding="5" rendered="#{transactionBean.habilitarSaldo}">
-					<h:outputText value="Llave publica transaccional"></h:outputText>
-					<p:inputText id="publicKey" value="#{transactionBean.usuario.publicKey}" disabled="true"
-						style="width: 700px;;margin: auto;"></p:inputText>
+		<h:body style="text-align:center">
+			<h:form id="formWallet">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputText value="Llave pùblica transaccional"></h:outputText>
+					<p:inputText id="publicKey" value="456gd67jgm7" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
 
 					<h:outputText value="Llave privada transaccional"></h:outputText>
-					<p:inputText id="privateKey"
-						value="#{transactionBean.usuario.privateKey}" disabled="true"
-						style="width: 700px;;margin: auto;"></p:inputText>
+					<p:inputText id="privateKey" value="34rft56yhu78" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
 
-					<h:outputText value="Saldo Usuario"></h:outputText>
-					<h:outputText id="saldo" value="#{transactionBean.usuario.balance}"
-						disabled="true"></h:outputText>
+					<h:outputText value="Saldo"></h:outputText>
+					<p:inputText id="verSaldo" value="80" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
+
 				</h:panelGrid>
-				<h:panelGrid columns="2" cellpadding="5" rendered="#{transactionBean.habilitarArbol}">
 
-					<h:outputText value="Ingrese public key"></h:outputText>
-					<h:inputText id="publicKeyIn" value="#{transactionBean.publicKeyIn}"></h:inputText>
+				<h:panelGrid columns="2" cellpadding="5">
 
 					<h:outputText value="Numero de arboles"></h:outputText>
-					<p:spinner id="basic" value="#{transactionBean.numeroArboles}" />
+					<p:spinner id="basic" value="3" />
 
-					<p:commandButton id="buyButton" value="Comprar Arbol"
-						actionListener="#{transactionBean.comprarArbol}"
-						update="formWallet">
+					<p:commandButton id="buyButton" value="Comprar Arbol" update="formWallet">
 						<p:confirm header="Confirmacion"
-							message="Esta seguro que desea realizar la compra?"
-							icon="pi pi-exclamation-triangle" />
+							message="Esta seguro que desea realizar la compra?" icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 
-					<h:outputText value="El valor de cada arbol es de 5 tcoins"></h:outputText>
+					<h:outputText value="El valor de cada arbol es de 1Tcoins"></h:outputText>
 
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-						<p:commandButton value="Si" type="button"
-							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-						<p:commandButton value="No" type="button"
-							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+						<p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 					</p:confirmDialog>
 				</h:panelGrid>
-			</h:panelGrid>
-		</p:panel>
-		</h:form>
+			</h:form>
 		</h:body>
-    	  </ui:define>
-  	  </ui:composition>
+	</ui:define>
+</ui:composition>
 </html>

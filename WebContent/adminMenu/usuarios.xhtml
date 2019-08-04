@@ -3,6 +3,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+	<title>Usuarios</title>
+</h:head>
 
 <ui:composition template="../template.xhtml">
 	<ui:define name="content">
@@ -13,7 +17,7 @@
 			<p:menuitem value="Usuarios" outcome="usuarios" />
 		</p:breadCrumb>
 		<p:panel header="Usuarios registrados">
-			<p:dataTable id="tableUsuarios" var="usuario" value="#{usuariosAdminBean.listaUsuarios}">
+			<p:dataTable id="tableUsuarios" var="usuario" value="#{usuariosAdminBean.listaUsuarios}" style="font-size: large" >
 				<p:column headerText="Nombres">
 					<h:outputText value="#{usuario.nombre}" />
 				</p:column>
