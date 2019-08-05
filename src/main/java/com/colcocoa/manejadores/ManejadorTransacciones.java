@@ -18,7 +18,7 @@ public class ManejadorTransacciones {
 
 	public List<TransactionEntity> consultarTransaccionesPorUsuario(Usuarios usuario) {
 		try {
-			Query query=em.createQuery("SELECT u FROM TransactionEntity t WHERE t.userSender = :usuario");
+			Query query=em.createQuery("SELECT t FROM TransactionEntity t WHERE t.userSender = :usuario OR t.userRecipient = :usuario");
 			query.setParameter("usuario", usuario);
 			List<TransactionEntity> listTransaction =(List<TransactionEntity>)query.getResultList();
 			return listTransaction;

@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 import com.colcoa.enums.EnumTipoTransacion;
 
-@Entity(name = "Transaction")
+@Entity(name = "TransactionEntity")
 @Table(name="TRANSACTION")
 public class TransactionEntity implements Serializable{
 	

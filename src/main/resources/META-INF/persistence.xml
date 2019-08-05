@@ -8,6 +8,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>jboss/datasources/OracleDS</jta-data-source>
 		<class>com.colcocoa.entities.Usuarios</class>
+		<class>com.colcocoa.entities.TransactionEntity</class>
 		 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />

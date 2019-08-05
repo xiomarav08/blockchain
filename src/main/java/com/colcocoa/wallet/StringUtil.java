@@ -4,13 +4,20 @@ import java.security.Key;
 import java.security.KeyFactory;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Signature;
+import java.security.interfaces.ECPublicKey;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.Base64;
+
+import org.bouncycastle.jcajce.provider.asymmetric.util.EC5Util;
+import org.bouncycastle.jce.ECNamedCurveTable;
+import org.bouncycastle.jce.ECPointUtil;
+import org.bouncycastle.jce.spec.ECNamedCurveParameterSpec;
+import org.bouncycastle.math.ec.ECCurve;
 
 public class StringUtil {
 	//Applies Sha256 to a string and returns the result. 
@@ -60,10 +67,17 @@ public class StringUtil {
 			}
 		}
 		
-		public static PublicKey getPublicKey(byte[] encodedKey) throws NoSuchAlgorithmException, InvalidKeySpecException{
-		    KeyFactory factory = KeyFactory.getInstance("ECDSA");
-		    X509EncodedKeySpec encodedKeySpec = new X509EncodedKeySpec(encodedKey);
-		    return factory.generatePublic(encodedKeySpec);
+		public static PublicKey getPublicKey(String encodedKey) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException{
+			byte[] publicKeyBytes = Base64.getDecoder().decode(encodedKey); 
+			ECNamedCurveParameterSpec params = ECNamedCurveTable.getParameterSpec("prime192v1");
+		    KeyFactory fact = KeyFactory.getInstance("ECDSA", "BC");
+		    ECCurve curve = params.getCurve();
+		    java.security.spec.EllipticCurve ellipticCurve = EC5Util.convertCurve(curve, params.getSeed());
+		    java.security.spec.ECPoint point = ECPointUtil.decodePoint(ellipticCurve, publicKeyBytes);
+		    java.security.spec.ECParameterSpec params2 =EC5Util.convertSpec(ellipticCurve, params);
+		    java.security.spec.ECPublicKeySpec keySpec = new java.security.spec.ECPublicKeySpec(point,params2);
+		    return (ECPublicKey) fact.generatePublic(keySpec);
+		    
 		}
 
 		public static String getStringFromKey(Key key) {

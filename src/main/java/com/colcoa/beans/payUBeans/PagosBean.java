@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -76,6 +77,7 @@ public class PagosBean implements Serializable{
 
 	@PostConstruct
 	public void Init() {
+		numeroMonedas = 0;
 		payUDTO = new PayUCreditCardDTO();
 		payUPSEDTO = new PayUPSEDTO();
 		payUConsignacionDTO = new PayUConsignacionDTO();
@@ -89,7 +91,7 @@ public class PagosBean implements Serializable{
 	}
 	
 	
-	public void processPay(String optionValue) {
+	public void processPay(String optionValue) throws IOException {
 		if(optionValue.equals("creditCard")) {
 			creditCard();
 		}else if(optionValue.equals("pse")) {
@@ -97,6 +99,8 @@ public class PagosBean implements Serializable{
 		}else if(optionValue.equals("consignacion")) {
 			consignacion();
 		}
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		ec.redirect(ec.getRequestContextPath() + "/billetera.xhtml");
 	}
 	
 	private void creditCard() {
@@ -151,8 +155,7 @@ public class PagosBean implements Serializable{
 		parameters.put(PayU.PARAMETERS.COOKIE, "pt1t38347bs6jc9ruv2ecpv7o2");
 		// Cookie de la sesión actual.
 		parameters.put(PayU.PARAMETERS.USER_AGENT, "Mozilla/5.0 (Windows NT 5.1; rv:18.0) Gecko/20100101 Firefox/18.0");
-		transactionBean.cargarBalance(numeroArboles);
-		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
+		transactionBean.cargarBalance(numeroMonedas);
 		
 //		// Solicitud de autorización y captura
 //		TransactionResponse response;
@@ -238,8 +241,7 @@ public class PagosBean implements Serializable{
 		//Página de respuesta a la cual será redirigido el pagador.
 		parameters.put(PayU.PARAMETERS.RESPONSE_URL, "http://www.test.com/response");
 		
-		transactionBean.cargarBalance(numeroArboles);
-		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
+		transactionBean.cargarBalance(numeroMonedas);
 
 		//Solicitud de autorización y captura
 //		TransactionResponse response;
@@ -371,8 +373,7 @@ public class PagosBean implements Serializable{
 		//IP del pagadador
 		parameters.put(PayU.PARAMETERS.IP_ADDRESS, "127.0.0.1");
 		
-		transactionBean.cargarBalance(numeroArboles);
-		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "billetera.xhtml");
+		transactionBean.cargarBalance(numeroMonedas);
 
 		//Solicitud de autorización y captura
 //		TransactionResponse response;
@@ -439,11 +440,11 @@ public class PagosBean implements Serializable{
 		}
 	}
 	
-	public void actualizarMonto() {
+	public void actualizarMonto() throws IOException {
 		Integer valorDolar = Integer.parseInt(properties.getProperty("DOLLAR_COP_VALUE"));
 		Double valorReal = Double.valueOf((numeroMonedas*2) * valorDolar);
 		setValue(valorReal.toString());
-		FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "paymentMenu/payment.xhtml");
+		FacesContext.getCurrentInstance().getExternalContext().redirect("paymentMenu/payment.xhtml");
 	}
 	
 	public Integer getNumeroArboles() {

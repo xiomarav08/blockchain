@@ -14,24 +14,31 @@
 			<h:form id="formWallet">
 				<h:panelGrid columns="2" cellpadding="5">
 					<h:outputText value="Llave pùblica transaccional"></h:outputText>
-					<p:inputText id="publicKey" value="456gd67jgm7" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
+					<p:inputText id="publicKey"
+						value="#{transactionBean.usuario.publicKey}" disabled="true"
+						style="width: 700px;margin: auto;"></p:inputText>
 
 					<h:outputText value="Llave privada transaccional"></h:outputText>
-					<p:inputText id="privateKey" value="34rft56yhu78" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
+					<p:inputText id="privateKey"
+						value="#{transactionBean.usuario.privateKey}" disabled="true"
+						style="width: 700px;margin: auto;"></p:inputText>
 
 					<h:outputText value="Saldo"></h:outputText>
-					<p:inputText id="verSaldo" value="80" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
+					<p:inputText id="verSaldo"
+						value="#{transactionBean.calcularSaldo()}" disabled="true"
+						style="width: 700px;margin: auto;"></p:inputText>
 
 				</h:panelGrid>
 
 				<h:panelGrid columns="2" cellpadding="5">
 
 					<h:outputText value="Numero de arboles"></h:outputText>
-					<p:spinner id="basic" value="3" />
+					<p:spinner id="basic" value="#{transactionBean.numeroArboles}" max="#{transactionBean.calcularSaldo()}" min="0"/>
 
-					<p:commandButton id="buyButton" value="Comprar Arbol" onclick="PF('contrato').show();" update="formWallet">
+					<p:commandButton id="buyButton" value="Comprar Arbol" onclick="PF('contrato').show();" update="formWallet ContratoModal">
 						<p:confirm header="Confirmacion"
-							message="Esta seguro que desea realizar la compra?" icon="pi pi-exclamation-triangle" />
+							message="Esta seguro que desea realizar la compra?"
+							icon="pi pi-exclamation-triangle" />
 					</p:commandButton>
 
 					<h:outputText value="El valor de cada arbol es de 1Tcoins"></h:outputText>
@@ -42,37 +49,49 @@
 					</p:confirmDialog>
 				</h:panelGrid>
 			</h:form>
-			
-			<p:dialog header="Ejecutar Contrato" widgetVar="contrato"
-	showEffect="explode" minHeight="40" resizable="false" modal="true">
-	<h:form id="ContratoModal">
-		<h:panelGrid columns="2" cellpadding="0">
-		<h:outputText value="Valor de Compra"></h:outputText>
-		<p:inputText id="valorCompra" value="10" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
+
+			<p:dialog header="Ejecutar Contrato" widgetVar="contrato" showEffect="explode" minHeight="40" resizable="false" modal="true">
+				<h:form id="ContratoModal">
+					<h:panelGrid columns="2" cellpadding="0">
+						<h:outputText value="Valor de Compra"></h:outputText>
+						<p:inputText id="valorCompra" value="#{transactionBean.numeroArboles}" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
 
 
-		<h:outputText value="Hacienda la Tentaciòn"></h:outputText>
-		<p:inputText id="claveAdmin" value="16asdf7" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
+						<h:outputText value="Hacienda la Tentaciòn"></h:outputText>
+						<p:inputText id="claveAdmin"
+							value="#{transactionBean.usuarioAdmin.publicKey}" disabled="true"
+							style="width: 700px;margin: auto;"></p:inputText>
 
-		<h:outputText value="Nombre del Cliente"></h:outputText>
-		<p:inputText id="claveCliente" value="es33df7" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
-		</h:panelGrid>
-			<p>Estàs a punto de ejecutar un contrato
-		con Hacienda la Tentaciòn, esto implica la transferencia
-		del valor de la compra</p>
-		
-		<h:panelGrid columns="2" cellpadding="0">
-		<h:outputText value="Àrboles a sembrar"></h:outputText>
-		<p:inputText id="cantidadArbol" value="5" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
-		
-      
-      <h:outputText value="firma la transaccion"></h:outputText>
-	  <p:inputText id="contraseñaTransaccion" value="5" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
+						<h:outputText
+							value="#{transactionBean.usuario.nombre} #{transactionBean.usuario.apellidos}"></h:outputText>
+						<p:inputText id="claveCliente"
+							value="#{transactionBean.usuario.publicKey}" disabled="true"
+							style="width: 700px;margin: auto;"></p:inputText>
+					</h:panelGrid>
+					<p>Estàs a punto de ejecutar un contrato con Hacienda la
+						Tentaciòn, esto implica la transferencia del valor de la compra</p>
 
-	  <p:commandButton id="firmarcontrato" value="enviar transaccion"/>
-		</h:panelGrid>
-	</h:form>
-</p:dialog>
+					<h:panelGrid columns="2" cellpadding="0">
+						<h:outputText value="Àrboles a sembrar"></h:outputText>
+						<p:inputText id="cantidadArbol" value="#{transactionBean.numeroArboles}" disabled="true" style="width: 700px;margin: auto;"></p:inputText>
+
+
+						<h:outputText value="Firma la transaccion"></h:outputText>
+						<p:inputText id="contraseñaTransaccion" value="#{transactionBean.publicKeyIn}" style="width: 700px;margin: auto;"></p:inputText>
+
+						<p:commandButton id="firmarcontrato" value="Enviar transaccion" actionListener="#{transactionBean.comprarArbol}" oncomplete="PF('contratoFirmado').show();" update="contratoFirmado"/>
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+			<p:dialog header="Ejecutar Contrato" widgetVar="contratoFirmado" showEffect="explode" minHeight="40" resizable="false" modal="true">
+				<h:form id="contratoFirmado">
+					<h:panelGrid columns="1" cellpadding="0">
+						<h:outputText value="Contrato firmado con exito:"></h:outputText>
+						<h:outputText value="#{transactionBean.signature}"></h:outputText>
+						<p:commandButton value="Aceptar" onclick="PF('contratoFirmado').hide(); PF('contrato').hide();" update="formWallet"/>
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
 		</h:body>
 	</ui:define>
 </ui:composition>

@@ -43,7 +43,7 @@
 					<p:outputLabel for="CVC" value="CVC: " />
 					<p:inputNumber id="CVC" value="#{pagosBean.payUDTO.cvc}" maxValue="999" maxlength="3"/>
 					
-					<p:commandButton value="Aceptar" actionListener="#{pagosBean.processPay('creditCard')}"/>
+					<p:commandButton value="Aceptar" actionListener="#{pagosBean.processPay('creditCard')}" oncomplete="PF('creditDialog').hide();"/>
 				</h:panelGrid>
 			</p:panel>
 			<p:panel visible="#{pagosBean.renderPSE}">
@@ -73,7 +73,7 @@
 					<p:outputLabel for="telefono" value="Telefono: " />
 					<p:inputText id="telefono" value="#{pagosBean.payUPSEDTO.telefono}"/>
 					
-					<p:commandButton value="Aceptar" actionListener="#{pagosBean.processPay('pse')}"/>
+					<p:commandButton value="Aceptar" actionListener="#{pagosBean.processPay('pse')}" oncomplete="PF('creditDialog').hide();"/>
 				</h:panelGrid>
 			</p:panel>		
 			<p:panel visible="#{pagosBean.renderConsignacion}">
@@ -87,7 +87,7 @@
 					<p:outputLabel for="numeroConsignacion" value="Numero consignacion: " />
 					<p:inputNumber id="numeroConsignacion" value="#{pagosBean.payUConsignacionDTO.numeroConsignacion}" />
 					
-					<p:commandButton value="Aceptar" actionListener="#{pagosBean.processPay('consignacion')}"/>		
+					<p:commandButton value="Aceptar" actionListener="#{pagosBean.processPay('consignacion')}" oncomplete="PF('creditDialog').hide();"/>		
 				</h:panelGrid>
 			</p:panel>		
 		</h:form>

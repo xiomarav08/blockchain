@@ -32,7 +32,7 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>plantar.xhtml</from-view-id>
+		<from-view-id>/paymentMenu/payment.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>billetera</from-outcome>
 			<to-view-id>billetera.xhtml</to-view-id>
