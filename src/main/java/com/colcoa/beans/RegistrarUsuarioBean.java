@@ -40,8 +40,7 @@ public class RegistrarUsuarioBean implements Serializable{
 			if(usuario != null && usuario.getClave().equals(clave)) {
 				usuario = generarClavesUsuario(usuario);
 				manejadorUsuarios.almacenarUsuario(usuario);
-				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ahora puedes plantar un árbol", "Inicia Sesión");
-				PrimeFaces.current().dialog().showMessageDynamic(msg);
+				
 				PrimeFaces.current().ajax().addCallbackParam("view", "login.xhtml");
 			    
 			}else {

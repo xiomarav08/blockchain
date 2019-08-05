@@ -33,9 +33,13 @@
 			</h:panelGrid>
 		</p:panel>
 			
-		<p:dataTable var="transaction" value="#{historialBean.listTransactions}">
+		<p:dataTable var="transaction" value="#{historialBean.listTransactions}" style= "width:100%">
 			<p:column headerText="Cliente">
-				<h:outputText value="#{transaction.userSender}" />
+				<h:outputText value="#{transaction.userRecipient.nombre} #{transaction.userRecipient.apellidos}" />
+			</p:column>
+			
+			<p:column headerText="Vendedor">
+				<h:outputText value="#{transaction.userSender.nombre} #{transaction.userSender.apellidos}" />
 			</p:column>
 
 			<p:column headerText="Valor Compra">
@@ -51,7 +55,7 @@
 			</p:column>
 			
 			<p:column headerText="Contrato">
-				<h:outputText value="#{transaction.tipoTransacion}" />
+				<h:outputText value="#{transaction.signature}" />
 			</p:column>
 			
 		</p:dataTable>

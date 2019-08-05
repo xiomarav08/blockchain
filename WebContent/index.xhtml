@@ -132,8 +132,16 @@
 			<p:password value="#{registrarUsuarioBean.clave}" id="clave2"
 				required="true" label="clave2" />
 			<br/>
-			<p:commandButton id="loginButton" value="Registrar usuario" actionListener="#{registrarUsuarioBean.registrarUsuario}" update="indexForm" />
+			<p:commandButton id="loginButton" value="Registrar usuario" actionListener="#{registrarUsuarioBean.registrarUsuario}" update="indexForm" oncomplete="PF('usuarioRegistrado').show();" />
 		</h:panelGrid>
 	</h:form>
 </p:dialog>
+<p:dialog header="Usuario Registrado" widgetVar="usuarioRegistrado" showEffect="explode" minHeight="40" resizable="false" modal="true">
+				<h:form id="usuarioRegistrado">
+					<h:panelGrid columns="1" cellpadding="0">
+						<h:outputText value="Ahora puedes plantar un àrbol, inicia sesiòn"></h:outputText>
+						<p:commandButton value="Aceptar" onclick="PF('usuarioRegistrado').hide(); PF('registrar').hide();"/>
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
 </html>
