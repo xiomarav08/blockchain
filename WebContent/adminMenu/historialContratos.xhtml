@@ -29,6 +29,9 @@
 				<h:outputText id="fecha" value="#{historialBean.saldo.fechaIngreso}" style="color: white">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
+				
+				<p:outputLabel for="saldo" value="Saldo:" style= "color: white"/>
+				<h:outputText id="saldo" value="#{historialBean.calcularSaldoAdmin()}" style="color: white"/>
 
 			</h:panelGrid>
 		</p:panel>
