@@ -23,6 +23,11 @@
 					</ul>
 				</nav>
 			</div>
+			<div style="text-align: right;">
+			<p:commandButton id="logout" value="Cerrar Sesión"
+				actionListener="#{loginBean.logout}" style="margin-right:20px;"
+				icon="fa fa-fw fa-user-times" />
+		</div>
 			<br />
 			<div style="text-align: center;">
 				<h:panelGrid columns="2">
@@ -36,6 +41,8 @@
 				</h:panelGrid>
 			</div>
 		</header>
+		<br />
+		<br />
 		<main class="main">
 		<div class="container">
 			<h1>Planta un àrbol por 1TCoins</h1>

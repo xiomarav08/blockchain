@@ -16,20 +16,15 @@
 	<h:form id="indexForm">
 		<p:growl id="mensajes" showDetail="true" life="3000" sticky="true"/>
 		<header class="header">
-			<div class="container plantree-nav-container">
-				<a class="plantree">plant</a> <SPAN class="menu-icon"> </SPAN>
-				<nav class="navigation">
-					<ul class="show">
-					</ul>
-				</nav>
+			<div class="container logo">
 			</div>
 			<br />
 			<div style= "text-align: center;">
-				<p:linkButton outcome="index" value="Siembra"
+				<p:linkButton outcome="indec x" value="Siembra"
 					style="margin-right:20px;" icon="fa fa-fw fa-pagelines"/>
 				<p:linkButton outcome="hacienda" value="La Tentación"
 					style="margin-right:20px;" icon="fa fa-fw fa-home"/>
-
+ 
 				<p:commandButton value="Planta un Arbol"
 					onclick="PF('registrar').show();" style="margin-right:20px;" icon="fa fa-fw fa-tree"/>
 
@@ -67,7 +62,6 @@
 		</main>
 		<footer class="footer">
 			<div class="container">
-				<div id="copyright">© 2019 - Hacienda la Tentación</div>
 			</div>
 
 		</footer>
@@ -139,7 +133,7 @@
 <p:dialog header="Usuario Registrado" widgetVar="usuarioRegistrado" showEffect="explode" minHeight="40" resizable="false" modal="true">
 				<h:form id="usuarioRegistrado">
 					<h:panelGrid columns="1" cellpadding="0">
-						<h:outputText value="Ahora puedes plantar un àrbol, inicia sesiòn"></h:outputText>
+						<h:outputText value="Ahora puedes plantar un àrbol, inicia sesiòn" style="color:white"></h:outputText>
 						<p:commandButton value="Aceptar" onclick="PF('usuarioRegistrado').hide(); PF('registrar').hide();"/>
 					</h:panelGrid>
 				</h:form>

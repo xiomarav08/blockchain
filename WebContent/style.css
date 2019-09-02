@@ -1,5 +1,5 @@
 body{
-	font-family:serif;
+	font-family:roboto;
 	color: @#333;
 	font-size: 1.2rem;
 	line-height: 1.6em;
@@ -18,12 +18,12 @@ margin-bottom:1.6em;
 
 .container {
 	width:100%;
-	max-width:2500px;
+	max-width:850px;
 	margin: 0 auto;
 	}
 
 .header {
-	background:#4E8426;
+	background:#7EBB76;
 	color: white;
 	padding: 2rem 0;
 	
@@ -77,8 +77,7 @@ margin-bottom:1.6em;
 	}
 	
 	.footer {
-	background:#4E8426;
-	color: white;
+    background: url(../imagenes/footer.jpg);
 	padding:40px;
 	text-align:center;
 	margin-top:6rem;
@@ -124,5 +123,7 @@ margin-bottom:1.6em;
 	blackground:#4a4a4a;
 	}
 	
-	
-	
+	.logo {
+  background: transparent url(../imagenes/logo.png) no-repeat;
+  float: left;
+		}
