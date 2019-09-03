@@ -1,16 +1,20 @@
 package com.colcoa.beans;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.Security;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 import org.primefaces.PrimeFaces;
 
+import com.colcoa.enums.EnumTipoDocumento;
+import com.colcoa.enums.EnumTipoPersona;
 import com.colcocoa.entities.Usuarios;
 import com.colcocoa.manejadores.ManejadorUsuarios;
 import com.colcocoa.wallet.StringUtil;
@@ -24,6 +28,8 @@ public class RegistrarUsuarioBean implements Serializable{
 	private Usuarios usuario;
 	
 	private String clave;
+	
+	private Boolean tratamientoDeDatos;
 	
 	@Inject
 	private ManejadorUsuarios manejadorUsuarios;
@@ -60,6 +66,10 @@ public class RegistrarUsuarioBean implements Serializable{
 		usuarios.setPrivateKey(StringUtil.getStringFromKey(wallet.getPrivateKey()));
 		return usuarios;
 	}
+	
+	public void abrirTratamientoDatos() throws IOException {
+		FacesContext.getCurrentInstance().getExternalContext().redirect("politica.xhtml");
+	}
 
 	public Usuarios getUsuario() {
 		return usuario;
@@ -77,8 +87,19 @@ public class RegistrarUsuarioBean implements Serializable{
 		this.clave = clave;
 	}
 	
+	public EnumTipoPersona[] getTiposPersona() {
+		return EnumTipoPersona.values();
+	}
 	
+	public EnumTipoDocumento[] getTiposDocumento() {
+		return EnumTipoDocumento.values();
+	}
 	
+	public Boolean getTratamientoDeDatos() {
+		return tratamientoDeDatos;
+	}
 	
-
+	public void setTratamientoDeDatos(Boolean tratamientoDeDatos) {
+		this.tratamientoDeDatos = tratamientoDeDatos;
+	}
 }

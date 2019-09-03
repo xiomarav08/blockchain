@@ -1,14 +1,17 @@
 package com.colcocoa.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.colcoa.enums.EnumTipoDocumento;
+import com.colcoa.enums.EnumTipoPersona;
 
 @Entity(name = "Usuarios")
 @Table(name="USUARIOS")
@@ -47,6 +50,14 @@ public class Usuarios extends BaseEntity{
 	
 	@Column(name = "PRIVATEKEY")
 	private String privateKey;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "TYPE_USER")
+	private EnumTipoPersona tipoPersona;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "TYPE_DOCUMENT")
+	private EnumTipoDocumento tipoDocumento;
 	
 	
 	public Integer getId() {
@@ -127,6 +138,22 @@ public class Usuarios extends BaseEntity{
 	
 	public void setPrivateKey(String privateKey) {
 		this.privateKey = privateKey;
+	}
+	
+	public EnumTipoPersona getTipoPersona() {
+		return tipoPersona;
+	}
+	
+	public void setTipoPersona(EnumTipoPersona tipoPersona) {
+		this.tipoPersona = tipoPersona;
+	}
+	
+	public EnumTipoDocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+	
+	public void setTipoDocumento(EnumTipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 	
 	@Override

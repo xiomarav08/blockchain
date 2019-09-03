@@ -16,21 +16,25 @@
 	<h:form id="indexForm">
 		<p:growl id="mensajes" showDetail="true" life="3000" sticky="true"/>
 		<header class="header">
-			<div class="container logo">
+			
+			<div style= "text-align: center; margin-left:300px;">
+				<h:panelGrid columns="5">
+					<img src= "imagenes/logo.png"/>
+					
+					<p:linkButton outcome="index" value="Siembra"
+						style="margin-right:20px;" icon="fa fa-fw fa-pagelines"/>
+						
+					<p:linkButton outcome="hacienda" value="La Tentación"
+						style="margin-right:20px;" icon="fa fa-fw fa-home"/>
+	 
+					<p:commandButton value="Planta un Arbol"
+						onclick="PF('registrar').show();" style="margin-right:20px;" icon="fa fa-fw fa-tree"/>
+	
+					<p:commandButton value="Iniciar Sesión" onclick="PF('login').show();"
+						style="margin-right:20px;" icon="fa fa-fw fa-user-plus"/>
+				</h:panelGrid>
 			</div>
-			<br />
-			<div style= "text-align: center;">
-				<p:linkButton outcome="indec x" value="Siembra"
-					style="margin-right:20px;" icon="fa fa-fw fa-pagelines"/>
-				<p:linkButton outcome="hacienda" value="La Tentación"
-					style="margin-right:20px;" icon="fa fa-fw fa-home"/>
- 
-				<p:commandButton value="Planta un Arbol"
-					onclick="PF('registrar').show();" style="margin-right:20px;" icon="fa fa-fw fa-tree"/>
-
-				<p:commandButton value="Iniciar Sesión" onclick="PF('login').show();"
-					style="margin-right:20px;" icon="fa fa-fw fa-user-plus"/>
-			</div>
+			
 		</header>
 		<main class="main">
 		<div class="container">
@@ -89,14 +93,26 @@
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="RegistrarModal">
 		<h:panelGrid columns="2" cellpadding="0">
+		
+			<p:outputLabel for="tipPersona" value="Tipo Persona " style="color:white;"/>
+			<p:selectOneMenu id="tipPersona" value="#{registrarUsuarioBean.usuario.tipoPersona}" required="true">
+				<f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
+				<f:selectItems value="#{registrarUsuarioBean.tiposPersona}" var="tiposPersonaItem" itemValue="#{tiposPersonaItem}" itemLabel="#{tiposPersonaItem.message}"/>
+			</p:selectOneMenu>
+		
 			<h:outputLabel for="nombres" value="Nombres:" style="color:white;" />
 			<p:inputText value="#{registrarUsuarioBean.usuario.nombre}"
 				id="nombres" required="true" label="nombres" />
 
-			<h:outputLabel for="apellidos" value="Apellidos:"
-				style="color:white;" />
+			<h:outputLabel for="apellidos" value="Apellidos:" style="color:white;" />
 			<p:inputText value="#{registrarUsuarioBean.usuario.apellidos}"
-				id="apellidos" required="true" label="apellidos" />
+				id="apellidos" label="apellidos" />
+				
+			<p:outputLabel for="tipoDocumento" value="Tipo Documento: " style="color:white;"/>
+			<p:selectOneMenu id="tipoDocumento" value="#{registrarUsuarioBean.usuario.tipoDocumento}"  required="true">
+				<f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
+				<f:selectItems value="#{registrarUsuarioBean.tiposDocumento}" var="tiposDocumentoItem" itemValue="#{tiposDocumentoItem}" itemLabel="#{tiposDocumentoItem.value} - #{tiposDocumentoItem.message}"/>
+			</p:selectOneMenu>
 
 			<h:outputLabel for="numeroDeIdentificacion"
 				value="Numero de Identificacion:" style="color:white;" />
@@ -125,8 +141,13 @@
 				style="color:white;" />
 			<p:password value="#{registrarUsuarioBean.clave}" id="clave2"
 				required="true" label="clave2" />
+				
+			<p:selectBooleanCheckbox value="#{registrarUsuarioBean.tratamientoDeDatos}" />
+			<h:link value="Acepto tratamiento de datos personales" target="_blank"  outcome="politica"/>
+			
 			<br/>
-			<p:commandButton id="loginButton" value="Registrar usuario" actionListener="#{registrarUsuarioBean.registrarUsuario}" update="indexForm" oncomplete="PF('usuarioRegistrado').show();" />
+			
+			<p:commandButton id="loginButton" disabled="!#{registrarUsuarioBean.tratamientoDeDatos}" value="Registrar usuario" actionListener="#{registrarUsuarioBean.registrarUsuario}" update="indexForm" oncomplete="PF('usuarioRegistrado').show();" />
 		</h:panelGrid>
 	</h:form>
 </p:dialog>

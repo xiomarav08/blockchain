@@ -2,15 +2,18 @@
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15636726707950" configfile="/blockchain/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="historialContratos.xhtml" id="pf15645397255205" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15645397255206" path="historialContratos.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf15645397255207" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf15645397255206" path="login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="plantar.xhtml" id="pf15645397255208" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf156455258579113" path="plantar.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="paymentMenu/payment.xhtml" id="pf156455258579114" referenceLink="//@navigationRule.5/@fromViewId|" inlinks="pf156455258579113" path="paymentMenu/payment.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="plantar.xhtml" id="pf15645397255208" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf156455258579113" path="plantar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="paymentMenu/payment.xhtml" id="pf156455258579114" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf156455258579113" path="paymentMenu/payment.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="adminMenu/usuarios.xhtml" id="pf15649430619144" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf15649430619155" inlinks="pf15649430619156" path="/adminMenu/usuarios.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="adminMenu/historialContratos.xhtml" id="pf15649430619157" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15649430619156" inlinks="pf15649430619155" path="/adminMenu/historialContratos.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="paymentMenu/payment.xhtml" id="pf15649775161441" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf15649775161442" path="/paymentMenu/payment.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="billetera.xhtml" id="pf15649775161443" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf15649775161442" path="billetera.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="paymentMenu/payment.xhtml" id="pf15649775161441" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15649775161442" path="/paymentMenu/payment.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="billetera.xhtml" id="pf15649775161443" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf15649775161442" path="billetera.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf15674801944530" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15674801944531" path="index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="politica.xhtml" id="pf15674801944532" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf15674801944531" path="politica.xhtml"/>
   <links id="pf15645397255206" target="pf15645397255207" source="pf15645397255205" outcome="salir"/>
   <links id="pf156455258579113" target="pf156455258579114" source="pf15645397255208" outcome="payment"/>
   <links id="pf15649430619155" target="pf15649430619157" source="pf15649430619144" outcome="historialContratos"/>
   <links id="pf15649430619156" target="pf15649430619144" source="pf15649430619157" outcome="usuarios"/>
   <links id="pf15649775161442" target="pf15649775161443" source="pf15649775161441" outcome="billetera"/>
+  <links id="pf15674801944531" target="pf15674801944532" source="pf15674801944530" outcome="politica"/>
 </pageflow:Pageflow>

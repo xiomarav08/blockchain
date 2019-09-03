@@ -5,38 +5,32 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link href="style.css" rel="stylesheet"></link>
-  <title><ui:insert name="title" /></title>
-  </h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="style.css" rel="stylesheet"></link>
+	<title><ui:insert name="title" /></title>
+</h:head>
 
 <h:body>
+
 	<header class="header">
-		<div class="container plantree-nav-container">
-			<a class="plantree">plant</a> <SPAN class="menu-icon"> </SPAN>
-			<nav class="navigation">
-				<ul class="show">
-				</ul>
-			</nav>
-		</div>
-		<div style="text-align: right;">
-			<p:commandButton id="logout" value="Cerrar Sesión"
-				actionListener="#{loginBean.logout}" style="margin-right:20px;"
-				icon="fa fa-fw fa-user-times" />
-		</div>
+
+		<div style="text-align: center; margin-left: 300px;">
+			<img src="../imagenes/logo.png" />
+				<p:commandButton id="logout" value="Cerrar Sesión"
+					actionListener="#{loginBean.logout}" style="margin-right:20px;"
+					icon="fa fa-fw fa-user-times" />
+			</div>
 	</header>
 	<div class="main">
-	<div class="container">
-	<div id="content">
-			<ui:insert name="content">
-			</ui:insert>
-		</div>
-	</div>
-	</div>
-	</h:body>
-	<footer class="footer">
 		<div class="container">
-			<div id="copyright">© 2019 - Hacienda la Tentación</div>
+			<div id="content">
+				<ui:insert name="content">
+				</ui:insert>
+			</div>
 		</div>
-	</footer>
+	</div>
+</h:body>
+<footer class="footer">
+	<div class="container"></div>
+</footer>
 </html>
