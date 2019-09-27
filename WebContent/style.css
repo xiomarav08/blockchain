@@ -10,6 +10,13 @@ h1{
 	fontsize:2rem;
 	line-height:1.3em;
 	text-align: center;
+	color: #7ebb76;
+	}
+h2{
+	fontsize:1rem;
+	line-height:1.3em;
+	text-align: left;
+	color: #7ebb76;
 	}
 
 p {
@@ -25,7 +32,7 @@ margin-bottom:1.6em;
 .header {
 	background:#7EBB76;
 	color: white;
-	padding: 2rem 0;
+	padding: -18rem 0;
 	
 	position:fixed;
 	left: 0;
@@ -33,7 +40,7 @@ margin-bottom:1.6em;
 	right:0;
 	}
 	
-
+	
 .plantree-nav-container{
 	display: flex;
 	justify-content: space-between;
@@ -77,9 +84,9 @@ margin-bottom:1.6em;
 	}
 	
 	.footer {
-    background: url(imagenes/footer.jpg);
-	padding:50px;
-	position:fixed;
+    background: url(imagenes/footer3.png);
+	padding:59px;
+	position:relative;
 	left: 0;
 	bottom: 0;
 	right:0;

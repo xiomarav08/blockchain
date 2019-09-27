@@ -13,55 +13,55 @@
 </h:head>
 
 <h:body>
-
 	<h:form id="indexForm">
+		<p:growl id="mensajes" showDetail="true" life="3000" sticky="true"/>
 		<header class="header">
+			
 			<div style= "text-align: center; margin-left:300px;">
 				<h:panelGrid columns="5">
 					<img src= "imagenes/logo.png"/>
+					<div style="color:white; margin-left:-40px;">
+					<p> There is always a plan, a it’s about trees</p>
+					</div>
 					
-				<p:linkButton outcome="index" value="Siembra"
-					style="margin-right:20px;" icon="fa fa-fw fa-pagelines"/>
-				<p:linkButton outcome="hacienda" value="La Tentación"
-					style="margin-right:20px;" icon="fa fa-fw fa-home"/>
-
-				<p:commandButton value="Planta un Arbol" 
-					onclick="PF('registrar').show();" style="margin-right:20px;" icon="fa fa-fw fa-tree" />
-
-				<p:commandButton value="Iniciar Sesión" onclick="PF('login').show();"
-					style="margin-right:20px;" icon="fa fa-fw fa-user-plus" />
-			</h:panelGrid>
+					
+					<p:linkButton outcome="index" value="Our project"
+						style="margin-right:20px;" icon="fa fa-fw fa-leaf"/>
+						
+					<p:linkButton outcome="hacienda" value="Trees"
+						style="margin-right:20px;" icon="fa fa-fw fa-pagelines"/>
+	 
+					<p:commandButton value="Plant a tree"
+						onclick="PF('registrar').show();" style="margin-right:20px;" icon="fa fa-fw fa-tree"/>
+	
+					<p:commandButton value="Login" onclick="PF('login').show();"
+						style="margin-right:20px;" icon="fa fa-fw fa-user"/>
+				</h:panelGrid>
 			</div>
+			
 		</header>
 		<main class="main">
 		<div class="container">
-			<h1>Hacienda la Tentaciòn</h1>
-			<p>Es una finca de cacao ubicada en el departamento de Caldas Colombia
-			   con seis años de experiencia en el cultivo de cacao fino de sabor y aroma.
-               Cuenta con una plantación de 200 hectáreas que se han establecido en sistemas agro forestales.
-               Posee 150 hectáreas dedicadas a la conservación de la biodiversidad,
-               la silvicultura y la protección de cuencas hidrográficas.</p>
-               
-               <h1>Establecer</h1>
-			<p>Establecer una plantación de alta productividad de cacao de calidad 
-			   con variedades seleccionadas.</p>
-              
-               <h1>Crear</h1>
-			<p>Crear nuevos métodos, tecnologías, procesos y enfoques.</p> 
-		   
-               <h1>Aprender</h1>
-			<p>Aprender compartiendo experiencias sobre el desarrollo del cultivo de cacao 
-			   y  el manejo de un proyecto con impacto en la región.</p> 
+			<h1>PlanT, what is it about?</h1>
 			
-			<h1>Contribuir</h1>
-			<p>Contribuir a la construcción de tejido social en la región incremento en la biodiversidad
-			 de la zona y a la fortaleza del ecosistema.</p> 			   
-			
+            <h:panelGrid columns="3" cellspacing="10px"> 
+            <img src= "imagenes/Imagen3.png"/> 
+			<img src= "imagenes/Imagen4.png"/>
+			<img src= "imagenes/Imagen5.png"/>
+			</h:panelGrid>
+
+			<H2>How does it works?</H2>
+	        <img src= "imagenes/proceso1.png"/>
+	         
+	        <H2>Buy and benefits entire circuit </H2>
+	        <img src= "imagenes/proceso2.png"/> 
 		</div>
+
 		</main>
 		<footer class="footer">
 			<div class="container">
-			</div> 
+			</div>
+
 		</footer>
 	</h:form>
 </h:body>
@@ -78,7 +78,7 @@
 				label="password" />
 
 			<p:commandButton id="loginButton" value="Iniciar Sesión"
-				actionListener="#{loginBean.login}" update="loginModal" />
+				actionListener="#{loginBean.login}" update="indexForm"/>
 		</h:panelGrid>
 	</h:form>
 </p:dialog>
