@@ -1,18 +1,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:f="http://java.sun.com/jsf/core" 
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Index</title>
 	<meta charset="UTF-8"></meta>
-	<meta name="viewport" content="width=device-width, initial -scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=1, minimun-scale=1">
 	</meta>
+	<link rel="stylesheet" href="style.css"></link>
 
-	<link href="style.css" rel="stylesheet"></link>
-</h:head>
-
-<h:body>
 	<h:form id="indexForm">
 		<p:growl id="mensajes" showDetail="true" life="3000" sticky="true"/>
 		<header class="header">
@@ -23,7 +20,6 @@
 					<div style="color:white; margin-left:-40px;">
 					<p> There is always a plan, a it’s about trees</p>
 					</div>
-					
 					
 					<p:linkButton outcome="index" value="Our project"
 						style="margin-right:20px;" icon="fa fa-fw fa-leaf"/>
@@ -40,31 +36,26 @@
 			</div>
 			
 		</header>
+			</h:form>
+</h:head>
 
-		<main class="main">
-		<div class="container">
-		  <img src= "imagenes/footer2.png" /> 	
-          <img src= "imagenes/About.png" /> 	
+<h:body>
+		<div class="slider">
+		<ul>		
+	<li><img src= "imagenes/banner-agua.png"></img></li> 
+	<li><img src= "imagenes/banner-aire.png"></img></li> 
+	<li><img src= "imagenes/banner-bosques.png"></img></li> 
+	<li><img src= "imagenes/banner-comunidades.png"></img></li> 	
+	   </ul>
+	</div> 
+</h:body>
 
-			<H2>How does it works?</H2>
-	        <img src= "imagenes/proceso1.png"/>
-	         
-	        <H2>Buy and benefits entire circuit ,Echar Pa’Lante, ¿who are we?
-	         </H2>
-      
-	        <img src= "imagenes/proceso2.png" />
-	        <img src= "imagenes/proceso3.png" />  
-	   
-		</div>
-
-		</main>
-		<footer class="footer">
+	<footer class="footer">
 			<div class="container">
 			</div>
 
 		</footer>
-	</h:form>
-</h:body>
+		
 <p:dialog header="Salva el planeta" widgetVar="login"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="loginModal">

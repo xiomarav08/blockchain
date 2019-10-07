@@ -1,10 +1,3 @@
-body{
-	font-family:roboto;
-	color: @#333;
-	font-size: 1.2rem;
-	line-height: 1.6em;
-	margin:0;
-}
 
 h1{
 	fontsize:2rem;
@@ -19,16 +12,6 @@ h2{
 	color: #7ebb76;
 	}
 
-p {
-margin-bottom:1.6em;	
-}
-
-.container {
-	width:100%;
-	max-width:850px;
-	margin: 0 auto;
-	}
-
 .header {
 	background:#7EBB76;
 	color: white;
@@ -36,51 +19,8 @@ margin-bottom:1.6em;
 	
 	position:fixed;
 	left: 0;
-	top: 0;
+	bottom: 0;
 	right:0;
-	}
-	
-	
-.plantree-nav-container{
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	flex-wrap:wrap;
-	}
-	
-.plantree {
-	letter-spacing:10px;
-	font-size: 3em;
-	}
-	
-	.menu-icon{
-	display: none;
-	}
-	
-.navigation ul {
-	margin:0;
-	padding:0;
-	list-style:none;
-	}
-	
-	.navigation ul li {
-	display: inline-block;
-	}
-	
-	.navigation ul li a {
-	display: block;
-	padding: 0.5rem 1 rem;
-	transition: all 0.4s linear;
-	border-radius:5px;
-	}
-	
-	.navigation ul li a: hover {
-	blackground:#4a4a4a;
-	}
-	
-	.main{
-	padding-top:12rem;
-	padding-bottom:12rem;
 	}
 	
 	.footer {
@@ -92,41 +32,50 @@ margin-bottom:1.6em;
 	right:0;
 	}
 	
+	.slider{
+	width: 95%;
+	margin: auto;
+	overflow: hidden;
 	
-	@media only screen and (max-width: 767px){
-	.menu-icon{
-	display: block;
-	cursor: pointer;
-	padding: 0.5rem 1rem;
-	}
-	
-	.nagivation {
-	width:100%;
-	margin-top:1rem;
 	}
 	
-	.navigation ul {
-	display:none;
+	.slider ul {
+	padding: 0;
+	display: flex;
+	width: 400%;
+	animation: cambio 20s infinity alternate linear;
+	animation-timing-function: ease;
 	}
 	
-	.navigation ul.show {
-	display:block;
+
+.slider li{
+	width: 100%;
+	list-style: none;
 	}
-	.navigation ul li {
-	display: block;
+
+.slider img{
+	width: 100%;
+}
+
+@keyframes cambio  {
+	
+   0% {margin-left: 0;}
+   20% {margin-left: 0;}
+	
+   25% {margin-left: -100%;}
+   45% {margin-left: -100%;}
+	
+   50% {margin-left: -200%;}
+   70% {margin-left: -200%;}
+   
+   75% {margin-left: 300%;}
+   100% {margin-left: -300%;}
+	
 	}
 	
-	.navigation ul li a {
-	display: block;
-	padding: 0.5rem 0;
-	transition: all 0.4s linear;
-	border-radius:5px;
-	}
 	
-	.navigation ul li a: hover {
-	blackground:#4a4a4a;
-	}
 	
-	.img{
-    margin-left:100px;
-	}
+	
+
+	
+	
