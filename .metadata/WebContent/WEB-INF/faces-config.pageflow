@@ -6,8 +6,8 @@
   <nodes xsi:type="pageflow:PFPage" name="paymentMenu/payment.xhtml" id="pf156455258579114" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf156455258579113" path="paymentMenu/payment.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="adminMenu/usuarios.xhtml" id="pf15649430619144" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf15649430619155" inlinks="pf15649430619156" path="/adminMenu/usuarios.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="adminMenu/historialContratos.xhtml" id="pf15649430619157" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf15649430619156" inlinks="pf15649430619155" path="/adminMenu/historialContratos.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="paymentMenu/payment.xhtml" id="pf15649775161441" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15649775161442" path="/paymentMenu/payment.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="billetera.xhtml" id="pf15649775161443" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf15649775161442" path="billetera.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="paymentMenu/payment.xhtml" id="pf15649775161441" referenceLink="//@navigationRule.4/@fromViewId|" outlinks="pf15649775161442" path="/paymentMenu/payment.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="billetera.xhtml" id="pf15649775161443" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf15649775161442" path="billetera.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf15674801944530" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf15674801944531" path="index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="politica.xhtml" id="pf15674801944532" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf15674801944531" path="politica.xhtml"/>
   <links id="pf15645397255206" target="pf15645397255207" source="pf15645397255205" outcome="salir"/>

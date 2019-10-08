@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.security.Security;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 import java.util.Properties;
 
 import javax.annotation.PostConstruct;
@@ -35,9 +37,12 @@ public class IndexBean implements Serializable{
 	@Inject
 	private ManejadorTransacciones manejadorTransacciones;
 	
+	private List<String> imagesSlide ;
+	
 	@PostConstruct
 	private void init() {
 		configurarUsuarioInicial();
+		imagesSlide = Arrays.asList("banner-bosques.png", "banner-comunidades.png");
 	}
 	
 	private void configurarUsuarioInicial() {
@@ -98,6 +103,13 @@ public class IndexBean implements Serializable{
 		this.nameIndex = nameIndex;
 	}
 	
+	public List<String> getImagesSlide() {
+		return imagesSlide;
+	}
+	
+	public void setImagesSlide(List<String> imagesSlide) {
+		this.imagesSlide = imagesSlide;
+	}
 	
 
 }

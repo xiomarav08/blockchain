@@ -33,7 +33,7 @@ h2{
 	}
 	
 	.slider{
-	width: 95%;
+	width: 100%;
 	margin: auto;
 	overflow: hidden;
 	
@@ -48,7 +48,7 @@ h2{
 	}
 	
 
-.slider li{
+   .slider li{
 	width: 100%;
 	list-style: none;
 	}
@@ -59,7 +59,7 @@ h2{
 
 @keyframes cambio  {
 	
-   0% {margin-left: 0;}
+	0% {margin-left: 0;}
    20% {margin-left: 0;}
 	
    25% {margin-left: -100%;}
@@ -71,8 +71,12 @@ h2{
    75% {margin-left: 300%;}
    100% {margin-left: -300%;}
 	
-	}
 	
+}
+	
+   
+	
+
 	
 	
 	
