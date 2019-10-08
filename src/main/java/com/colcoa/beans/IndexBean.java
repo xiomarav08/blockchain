@@ -42,7 +42,7 @@ public class IndexBean implements Serializable{
 	@PostConstruct
 	private void init() {
 		configurarUsuarioInicial();
-		imagesSlide = Arrays.asList("banner-bosques.png", "banner-comunidades.png");
+		imagesSlide = Arrays.asList("banner-agua.png","banner-aire.png","banner-biodiversidad.png","banner-bosques.png","banner-comunidades.png");
 	}
 	
 	private void configurarUsuarioInicial() {

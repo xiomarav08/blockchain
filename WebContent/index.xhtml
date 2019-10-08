@@ -11,46 +11,46 @@
 	</meta>
 	<link rel="stylesheet" href="style.css"></link>
 
+
 	<h:form id="indexForm">
 		<p:growl id="mensajes" showDetail="true" life="3000" sticky="true" />
 		<header class="header">
 
 			<div style="text-align: center; margin-left: 300px;">
 				<h:panelGrid columns="5">
-					<img src="imagenes/logo.png" />
-					<div style="color: white; margin-left: -40px;">
-						<p>There is always a plan, a it’s about trees</p>
-					</div>
-
-					<p:linkButton outcome="index" value="Our project"
-						style="margin-right:20px;" icon="fa fa-fw fa-leaf" />
+					<img src="imagenes/logo-plant-web.png" />
+					<p:linkButton outcome="index" value="Our projects"
+						style="margin-right:20px; color:white; background:transparent; border: none;" icon="fa fa-fw fa-leaf" />
 
 					<p:linkButton outcome="hacienda" value="Trees"
-						style="margin-right:20px;" icon="fa fa-fw fa-pagelines" />
+						style="margin-right:20px; color:white; background:transparent; border: none;" icon="fa fa-fw fa-pagelines" />
 
 					<p:commandButton value="Plant a tree"
-						onclick="PF('registrar').show();" style="margin-right:20px;"
+						onclick="PF('registrar').show();" style="margin-right:20px; color:white; background:transparent; border: none;"
 						icon="fa fa-fw fa-tree" />
 
 					<p:commandButton value="Login" onclick="PF('login').show();"
-						style="margin-right:20px;" icon="fa fa-fw fa-user" />
+						style="margin-right:20px; color:white; background:transparent; border: none;" icon="fa fa-fw fa-user" />
 				</h:panelGrid>
 			</div>
 
 		</header>
 	</h:form>
-</h:head>
+		</h:head>
+
 
 <h:body>
-		<p:galleria value="#{indexBean.imagesSlide}"  panelWidth="1580" panelHeight="600" var="image" effect="slide" style="margin:149px; margin-left:0px; ">
+<p:galleria value="#{indexBean.imagesSlide}"  panelWidth="1333" panelHeight="451" var="image" effect="slide" style="margin:-17px; margin-left:0px; ">
 			<img src="imagenes/#{image}" />
 		</p:galleria>
-</h:body>
+		</h:body>
 
 <footer class="footer">
 	<div class="container"></div>
 
 </footer>
+
+
 
 <p:dialog header="Salva el planeta" widgetVar="login"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
@@ -138,7 +138,7 @@
 			<h:link value="Acepto tratamiento de datos personales"
 				target="_blank" outcome="politica" />
 
-			<br />
+			<br/>
 
 			<p:commandButton id="loginButton"
 				disabled="!#{registrarUsuarioBean.tratamientoDeDatos}"
