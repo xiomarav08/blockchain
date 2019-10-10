@@ -22,18 +22,27 @@
 					<p:linkButton outcome="index" value="Our projects"
 						style="margin-right:20px; color:white; background:transparent; border: none;" icon="fa fa-fw fa-leaf" />
 
-					<p:linkButton outcome="hacienda" value="Trees"
-						style="margin-right:20px; color:white; background:transparent; border: none;" icon="fa fa-fw fa-pagelines" />
+					<p:linkButton outcome="hacienda" value="BlockChain"
+						style="margin-right:20px; color:white; background:transparent; border: none;" icon="fa fa-fw fa-chain" />
 
 					<p:commandButton value="Plant a tree"
 						onclick="PF('registrar').show();" style="margin-right:20px; color:white; background:transparent; border: none;"
 						icon="fa fa-fw fa-tree" />
 
 					<p:commandButton value="Login" onclick="PF('login').show();"
-						style="margin-right:20px; color:white; background:transparent; border: none;" icon="fa fa-fw fa-user" />
+						style="margin-right:20px; color:white; background:transparent; border: none;" icon="fa fa-fw fa-user" />			
 				</h:panelGrid>
+				
 			</div>
-
+			<table style= "margin-left: 1115;" cellpadding="2"> 
+			<tr> 
+			<td> 
+		<a href="https://www.facebook.com/PlanT-102396917814300/"><img src="imagenes/facebook-white.png"/></a> </td>
+		<td> 
+	   <a href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"><img src="imagenes/insta-white.png" /></a> </td>
+	   </tr>
+	   </table>
+			
 		</header>
 	</h:form>
 		</h:head>
@@ -43,14 +52,18 @@
 <p:galleria value="#{indexBean.imagesSlide}"  panelWidth="1333" panelHeight="451" var="image" effect="slide" style="margin:-17px; margin-left:0px; ">
 			<img src="imagenes/#{image}" />
 		</p:galleria>
+		
 		</h:body>
-
+<img src="imagenes/Banner-cifras.png"/>
 <footer class="footer">
 	<div class="container"></div>
-
+	
 </footer>
-
-
+<div class="contenedor">
+  <img src="imagenes/tierra.png"/>
+  <div class="centrado">Contact us<br/><br/>Administrative Direction:Cll 54 No. 26 - 154 <br/>Telephone: + (576) 8859009<br/>Email: info@plantreforestation.com
+  <br/>La Arboleda- Manizales <br/>Caldas- Colombia <br/><br/>&#169; Copyright 2019 plantreforestation.com</div>
+</div>
 
 <p:dialog header="Salva el planeta" widgetVar="login"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">

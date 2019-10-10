@@ -13,7 +13,7 @@ public class PlantarBean {
 	
 	@PostConstruct
 	public void Init() {
-		arboles = Arrays.asList("cacao", "abarco", "moncoro", "pino");
+		arboles = Arrays.asList("Abarco", "Caoba", "Moncoro", "	Cacao");
 	}
 
 	
