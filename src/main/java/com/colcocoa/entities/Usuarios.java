@@ -7,8 +7,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.colcoa.enums.EnumTipoDocumento;
 import com.colcoa.enums.EnumTipoPersona;
@@ -20,8 +21,8 @@ public class Usuarios extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "USUARIO_ID_GENERATOR", sequenceName = "SEC_USUARIO", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USUARIO_ID_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "USUARIO_ID_GENERATOR")
+	@GenericGenerator(name = "USUARIO_ID_GENERATOR", strategy = "native")
 	private Integer id;
 	
 	@Column(name = "NOMBRE")

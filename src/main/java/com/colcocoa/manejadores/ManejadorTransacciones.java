@@ -13,7 +13,7 @@ import com.colcocoa.entities.Usuarios;
 @Stateless
 public class ManejadorTransacciones {
 	
-	@PersistenceContext(unitName="OracleDS")
+	@PersistenceContext(unitName="MySqlDS")
 	private EntityManager em;
 
 	public List<TransactionEntity> consultarTransaccionesPorUsuario(Usuarios usuario) {

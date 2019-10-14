@@ -4,16 +4,17 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
                       http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-	<persistence-unit name="OracleDS" transaction-type="JTA">
+	<persistence-unit name="MySqlDS" transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<jta-data-source>jboss/datasources/OracleDS</jta-data-source>
+		<jta-data-source>MySqlDS</jta-data-source>
 		<class>com.colcocoa.entities.Usuarios</class>
 		<class>com.colcocoa.entities.TransactionEntity</class>
+		<class>com.colcocoa.entities.UbicacionGeograficaEntity</class>
 		 
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="none"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
 		</properties>
 	</persistence-unit>
 </persistence>

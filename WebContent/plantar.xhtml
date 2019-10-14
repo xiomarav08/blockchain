@@ -54,7 +54,7 @@
 				<p:ring id="custom" value="#{plantarBean.arboles}" var="arbol" styleClass="image-ring" easing="easeInOutBack">
 					<h:outputText value="#{arbol}" />
 			        <img src="imagenes/#{arbol}.png" />
-			        <p:commandButton value="Comprar" actionListener="#{plantarBean.comprar}"/>
+			        <p:commandButton value="Comprar" oncomplete="PF('comprarArbol').show();" action="#{plantarBean.escogerArbol(arbol)}"/>
 			    </p:ring>
 		    </div>
 		</div>
@@ -70,4 +70,13 @@
   <br/>La Arboleda- Manizales <br/>Caldas- Colombia <br/><br/>&#169; Copyright 2019 plantreforestation.com</div>
 </div>
 </h:body>
+<p:dialog header="Realizar compra" widgetVar="comprarArbol" showEffect="explode" minHeight="40" resizable="false" modal="true">
+	<h:form id="comprarArbol">
+		<h:panelGrid columns="2" cellpadding="0">
+			<h:outputText value="Numero de arboles"></h:outputText>
+			<p:spinner id="basic" value="#{plantarBean.numeroArboles}" min="0"/>
+		</h:panelGrid>
+		<p:commandButton value="Aceptar" oncomplete="PF('comprarArbol').hide;" actionListener="#{plantarBean.comprar}" />
+	</h:form>
+</p:dialog>
 </html>

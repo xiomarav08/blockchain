@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body style="text-align:center">
+	<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+	<p:growl id="mensajes" showDetail="true" life="2000" />
+	<h:form>
+		<p:gmap center="36.890257,30.707417" zoom="13" type="HYBRID" style="width:100%;height:400px" model="#{markersView.simpleModel}" />
+	</h:form>
+</h:body>
+</html>

@@ -15,7 +15,7 @@ import com.colcocoa.entities.Usuarios;
 @Stateless
 public class ManejadorUsuarios {
 
-	@PersistenceContext(unitName="OracleDS")
+	@PersistenceContext(unitName="MySqlDS")
 	private EntityManager em;
 	
 	public Usuarios consultarUsuario(String usuario) {

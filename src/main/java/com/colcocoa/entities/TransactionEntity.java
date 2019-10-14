@@ -11,8 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.colcoa.enums.EnumTipoTransacion;
 
@@ -23,8 +24,8 @@ public class TransactionEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@SequenceGenerator(name = "TRANSACTION_ID_GENERATOR", sequenceName = "SEC_TRANSACTION", allocationSize =1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRANSACTION_ID_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "TRANSACTION_ID_GENERATOR")
+	@GenericGenerator(name = "TRANSACTION_ID_GENERATOR", strategy = "native")
 	private Integer id;
 	
 	@ManyToOne
