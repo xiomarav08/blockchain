@@ -50,10 +50,10 @@ public class RegistrarUsuarioBean implements Serializable{
 				PrimeFaces.current().ajax().addCallbackParam("view", "login.xhtml");
 			    
 			}else {
-				msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Las contraseñas no coinciden.", "Error");
+				msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match.", "Error");
 			}
 		}else {
-			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El usuario ya existe", "Error");	
+			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "User already exists", "Error");	
 		}
 		PrimeFaces.current().dialog().showMessageDynamic(msg);
 	}

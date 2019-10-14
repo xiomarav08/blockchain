@@ -1,23 +1,29 @@
 
 h1{
-	fontsize:2rem;
+	font-family: 'Roboto', sans-serif;
+	fontsize:20px;
 	line-height:1.3em;
 	text-align: center;
 	color: #7ebb76;
 	}
 h2{
-	fontsize:1rem;
+	font-family: 'Roboto', sans-serif;
+	fontsize:10vw;
 	line-height:1.3em;
 	text-align: left;
 	color: #7ebb76;
 	}
+
+p {
+		font-family: 'Roboto', sans-serif;
+}
 
 .header {
 	
 	background:#7EBB76;
 	color: white;
 	padding: -18rem 0;
-	width: 100%;
+	width:1333;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -33,12 +39,15 @@ h2{
 
 	
 	.footer {
+	width:1333;
     background: url(imagenes/footer.png);
 	padding:106px;
 	position:relative;
 	left: 0;
 	bottom: 0;
 	right:0;
+	
+	
 	}
 	
 
@@ -46,16 +55,38 @@ h2{
     position: relative;
     display: inline-block;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
+    
 }
  
 
 .centrado{
+	font-family: 'Roboto', sans-serif;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    fontsize:1rem;
+    fontsize:20px;
+}
+	
+	.atributos{
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    
+}
+ 
+
+.izquierda{
+	font-family: 'Roboto', sans-serif;
+    position: absolute;
+    font-size: 23px;
+    line-height: 22px;
+    transform: translate(-50%, -50%);
+    color: white;
+    margin: 362px;
+    top: 601px;
 }
 	
 	

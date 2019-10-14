@@ -2,9 +2,9 @@ package com.colcoa.enums;
 
 public enum EnumTipoDocumento {
 	
-	CEDULA_DE_CIUDADANIA("Cédula de ciudadania", "CC"),
-	CEDULA_DE_EXTRANJERIA("Cédula de extranjería", "CE"),
-	PASAPORTE("PASAPORTE", "TP"),
+	CEDULA_DE_CIUDADANIA("Citizenship Card", "CC"),
+	CEDULA_DE_EXTRANJERIA("Foreigner ID", "CE"),
+	PASAPORTE("Passport", "TP"),
 	NIT("Nit", "NIT");
 	
 	private String message;

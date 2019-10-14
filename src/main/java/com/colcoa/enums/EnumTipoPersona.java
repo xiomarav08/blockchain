@@ -3,7 +3,7 @@ package com.colcoa.enums;
 public enum EnumTipoPersona {
 	
 	NATURAL("Natural"),
-	JURIDICA("Juridica");
+	JURIDICA("Juridical");
 	
 	private String message;
 	
