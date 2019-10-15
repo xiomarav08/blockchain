@@ -8,29 +8,29 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import com.colcocoa.entities.Usuarios;
 import com.paypal.api.payments.Amount;
 import com.paypal.api.payments.Details;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.Payment;
-import com.paypal.api.payments.PaymentExecution;
 import com.paypal.api.payments.RedirectUrls;
 import com.paypal.api.payments.Transaction;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 
 @ManagedBean(name = "plantarBean")
-@SessionScoped
+@ViewScoped
 public class PlantarBean {
 
 	private List<String> arboles;
 
 	private String clientId = "AXDW5dSHuoi9VgvVE9tknTFgZuUgmUcltO_YMfdLsLIJVS29yKbN0ehJoda-1bi28xK8Q9SanFORFBjP";
-	private String clientSecret = "EOjnbliyXupszBDEeILoS_qGLl0PNtqvHQYwt-Svzf9_WgQSODMRblQ6V05GmrSy6gd8ayLabgLSE8_R";
+	private String clientSecret = "ECKV4lp2X0SBrxoK61DYPvcplXYdvCip1DuoMShcRowkV4mNCGqOCN36ABExNFMHKCA96txUKBOwm90N";
 	
 	private Integer numeroArboles;
 	
@@ -44,6 +44,8 @@ public class PlantarBean {
 	
 	public void comprar() {
 		
+		Usuarios usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("LOGGEDIN_USER");
+		
 		APIContext context = new APIContext(clientId, clientSecret, "sandbox");
 
 		Payer payer = new Payer();
@@ -52,7 +54,7 @@ public class PlantarBean {
 		// Set redirect URLs
 		RedirectUrls redirectUrls = new RedirectUrls();
 		redirectUrls.setCancelUrl("http://127.0.0.1:8080/BlockChain-0.0.1-SNAPSHOT/services/PayPalService/paypal");
-		redirectUrls.setReturnUrl("http://127.0.0.1:8080/BlockChain-0.0.1-SNAPSHOT/services/PayPalService/paypal");
+		redirectUrls.setReturnUrl("http://127.0.0.1:8080/BlockChain-0.0.1-SNAPSHOT/services/PayPalService/paypal"+"?treeAmmount="+numeroArboles+"&usuario="+usuario.getUsuario());
 		
 		// Set payment details
 		Details details = new Details();
@@ -98,7 +100,7 @@ public class PlantarBean {
 		// Transaction information
 		Transaction transaction = new Transaction();
 		transaction.setAmount(amount);
-		transaction.setDescription("This is the payment transaction description.");
+		transaction.setDescription(arbol);
 
 		// Add transaction to a list
 		List<Transaction> transactions = new ArrayList<Transaction>();

@@ -11,13 +11,13 @@
 	</meta>
 	<link rel="stylesheet" href="style.css"></link>
 
-<style>
+	<style>
 @import
 	url('https://fonts.googleapis.com/css?family=Roboto&amp;display=swap');
 </style>
 	<link rel="icon" type="image/icon" href="imagenes/favicon.ico" />
-	
-	<h:form id="indexForm">
+
+	<h:form id="headForm">
 		<p:growl id="mensajes" showDetail="true" life="3000" sticky="true" />
 		<header class="header">
 
@@ -25,63 +25,71 @@
 				<h:panelGrid columns="5">
 					<img src="imagenes/logo-plant-web.png" />
 					<p:linkButton outcome="index" value="Our projects"
-						style="margin-right:20px; color:white; background:transparent; border: none;" icon="fa fa-fw fa-leaf" />
+						style="margin-right:20px; color:white; background:transparent; border: none;"
+						icon="fa fa-fw fa-leaf" />
 
 					<p:linkButton outcome="hacienda" value="BlockChain"
-						style="margin-right:20px; color:white; background:transparent; border: none;" icon="fa fa-fw fa-chain" />
+						style="margin-right:20px; color:white; background:transparent; border: none;"
+						icon="fa fa-fw fa-chain" />
 
-                     <p:commandButton id="logout" value="Logout"
-				actionListener="#{loginBean.logout}" style="margin-right:20px; color:white; background:transparent; border: none;"
-				icon="fa fa-fw fa-user-times" />
-				
-				
+					<p:commandButton id="logout" value="Logout"
+						actionListener="#{loginBean.logout}" style="margin-right:20px; color:white; background:transparent; border: none;"
+						icon="fa fa-fw fa-user-times" />
+
+
 				</h:panelGrid>
-				
+
 			</div>
-			<table style= "margin-left: 1115;" cellpadding="2"> 
-			<tr> 
-			<td> 
-		<a href="https://www.facebook.com/PlanT-102396917814300/"><img src="imagenes/facebook-white.png"/></a> </td>
-		<td> 
-	   <a href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"><img src="imagenes/insta-white.png" /></a> </td>
-	   </tr>
-	   </table>
-			
+			<table style="margin-left: 1115;" cellpadding="2">
+				<tr>
+					<td><a href="https://www.facebook.com/PlanT-102396917814300/"><img
+							src="imagenes/facebook-white.png" /></a></td>
+					<td><a
+						href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"><img
+							src="imagenes/insta-white.png" /></a></td>
+				</tr>
+			</table>
+
 		</header>
-	</h:form>
-		</h:head>
+		</h:form>
+</h:head>
 
 
 <h:body>
-		<main class="main">
-		<div class="container">
-			<div style="text-align: center;">
-				<p:ring id="custom" value="#{plantarBean.arboles}" var="arbol" styleClass="image-ring" easing="easeInOutBack">
-					<h:outputText value="#{arbol}" />
-			        <img src="imagenes/#{arbol}.png" />
-			        <p:commandButton value="Comprar" oncomplete="PF('comprarArbol').show();" action="#{plantarBean.escogerArbol(arbol)}"/>
-			    </p:ring>
-		    </div>
+	<h:form>
+	<div class="container">
+		<div style="text-align: center;">
+			<p:ring id="custom" value="#{plantarBean.arboles}" var="arbol"
+				styleClass="image-ring" easing="easeInOutBack">
+				<h:outputText value="#{arbol}" />
+				<img src="imagenes/#{arbol}.png" />
+				<p:commandButton value="Comprar" oncomplete="PF('comprarArbol').show();" action="#{plantarBean.escogerArbol(arbol)}" />
+			</p:ring>
 		</div>
-
-		</main>
-		<footer class="footer">
-			<div class="container">
-			</div>
-		</footer>
-		<div class="contenedor">
-  <img src="imagenes/tierra.png"/>
-  <div class="centrado">Contact us<br/><br/>Administrative Direction:Cll 54 No. 26 - 154 <br/>Telephone: + (576) 8859009<br/>Email: info@plantreforestation.com
-  <br/>La Arboleda- Manizales <br/>Caldas- Colombia <br/><br/>&#169; Copyright 2019 plantreforestation.com</div>
-</div>
+	</div>
+	</h:form>
+	<footer class="footer">
+		<div class="container"></div>
+	</footer>
+	<div class="contenedor">
+		<img src="imagenes/tierra.png" />
+		<div class="centrado">
+			Contact us<br /> <br />Administrative Direction:Cll 54 No. 26 - 154
+			<br />Telephone: + (576) 8859009<br />Email:
+			info@plantreforestation.com <br />La Arboleda- Manizales <br />Caldas-
+			Colombia <br /> <br />&#169; Copyright 2019 plantreforestation.com
+		</div>
+	</div>
 </h:body>
-<p:dialog header="Realizar compra" widgetVar="comprarArbol" showEffect="explode" minHeight="40" resizable="false" modal="true">
+<p:dialog header="Realizar compra" widgetVar="comprarArbol"
+	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="comprarArbol">
 		<h:panelGrid columns="2" cellpadding="0">
 			<h:outputText value="Numero de arboles"></h:outputText>
-			<p:spinner id="basic" value="#{plantarBean.numeroArboles}" min="0"/>
+			<p:spinner id="basic" value="#{plantarBean.numeroArboles}" min="0" />
 		</h:panelGrid>
-		<p:commandButton value="Aceptar" oncomplete="PF('comprarArbol').hide;" actionListener="#{plantarBean.comprar}" />
+		<p:commandButton value="Aceptar" oncomplete="PF('comprarArbol').hide;"
+			actionListener="#{plantarBean.comprar}" />
 	</h:form>
 </p:dialog>
 </html>

@@ -28,13 +28,36 @@ public class ManejadorTransacciones {
 		}
 	}
 	
-	public Boolean almacenarTransaccion(TransactionEntity transactionEntity) {
+	public Integer consultarUltimaTransaccion() {
 		try {
-			em.persist(transactionEntity);
-			return Boolean.TRUE;
+			Query query= em.createQuery("SELECT max(t.id) FROM TransactionEntity t");
+			Integer id = (Integer)query.getSingleResult();
+			return id;
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-			return Boolean.FALSE;
+			return null;
+		}
+	}
+	
+	public TransactionEntity obtenerTransaccionPorId(Integer id) {
+		try {
+			Query query= em.createQuery("SELECT t FROM TransactionEntity t WHERE t.id = :id");
+			query.setParameter("id", id);
+			TransactionEntity transactionEntity = (TransactionEntity)query.getSingleResult();
+			return transactionEntity;
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	public TransactionEntity almacenarTransaccion(TransactionEntity transactionEntity) {
+		try {
+			em.persist(transactionEntity);
+			return transactionEntity;
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
 		}
 	}
 }

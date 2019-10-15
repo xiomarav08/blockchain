@@ -61,18 +61,13 @@
 			<h:form id="formWallet">
 				<p>un smart contracto es .............................</p>
 
-				<p:commandButton id="buyButton" value="Sign smart contract"
-					onclick="PF('contrato').show();" update="formWallet ContratoModal">
-					<p:confirm header="Confirmation"
-						message="Are you sure to sign the smart contract?"
-						icon="pi pi-exclamation-triangle" />
+				<p:commandButton id="buyButton" value="Sign smart contract" onclick="PF('contrato').show();" update="formWallet ContratoModal" actionListener="#{transactionBean.recuperarContexto()}">
+					<p:confirm header="Confirmation" message="Are you sure to sign the smart contract?" icon="pi pi-exclamation-triangle" />
 				</p:commandButton>
 
 				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-					<p:commandButton value="Yes" type="button"
-						styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-					<p:commandButton value="Not" type="button"
-						styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" update="formWallet ContratoModal"/>
+					<p:commandButton value="Not" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 				</p:confirmDialog>
 
 			</h:form>
@@ -82,53 +77,41 @@
 				<h:form id="ContratoModal">
 					<h:panelGrid columns="2" cellpadding="0">
 						<h:outputText value="Purchase Value" style= "color:white;"></h:outputText>
-						<p:inputText id="valorCompra"
-							value="#{transactionBean.numeroArboles}" disabled="true"
-							style="width:182px;margin: auto;"></p:inputText>
+						<p:inputText id="valorCompra" value="#{transactionBean.valorCompra}" disabled="true" style="width:182px;margin: auto;"></p:inputText>
 
 						<h:outputText value="Trees to plant" style= "color:white;"></h:outputText>
-						<p:inputText id="cantidadArbol"
-							value="#{transactionBean.numeroArboles}" disabled="true"
-							style="width: 182px;margin: auto;"></p:inputText>
+						<p:inputText id="cantidadArbol" value="#{transactionBean.numeroArboles}" disabled="true" style="width: 182px;margin: auto;"></p:inputText>
 					</h:panelGrid>
 					<p>
 						You are about to execute a smart contract with Terra Forza S.A.S <br />
 						Accept terms and conditions, send the transaction and observe your georeferenced plantation.
 					</p>
 
-					<p:selectBooleanCheckbox
-						value="#{registrarUsuarioBean.tratamientoDeDatos}"/>
-					<h:link value="I accept terms and conditions" target="_blank"
-						outcome="terminos" />
-
+					<p:selectBooleanCheckbox value="#{transactionBean.terminosCondiciones}">
+						<h:link value="I accept terms and conditions" target="_blank" outcome="terminos" />
+					</p:selectBooleanCheckbox>
 					<br />
 
 					<h:panelGrid columns="2" cellpadding="0">
 
-						<h:outputText value="Smart transaction signature" style= "color:white;"></h:outputText>
-						<p:inputText id="contraseñaTransaccion"
-							value="#{transactionBean.publicKeyIn}"
-							style="width:182px;margin: auto;"></p:inputText>
+						<h:outputText value="Smart transaction signature" style= "color:white;"/>
+						<h:outputText id="contraseñaTransaccion" value="#{transactionBean.signature}" style="width:182px;margin: auto;"/>
 
-						<p:commandButton id="firmarcontrato" value="Send transaction"
-							actionListener="#{transactionBean.comprarArbol}"
-							oncomplete="PF('contratoFirmado').show();"
-							update="contratoFirmado" />
+						<p:commandButton id="firmarcontrato" value="Send transaction" oncomplete="PF('contratoFirmado').show();" update="contratoFirmado"/>
 					</h:panelGrid>
 				</h:form>
 			</p:dialog>
-			<p:dialog header="Ejecutar Contrato" widgetVar="contratoFirmado"
-				showEffect="explode" minHeight="40" resizable="false" modal="true">
+			
+			<p:dialog header="Ejecutar Contrato" widgetVar="contratoFirmado" showEffect="explode" minHeight="40" resizable="false" modal="true">
 				<h:form id="contratoFirmado">
 					<h:panelGrid columns="1" cellpadding="0">
 						<h:outputText value="Smart contract signed successfully:"></h:outputText>
 						<h:outputText value="#{transactionBean.signature}"></h:outputText>
-						<p:commandButton value="Aceptar"
-							onclick="PF('contratoFirmado').hide(); PF('contrato').hide();"
-							update="formWallet" />
+						<p:commandButton value="Aceptar" onclick="PF('contratoFirmado').hide(); PF('contrato').hide();" actionListener="#{transactionBean.mostrarUbicacionGeografica()}" update="formWallet" />
 					</h:panelGrid>
 				</h:form>
 			</p:dialog>
+			
 		</h:body>
 		<footer class="footer">
 	<div class="container"></div>

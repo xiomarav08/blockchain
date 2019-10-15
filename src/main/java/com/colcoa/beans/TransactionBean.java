@@ -4,20 +4,22 @@ import java.io.IOException;
 import java.security.Security;
 import java.util.Base64;
 import java.util.List;
-import java.util.spi.TimeZoneNameProvider;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
+import com.colcoa.enums.EnumTipoArbol;
 import com.colcoa.enums.EnumTipoTransacion;
 import com.colcocoa.entities.TransactionEntity;
+import com.colcocoa.entities.UbicacionGeograficaEntity;
 import com.colcocoa.entities.Usuarios;
 import com.colcocoa.manejadores.ManejadorTransacciones;
+import com.colcocoa.manejadores.ManejadorUbicacionGeografica;
 import com.colcocoa.manejadores.ManejadorUsuarios;
 import com.colcocoa.wallet.Block;
 import com.colcocoa.wallet.Transaction;
@@ -25,7 +27,7 @@ import com.colcocoa.wallet.TransactionOutput;
 import com.colcocoa.wallet.Wallet;
 
 @ManagedBean(name = "transactionBean")
-@SessionScoped
+@ViewScoped
 public class TransactionBean {
 	
 	private String publicKey;
@@ -42,29 +44,38 @@ public class TransactionBean {
 	
 	private Integer numeroArboles;
 	
+	private String valorCompra;
+	
 	private final String USUARIO_ADMIN = "admin";
 	
 	private String signature;
+	
+	private Boolean terminosCondiciones;
 	
 	@Inject
 	private ManejadorUsuarios manejadorUsuarios;
 	
 	@Inject
+	private UbicacionGeograficaBean ubicacionGeograficaBean;
+	
+	private List<UbicacionGeograficaEntity> listUbicacionGeografica;
+	
+	@Inject
 	private ManejadorTransacciones manejadorTransacciones;
+	
+	@Inject
+	private ManejadorUbicacionGeografica manejadorUbicacionGeografica;
 	
 	@PostConstruct
 	public void Init() throws IOException {
-		FacesMessage msg = null;
-		usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("LOGGEDIN_USER");
-		usuarioAdmin = manejadorUsuarios.consultarUsuario(USUARIO_ADMIN);
-		if(usuario == null) {
-			msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El usuario no se a autenticado");
-			FacesContext.getCurrentInstance().addMessage(null, msg);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+		if(FacesContext.getCurrentInstance() != null) {
+			recuperarContexto();
 		}
 	}
 	
-	public void comprarArbol() {
+	public void comprarArbol(Integer numeroArboles, EnumTipoArbol tipoArbol, String valor, String user) {
+		usuarioAdmin = manejadorUsuarios.consultarUsuario(USUARIO_ADMIN);
+		usuario = manejadorUsuarios.consultarUsuario(user);
 		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); //Setup Bouncey castle as a Security Provider
 		TransactionEntity transactionEntity = new TransactionEntity();
 		
@@ -96,8 +107,20 @@ public class TransactionBean {
 		transactionEntity.setUserRecipient(usuarioAdmin);
 		transactionEntity.setTransactionId(transaction.getTransactionId());
 		transactionEntity.setValue(Float.valueOf(numeroArboles));
+		transactionEntity.setValueTransaction(valor);
 		manejadorTransacciones.almacenarTransaccion(transactionEntity);
+		
 		signature = transactionEntity.getSignature();
+		
+		listUbicacionGeografica = manejadorUbicacionGeografica.consultarUbicacion(numeroArboles, tipoArbol);
+		
+		for(UbicacionGeograficaEntity ubicacionGeograficaEntity: listUbicacionGeografica) {
+			ubicacionGeograficaEntity.setOcupado(Boolean.TRUE);
+			ubicacionGeograficaEntity.setTransaction(transactionEntity);
+			ubicacionGeograficaEntity.setUserPayer(usuario);
+			manejadorUbicacionGeografica.actualizarArbol(ubicacionGeograficaEntity);
+		}
+		
 	}
 	
 	public void cargarBalance(Integer value) {
@@ -134,10 +157,18 @@ public class TransactionBean {
 			transactionEntity.setTransactionId(transaction.getTransactionId());
 			transactionEntity.setValue(Float.valueOf(value));
 			manejadorTransacciones.almacenarTransaccion(transactionEntity);
-			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void recuperarContexto() {
+		Integer id = manejadorTransacciones.consultarUltimaTransaccion();
+		TransactionEntity transactionEntity = manejadorTransacciones.obtenerTransaccionPorId(id);
+		this.numeroArboles = transactionEntity.getValue().intValue();
+		this.valorCompra = transactionEntity.getValueTransaction();
+		this.signature = transactionEntity.getSignature();
+		listUbicacionGeografica = manejadorUbicacionGeografica.consultarUbicacionPorTransacion(transactionEntity);
 	}
 	
 	public Integer calcularSaldo() {
@@ -153,6 +184,14 @@ public class TransactionBean {
 		return Math.round(saldoTotal);
 	}
 	
+	public void mostrarUbicacionGeografica() {
+		try {
+			ubicacionGeograficaBean.inicializarPuntos(listUbicacionGeografica);
+			FacesContext.getCurrentInstance().getExternalContext().redirect("ubicacionGeografica.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public String getSignature() {
 		return signature;
@@ -226,5 +265,21 @@ public class TransactionBean {
 	
 	public void setUsuario(Usuarios usuario) {
 		this.usuario = usuario;
+	}
+	
+	public String getValorCompra() {
+		return valorCompra;
+	}
+	
+	public void setValorCompra(String valorCompra) {
+		this.valorCompra = valorCompra;
+	}
+	
+	public Boolean getTerminosCondiciones() {
+		return terminosCondiciones;
+	}
+	
+	public void setTerminosCondiciones(Boolean terminosCondiciones) {
+		this.terminosCondiciones = terminosCondiciones;
 	}
 }

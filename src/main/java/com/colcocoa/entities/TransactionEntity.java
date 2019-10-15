@@ -45,6 +45,9 @@ public class TransactionEntity implements Serializable{
 	@Column(name = "SIGNATURE")
 	private String signature;
 	
+	@Column(name = "VALUE_TRANSACTION")
+	private String valueTransaction;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "TYPE_TRANSACTION")
 	private EnumTipoTransacion tipoTransacion;
@@ -103,6 +106,14 @@ public class TransactionEntity implements Serializable{
 	
 	public void setTipoTransacion(EnumTipoTransacion tipoTransacion) {
 		this.tipoTransacion = tipoTransacion;
+	}
+	
+	public String getValueTransaction() {
+		return valueTransaction;
+	}
+	
+	public void setValueTransaction(String valueTransaction) {
+		this.valueTransaction = valueTransaction;
 	}
 
 	@Override
