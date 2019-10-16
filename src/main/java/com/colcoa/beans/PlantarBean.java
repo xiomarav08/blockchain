@@ -1,12 +1,14 @@
 package com.colcoa.beans;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
@@ -25,8 +27,8 @@ import com.paypal.base.rest.PayPalRESTException;
 
 @ManagedBean(name = "plantarBean")
 @ViewScoped
-public class PlantarBean {
-
+public class PlantarBean{
+	
 	private List<String> arboles;
 
 	private String clientId = "AXDW5dSHuoi9VgvVE9tknTFgZuUgmUcltO_YMfdLsLIJVS29yKbN0ehJoda-1bi28xK8Q9SanFORFBjP";

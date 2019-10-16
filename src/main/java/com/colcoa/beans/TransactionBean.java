@@ -6,9 +6,7 @@ import java.util.Base64;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
@@ -27,9 +25,8 @@ import com.colcocoa.wallet.TransactionOutput;
 import com.colcocoa.wallet.Wallet;
 
 @ManagedBean(name = "transactionBean")
-@ViewScoped
-public class TransactionBean {
-	
+public class TransactionBean{
+
 	private String publicKey;
 	
 	private Boolean habilitarSaldo = Boolean.FALSE;
@@ -187,8 +184,9 @@ public class TransactionBean {
 	public void mostrarUbicacionGeografica() {
 		try {
 			ubicacionGeograficaBean.inicializarPuntos(listUbicacionGeografica);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("ubicacionGeografica.xhtml");
-		} catch (IOException e) {
+			ubicacionGeograficaBean.setListUbicacionGeografica(listUbicacionGeografica);
+			FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().put("PUNTOS", listUbicacionGeografica);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

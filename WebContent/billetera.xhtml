@@ -97,7 +97,7 @@
 						<h:outputText value="Smart transaction signature" style= "color:white;"/>
 						<h:outputText id="contraseñaTransaccion" value="#{transactionBean.signature}" style="width:182px;margin: auto;"/>
 
-						<p:commandButton id="firmarcontrato" value="Send transaction" oncomplete="PF('contratoFirmado').show();" update="contratoFirmado"/>
+						<p:commandButton id="firmarcontrato" value="Send transaction" oncomplete="PF('contratoFirmado').show();" update="contratoFirmado" actionListener="#{transactionBean.mostrarUbicacionGeografica()}"/>
 					</h:panelGrid>
 				</h:form>
 			</p:dialog>
@@ -107,7 +107,7 @@
 					<h:panelGrid columns="1" cellpadding="0">
 						<h:outputText value="Smart contract signed successfully:"></h:outputText>
 						<h:outputText value="#{transactionBean.signature}"></h:outputText>
-						<p:commandButton value="Aceptar" onclick="PF('contratoFirmado').hide(); PF('contrato').hide();" actionListener="#{transactionBean.mostrarUbicacionGeografica()}" update="formWallet" />
+						<h:button value="Aceptar" onclick="PF('contratoFirmado').hide(); PF('contrato').hide();" update="formWallet" outcome="ubicacionGeografica"/>
 					</h:panelGrid>
 				</h:form>
 			</p:dialog>
