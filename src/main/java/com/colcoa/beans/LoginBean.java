@@ -61,7 +61,7 @@ public class LoginBean implements Serializable {
 			
 		} else {
 			logeado = false;
-			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Usuario o contraseña incorrectos");
+			msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Incorrect username or password");
 		}
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		

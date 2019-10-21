@@ -27,28 +27,33 @@ import com.paypal.base.rest.PayPalRESTException;
 
 @ManagedBean(name = "plantarBean")
 @ViewScoped
+
 public class PlantarBean{
 	
 	private List<String> arboles;
 
-	private String clientId = "AXDW5dSHuoi9VgvVE9tknTFgZuUgmUcltO_YMfdLsLIJVS29yKbN0ehJoda-1bi28xK8Q9SanFORFBjP";
-	private String clientSecret = "ECKV4lp2X0SBrxoK61DYPvcplXYdvCip1DuoMShcRowkV4mNCGqOCN36ABExNFMHKCA96txUKBOwm90N";
+	private String clientId = "AX8DXrUnZDEHUhrF6hS-i0wtFbdN_YqEQTqi4aPMjTn3wiCip2yUIfJ2-XT4V7xJ_Gh_HG6-cIGba_r8";
+	private String clientSecret = "EFi-bJ7V5jDxBUOk7jzDuVuK1oWAkEuPGyuYxZQY586CQQ21D5TmpplCb_qUiPg9jkGDYfh1JuhljXlk";
 	
 	private Integer numeroArboles;
 	
 	private String arbol;
-
+	
+	private List<String> imagesSlide;
+	
 	@PostConstruct
 	public void Init() {
 		arboles = Arrays.asList("Abarco", "Caoba", "Moncoro", "Cacao");
+		imagesSlide = Arrays.asList("why-planT.png","Forest-Species.png","Species.png");
 	}
 
-	
+
+
 	public void comprar() {
 		
 		Usuarios usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("LOGGEDIN_USER");
 		
-		APIContext context = new APIContext(clientId, clientSecret, "sandbox");
+		APIContext context = new APIContext(clientId, clientSecret, "live");
 
 		Payer payer = new Payer();
 		payer.setPaymentMethod("paypal");
@@ -162,4 +167,15 @@ public class PlantarBean{
 	public void setArboles(List<String> arboles) {
 		this.arboles = arboles;
 	}
+	
+	public List<String> getImagesSlide() {
+		return imagesSlide;
+	}
+	
+	public void setImagesSlide(List<String> imagesSlide) {
+		this.imagesSlide = imagesSlide;
+	}
+	
+
+	
 }

@@ -4,7 +4,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Index</title>
+	<title>PlanT</title>
 	<meta charset="UTF-8"></meta>
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, maximun-scale=1, minimun-scale=1">
@@ -16,13 +16,13 @@
 </style>
 	<link rel="icon" type="image/icon" href="imagenes/favicon.ico" />
 
-	<h:form id="indexForm">
+	<h:form id="indexForm" style="margin-top: -48px;">
 		<p:growl id="mensajes" showDetail="true" life="3000" sticky="true" />
 		<header class="header">
 
-			<div style="text-align: center; margin-left: 300px;">
+			<div class="menu">
 				<h:panelGrid columns="5">
-					<img src="imagenes/logo-plant-web.png" style= "max-width:100%;"/>
+					<img src="imagenes/logo-plant-web.png" style="max-width: 100%;" />
 
 					<p:tabMenu style="background:transparent; border: none;">
 						<p:menuitem outcome="index" value="Our projects"
@@ -43,66 +43,47 @@
 							icon="fa fa-fw fa-user">
 
 						</p:menuitem>
-
+               
 					</p:tabMenu>
-
-				</h:panelGrid>
-
+ 
+				</h:panelGrid>		
 			</div>
-			<table style="margin-left: 1115;" cellpadding="2">
-				<tr>
-					<td><a href="https://www.facebook.com/PlanT-102396917814300/"
-						target="_blank"><img src="imagenes/facebook-white.png" /></a></td>
-					<td><a
-						href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"
-						target="_blank"><img src="imagenes/insta-white.png" /></a></td>
-				</tr>
-			</table>
-
 		</header>
 	</h:form>
+	<table style="margin-left: 874; margin-top: -48; max-width: 100%;" cellpadding="2">
+				<tr>
+					<td><a href="https://www.facebook.com/PlanT-102396917814300/"
+						target="_blank"><img src="imagenes/facebook-white.png" style="margin-top: -84px;" /></a></td>
+					<td><a
+						href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"
+						target="_blank"><img src="imagenes/insta-white.png" style="margin-top: -84px;" /></a></td>
+				</tr>
+			</table>
 </h:head>
 
 <h:body>
 	<p:galleria value="#{indexBean.imagesSlide}" panelWidth="1333"
 		panelHeight="451" var="image" effect="slide"
-		style="margin:-17px; margin-left:0px; ">
+		style="margin:-17px; margin-left:0px; max-width: 100%;">
 		<img src="imagenes/#{image}" />
-	</p:galleria>
-
-	<div class="atributos">
-		<img src="imagenes/fondo_index.jpg" style= "max-width:100%;" />
-		<div class="izquierda">
-		<p:outputPanel deferred="true">
-		<H1>With PlanT</H1>
-			<p>You can contribute to the preservation of
-				hydrographic basins, strengthen the ecosystems of the tropical
-				regions of Colombia, protect the environment and support the
-				economic development of a small producer by planting a cocoa tree.<br/><br/><br/>
-				We offer a web platform with BlockChain technology so you can plant
-				a tree in a transparent and traceable way anywhere in the world. <br/> <br/> <br/>
-				Isaza, Caldas, Colombia, 13% of local families work with PlanT.
-				Performing tasks of planting and maintenance of the trees that you
-				sow with us. In this way you are also contributing to development
-				and increasing the happiness index of a local family.</p>
-				</p:outputPanel>
+	</p:galleria>	
+	<div style="position: relative; left: 0; top: 0;">
+		<img src="imagenes/banner-explicacion.png" style="max-width: 100%;" />
+		<img src="imagenes/Banner-cifras.png" style="max-width: 100%;" />	
 		</div>
-	</div>
-
 </h:body>
-<img src="imagenes/Banner-cifras.png" style= "max-width:100%;"/>
-<footer class="footer">
-	<div class="container"></div>
+<div style="position: relative; left: 0; top: 0;">
+	<img src="imagenes/footer.png" style="max-width: 100%;" />
 
-</footer>
 <div class="contenedor">
-	<img src="imagenes/tierra.png" style= "max-width:100%;" />
+	<img src="imagenes/tierra.png" style="max-width: 100%; margin-top: -16px;" />
 	<div class="centrado">
 		Contact us<br /> <br />Administrative Direction:Cll 54 No. 26 - 154
 		<br />Telephone: + (57)6 8859009<br />Email:
 		info@plantreforestation.com <br />La Arboleda- Manizales <br />Caldas-
 		Colombia <br /> <br />&#169; Copyright 2019 plantreforestation.com
 	</div>
+</div>
 </div>
 
 <p:dialog header="Save the planet" widgetVar="login"
@@ -202,7 +183,7 @@
 		</h:panelGrid>
 	</h:form>
 </p:dialog>
-<p:dialog header="Usuario Registrado" widgetVar="usuarioRegistrado"
+<p:dialog header="Registered user" widgetVar="usuarioRegistrado"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="usuarioRegistrado">
 		<h:panelGrid columns="1" cellpadding="0">

@@ -3,7 +3,7 @@ package com.colcoa.enums;
 public enum EnumTipoArbol {
 	
 	
-	CACACO("Cacao"),
+	CACAO("Cacao"),
 	FORESTAL("Forestal");
 
 	private String message;

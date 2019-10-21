@@ -4,51 +4,78 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
 
-	<title>Historial</title>
+<h:head>
+	<title>Contract history</title>
+	<meta charset="UTF-8"></meta>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, maximun-scale=1, minimun-scale=1">
+	</meta>
+	<link rel="stylesheet" href="style.css"></link>
+	<style>
+@import
+	url('https://fonts.googleapis.com/css?family=Roboto&amp;display=swap');
+</style>
+	<link rel="icon" type="image/icon" href="../imagenes/favicon.ico" />
+
+	<h:form id="indexForm" style="margin-top: -48px;">
+		<p:growl id="mensajes" showDetail="true" life="3000" sticky="true" />
+		<header class="header">
+		<div class="menu">
+			<h:panelGrid columns="2">
+				<img src="../imagenes/logo-plant-web.png" style="max-width: 100%;" />
+
+				<p:menuitem id="logout" value="Logout"
+					actionListener="#{loginBean.logout}"
+					style="margin-right:20px; color:white; background:transparent; border: none;"
+					icon="fa fa-fw fa-user-times">
+				</p:menuitem>
+			</h:panelGrid>
+		</div>
+		</header>
+	</h:form>
 </h:head>
-<ui:composition template="../template.xhtml">
-	<ui:define name="content">
 <h:body style="text-align:center">
 	<h:form id="formAdmin">
 		<p:breadCrumb homeDisplay="text">
-			    <p:menuitem value="Usuarios" outcome="usuarios"/>
-    		</p:breadCrumb>
-    	
-		<p:panel header="Historial siembra" >
-			<h:panelGrid columns="2">	
-				<p:outputLabel for="nombre" value="Nombre:" style= "color: white"/>
-				<p:outputLabel id="nombre" value="#{historialBean.saldo.nombre}" style="color: white"/>
+			<p:menuitem value="Usuarios" outcome="usuarios" />
+		</p:breadCrumb>
+		<p:panel header="Historial siembra">
+			<h:panelGrid columns="2" style="margin-top: 51px">
+				<p:outputLabel for="nombre" value="Nombre:" style="color: white" />
+				<p:outputLabel id="nombre" value="#{historialBean.saldo.nombre}"
+					style="color: white" />
 
-				<p:outputLabel for="nit" value="Identificaciòn:" style= "color: white"/>
-				<p:outputLabel id="nit" value="#{historialBean.saldo.nit}" style="color: white"/>
+				<p:outputLabel for="nit" value="Identificaciòn:"
+					style="color: white" />
+				<p:outputLabel id="nit" value="#{historialBean.saldo.nit}"
+					style="color: white" />
 
-
-				<p:outputLabel for="fecha" value="Fecha ùltimo ingreso:" style= "color: white"/>
-				<h:outputText id="fecha" value="#{historialBean.saldo.fechaIngreso}" style="color: white">
+				<p:outputLabel for="fecha" value="Fecha ùltimo ingreso:"
+					style="color: white" />
+				<h:outputText id="fecha" value="#{historialBean.saldo.fechaIngreso}"
+					style="color: white">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
-				
-				<p:outputLabel for="saldo" value="Saldo:" style= "color: white"/>
-				<h:outputText id="saldo" value="#{historialBean.calcularSaldoAdmin()}" style="color: white"/>
-
 			</h:panelGrid>
 		</p:panel>
-			
-		<p:dataTable var="transaction" value="#{historialBean.listTransactions}" style= "width:100%">
+		
+		<p:dataTable var="transaction"
+			value="#{historialBean.listTransactions}" style="width:100%">
 			<p:column headerText="Cliente">
-				<h:outputText value="#{transaction.userRecipient.nombre} #{transaction.userRecipient.apellidos}" />
+				<h:outputText
+					value="#{transaction.userRecipient.nombre} #{transaction.userRecipient.apellidos}" />
 			</p:column>
-			
+
 			<p:column headerText="Vendedor">
-				<h:outputText value="#{transaction.userSender.nombre} #{transaction.userSender.apellidos}" />
+				<h:outputText
+					value="#{transaction.userSender.nombre} #{transaction.userSender.apellidos}" />
 			</p:column>
 
 			<p:column headerText="Valor Compra">
 				<h:outputText value="#{transaction.value}" />
 			</p:column>
-			
+
 			<p:column headerText="Arboles Sembrados">
 				<h:outputText value="#{transaction.value}" />
 			</p:column>
@@ -56,14 +83,25 @@
 			<p:column headerText="Tipo Transacciòn">
 				<h:outputText value="#{transaction.tipoTransacion}" />
 			</p:column>
-			
+
 			<p:column headerText="Contrato">
 				<h:outputText value="#{transaction.signature}" />
 			</p:column>
-			
+
 		</p:dataTable>
 	</h:form>
 	</h:body>
-	</ui:define>
-	</ui:composition>
+	<div style="position: relative; left: 0; top: 0;">
+	<img src="../imagenes/footer.png" style="max-width: 100%;" />
+	<div class="contenedor">
+		<img src="../imagenes/tierra.png"
+			style="max-width: 100%; margin-top: -16px;" />
+		<div class="centrado">
+			Contact us<br /> <br />Administrative Direction:Cll 54 No. 26 - 154
+			<br />Telephone: + (57)6 8859009<br />Email:
+			info@plantreforestation.com <br />La Arboleda- Manizales <br />Caldas-
+			Colombia <br /> <br />&#169; Copyright 2019 plantreforestation.com
+		</div>
+	</div>
+</div>
 </html>

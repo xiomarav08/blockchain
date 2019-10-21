@@ -21,8 +21,8 @@ import com.paypal.base.rest.PayPalRESTException;
 @Consumes({ "application/json" })
 public class PayPalService {
 
-	private String clientId = "AXDW5dSHuoi9VgvVE9tknTFgZuUgmUcltO_YMfdLsLIJVS29yKbN0ehJoda-1bi28xK8Q9SanFORFBjP";
-	private String clientSecret = "ECKV4lp2X0SBrxoK61DYPvcplXYdvCip1DuoMShcRowkV4mNCGqOCN36ABExNFMHKCA96txUKBOwm90N";
+	private String clientId = "AX8DXrUnZDEHUhrF6hS-i0wtFbdN_YqEQTqi4aPMjTn3wiCip2yUIfJ2-XT4V7xJ_Gh_HG6-cIGba_r8";
+	private String clientSecret = "EFi-bJ7V5jDxBUOk7jzDuVuK1oWAkEuPGyuYxZQY586CQQ21D5TmpplCb_qUiPg9jkGDYfh1JuhljXlk";
 	
 	@Inject
 	private TransactionBean transaction;
@@ -32,7 +32,7 @@ public class PayPalService {
 	public Response paypal(@QueryParam("treeAmmount") String numeroArboles, @QueryParam("usuario") String usuario,  @QueryParam("paymentId") String paymentID, @QueryParam("token") String token,
 			@QueryParam("PayerID") String PayerID) {
 		
-		APIContext context = new APIContext(clientId, clientSecret, "sandbox");
+		APIContext context = new APIContext(clientId, clientSecret, "live");
 		
 		try {
 			
@@ -52,7 +52,7 @@ public class PayPalService {
 				String valor = paymentFinish.getTransactions().get(0).getAmount().getTotal();
 				
 				if(arbol.equals("Cacao")) {
-					transaction.comprarArbol(numeroArbolesInt, EnumTipoArbol.CACACO, valor, usuario);
+					transaction.comprarArbol(numeroArbolesInt, EnumTipoArbol.CACAO, valor, usuario);
 				}else {
 					transaction.comprarArbol(numeroArbolesInt, EnumTipoArbol.FORESTAL, valor, usuario);
 				}
