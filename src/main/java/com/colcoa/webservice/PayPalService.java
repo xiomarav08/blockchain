@@ -45,7 +45,7 @@ public class PayPalService {
 			
 			Payment paymentFinish =payment.execute(context, paymentExecution);
 			if(paymentFinish.getState().equals("approved")) {
-				URI url = new URI("http://127.0.0.1:8080/BlockChain-0.0.1-SNAPSHOT/billetera.xhtml");
+				URI url = new URI("https://plantreforestation.com/billetera.xhtml");
 				
 				Integer numeroArbolesInt = Integer.parseInt(numeroArboles);
 				String arbol = paymentFinish.getTransactions().get(0).getDescription();

@@ -60,8 +60,8 @@ public class PlantarBean{
 
 		// Set redirect URLs
 		RedirectUrls redirectUrls = new RedirectUrls();
-		redirectUrls.setCancelUrl("http://127.0.0.1:8080/BlockChain-0.0.1-SNAPSHOT/services/PayPalService/paypal");
-		redirectUrls.setReturnUrl("http://127.0.0.1:8080/BlockChain-0.0.1-SNAPSHOT/services/PayPalService/paypal"+"?treeAmmount="+numeroArboles+"&usuario="+usuario.getUsuario());
+		redirectUrls.setCancelUrl("https://plantreforestation.com/services/PayPalService/paypal");
+		redirectUrls.setReturnUrl("https://plantreforestation.com/services/PayPalService/paypal"+"?treeAmmount="+numeroArboles+"&usuario="+usuario.getUsuario());
 		
 		// Set payment details
 		Details details = new Details();
