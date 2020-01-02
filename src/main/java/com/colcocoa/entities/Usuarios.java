@@ -60,6 +60,9 @@ public class Usuarios extends BaseEntity{
 	@Column(name = "TYPE_DOCUMENT")
 	private EnumTipoDocumento tipoDocumento;
 	
+	@Column(name = "ORGANIZACION")
+	private String organizacion;
+	
 	
 	public Integer getId() {
 		return id;
@@ -156,7 +159,15 @@ public class Usuarios extends BaseEntity{
 	public void setTipoDocumento(EnumTipoDocumento tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
-	
+		
+	public String getOrganizacion() {
+		return organizacion;
+	}
+
+	public void setOrganizacion(String organizacion) {
+		this.organizacion = organizacion;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

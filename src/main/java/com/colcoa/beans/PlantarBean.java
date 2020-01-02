@@ -95,7 +95,7 @@ public class PlantarBean{
 				amount.setTotal(value.toString());
 			}
 		}else {
-			Double value = new Double("1.75");
+			Double value = new Double("3.0");
 			value = value * numeroArboles;
 			details.setSubtotal(value.toString());
 			// Total must be equal to sum of shipping, tax and subtotal.

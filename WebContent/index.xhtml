@@ -22,22 +22,28 @@
 
 			<div class="menu">
 				<h:panelGrid columns="5">
-					<img src="imagenes/logo-plant-web.png" style="max-width: 100%;" />
+					<img src="imagenes/logo-plant-web.png"/>
+					<a href="https://www.facebook.com/PlanT-102396917814300/"
+						target="_blank"><img src="imagenes/facebook-white.png"/></a>
+					<a href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"
+						target="_blank"><img src="imagenes/insta-white.png"/></a>
 
 					<p:tabMenu style="background:transparent; border: none;">
-						<p:menuitem outcome="index" value="Our projects"
+						<p:menuitem outcome="index" value="Our project"
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw fa-leaf">
 						</p:menuitem>
+						
+						<p:menuitem value="Plant a tree" onclick="PF('registrar').show();"
+							style="margin-right:20px; color:white; background:transparent; border: none;"
+							icon="fa fa-fw fa-tree">
+						</p:menuitem>
+						
 						<p:menuitem outcome="hacienda" value="BlockChain"
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw fa-chain">
 						</p:menuitem>
-						<p:menuitem value="Plant a tree" onclick="PF('registrar').show();"
-							style="margin-right:20px; color:white; background:transparent; border: none;"
-							icon="fa fa-fw fa-tree">
-
-						</p:menuitem>
+						
 						<p:menuitem value="Login" onclick="PF('login').show();"
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw fa-user">
@@ -49,41 +55,35 @@
 				</h:panelGrid>		
 			</div>
 		</header>
-	</h:form>
-	<table style="margin-left: 874; margin-top: -48; max-width: 100%;" cellpadding="2">
-				<tr>
-					<td><a href="https://www.facebook.com/PlanT-102396917814300/"
-						target="_blank"><img src="imagenes/facebook-white.png" style="margin-top: -84px;" /></a></td>
-					<td><a
-						href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"
-						target="_blank"><img src="imagenes/insta-white.png" style="margin-top: -84px;" /></a></td>
-				</tr>
-			</table>
+	</h:form>						
 </h:head>
 
 <h:body>
-	<p:galleria value="#{indexBean.imagesSlide}" panelWidth="1333"
-		panelHeight="451" var="image" effect="slide"
-		style="margin:-17px; margin-left:0px; max-width: 100%;">
-		<img src="imagenes/#{image}" />
-	</p:galleria>	
-	<div style="position: relative; left: 0; top: 0;">
-		<img src="imagenes/banner-explicacion.png" style="max-width: 100%;" />
-		<img src="imagenes/Banner-cifras.png" style="max-width: 100%;" />	
-		</div>
+
+<div class="slider">
+    <ul>
+    <li><img src="imagenes/banner-agua.png" alt=""/></li>
+    <li><img src="imagenes/banner-aire.png" alt=""/></li>
+    <li><img src="imagenes/banner-biodiversidad.png" alt=""/></li>
+    <li><img src="imagenes/banner-bosques.png" alt=""/></li>
+    <li><img src="imagenes/banner-comunidades.png" alt=""/></li>  
+    </ul>
+    </div>	
+
+		<img src="imagenes/banner-explicacion.png" style="width:100%; margin-top:-21px;"/>
+		<img src="imagenes/Banner-cifras.png" style="width:100%;"/>	
+
 </h:body>
-<div style="position: relative; left: 0; top: 0;">
-	<img src="imagenes/footer.png" style="max-width: 100%;" />
+	<img src="imagenes/footer.png" style="width:100%;" />
 
 <div class="contenedor">
-	<img src="imagenes/tierra.png" style="max-width: 100%; margin-top: -16px;" />
+	<img src="imagenes/tierra.png" style="margin-top:-16px; width:100%;"/>
 	<div class="centrado">
 		Contact us<br /> <br />Administrative Direction:Cll 54 No. 26 - 154
 		<br />Telephone: + (57)6 8859009<br />Email:
 		info@plantreforestation.com <br />La Arboleda- Manizales <br />Caldas-
-		Colombia <br /> <br />&#169; Copyright 2019 plantreforestation.com
+		Colombia <br /> <br />&#169; Copyright 2019 plantreforestation.com<br /> Beta Version
 	</div>
-</div>
 </div>
 
 <p:dialog header="Save the planet" widgetVar="login"
@@ -122,32 +122,19 @@
 			<h:outputLabel for="nombres" value="First name:" style="color:white;" />
 			<p:inputText value="#{registrarUsuarioBean.usuario.nombre}"
 				id="nombres" required="true" label="nombres" />
-
+				
 			<h:outputLabel for="apellidos" value="Last name:"
-				style="color:white;" />
+				style="color:white;"/>
 			<p:inputText value="#{registrarUsuarioBean.usuario.apellidos}"
-				id="apellidos" label="apellidos" />
-
-			<p:outputLabel for="tipoDocumento" value="Type document: "
+				id="apellidos" label="apellidos"/>
+				
+			<h:outputLabel for="organizacion" value="Organization:"
 				style="color:white;" />
-			<p:selectOneMenu id="tipoDocumento"
-				value="#{registrarUsuarioBean.usuario.tipoDocumento}"
-				required="true">
-				<f:selectItem itemLabel="Select" noSelectionOption="true" />
-				<f:selectItems value="#{registrarUsuarioBean.tiposDocumento}"
-					var="tiposDocumentoItem" itemValue="#{tiposDocumentoItem}"
-					itemLabel="#{tiposDocumentoItem.value} - #{tiposDocumentoItem.message}" />
-			</p:selectOneMenu>
-
-			<h:outputLabel for="numeroDeIdentificacion" value="Document number:"
-				style="color:white;" />
-			<p:inputText
-				value="#{registrarUsuarioBean.usuario.numeroDeIdentificacion}"
-				id="numeroDeIdentificacion" required="true"
-				label="numeroDeIdentificacion" />
-
+			<p:inputText value="#{registrarUsuarioBean.usuario.organizacion}"
+				id="organizacion" label="organizacion"/>
+		
 			<h:outputLabel for="telefono" value="Phone number:"
-				style="color:white;" />
+				style="color:white;"/>
 			<p:inputText value="#{registrarUsuarioBean.usuario.telefono}"
 				id="telefono" required="true" label="telefono" />
 
@@ -170,7 +157,7 @@
 
 			<p:selectBooleanCheckbox
 				value="#{registrarUsuarioBean.tratamientoDeDatos}" />
-			<h:link value="I accept personal data processing" target="_blank"
+			<h:link value="Processing of personal data" target="_blank"
 				outcome="politica" />
 
 			<br />

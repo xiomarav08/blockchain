@@ -1,69 +1,111 @@
-
-h1{
+h1 {
 	font-family: 'Roboto', sans-serif;
-	fontsize:20px;
-	line-height:1.3em;
+	fontsize: 20px;
+	line-height: 1.3em;
 	text-align: center;
 	color: #7ebb76;
-	}
-h2{
+}
+h2 {
 	font-family: 'Roboto', sans-serif;
-	fontsize:10vw;
-	line-height:1.3em;
+	fontsize: 10vw;
+	line-height: 1.3em;
 	text-align: left;
 	color: #7ebb76;
-	}
-
+}
 p {
-		font-family: 'Roboto', sans-serif;
-}
-
-.header {
-	
-	background:#7EBB76;
-	overflow: hidden;
-    padding: 20px 10px;
-
-}
- .menu {
- 
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px;
-  line-height: 25px;
-  border-radius: 4px;
-}
-  
-
-	
-	
-.contenedor{
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-    
-}
- 
-
-.centrado{
 	font-family: 'Roboto', sans-serif;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    fontsize:20px;
-    font-variant: full-width;
 }
-	
+.header {
+	background: #7EBB76;
+	overflow: hidden;
+	padding: 19px 10px;
+}
+.menu {
+	float: left;
+	color: black;
+	text-align: center;
+	padding: 12px;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 25px;
+	border-radius: 4px;
+}
+.contenedor {
+	position: absolute;
+	text-align: center;	
+}
+.centrado {
+	font-family: 'Roboto', sans-serif;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	fontsize: 1.5em;
+	width:100%;
+}
+.slider {
+	width: 100%;
+	margin-top: -32px;
+	overflow: hidden;
+}
+.slider ul {
+	display: flex;
+	padding: 0;
+	width: 500%;
+	list-style: none;
+	animation: cambio 20s infinite alternate linear;
+}
+.slider li {
+	width: 100%;
+}
+.slider img {
+	width: 100%
+}
 
+@keyframes cambio {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
 	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
 	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
 	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
+	
+	105% {margin-left: -400%;}
+	135% {margin-left: -400%;}
+}
 
+.slider2 {
+	width: 100%;
+	margin-top: -32px;
+	overflow: hidden;
+}
+.slider2 ul {
+	display: flex;
+	padding: 0;
+	width: 300%;
+	list-style: none;
+	animation: cambio2 50s infinite alternate linear;
+}
+.slider2 li {
+	width: 100%;
+}
+.slider2 img {
+	width: 100%
+}
+
+@keyframes cambio2 {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
 	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
 	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+}

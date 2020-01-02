@@ -22,10 +22,10 @@
 
 			<div class="menu">
 				<h:panelGrid columns="5">
-					<img src="imagenes/logo-plant-web.png" style="max-width: 100%;" />
+					<img src="imagenes/logo-plant-web.png"/>
 
 					<p:tabMenu style="background:transparent; border: none;">
-						<p:menuitem outcome="index" value="Our projects"
+						<p:menuitem outcome="index" value="Our project"
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw fa-leaf">
 						</p:menuitem>
@@ -49,11 +49,14 @@
 
 <h:body>
 
-<p:galleria value="#{plantarBean.imagesSlide}" panelWidth="1333"
-		panelHeight="600" var="image" effect="slide"
-		style="margin:-17px; margin-left:0px; max-width: 100%;">
-		<img src="imagenes/#{image}"/>
-	</p:galleria>	
+<div class="slider2">
+    <ul>  
+    <li><img src="imagenes/why-planT.png" alt=""/></li>
+    <li><img src="imagenes/Forest-Species.png" alt=""/></li>
+    <li><img src="imagenes/Species.png" alt=""/></li>
+    </ul>
+    </div>
+    <img src="imagenes/banner-precios.png" alt=""/>	
 	
 	<h:form>
 	<div class="container">
@@ -61,21 +64,21 @@
 			<p:ring id="custom" value="#{plantarBean.arboles}" var="arbol"
 				styleClass="image-ring" easing="easeInOutBack">
 				<h:outputText value="#{arbol}" />
-				<img src="imagenes/#{arbol}.png" style="max-width: 100%;" />
+				<img src="imagenes/#{arbol}.png"/>
 				<p:commandButton value="PlanT" oncomplete="PF('comprarArbol').show();" action="#{plantarBean.escogerArbol(arbol)}" />
 			</p:ring>
 		</div>
 	</div>
-	<img src="imagenes/footer-seleccion.png" style="max-width: 100%; margin-top: -411px;" />
+	<img src="imagenes/footer-seleccion.png" style="margin-top:-411px;width: 100%;" />
 	</h:form>
 </h:body>
 <div class="contenedor">
-	<img src="imagenes/tierra.png" style="max-width: 100%; margin-top: -32px;" />
+	<img src="imagenes/tierra.png" style="margin-top:-32px;width: 100%;" />
 	<div class="centrado">
 		Contact us<br /> <br />Administrative Direction:Cll 54 No. 26 - 154
 		<br />Telephone: + (57)6 8859009<br />Email:
 		info@plantreforestation.com <br />La Arboleda- Manizales <br />Caldas-
-		Colombia <br /> <br />&#169; Copyright 2019 plantreforestation.com
+		Colombia <br /> <br />&#169; Copyright 2019 plantreforestation.com <br /> Beta Version
 	</div>
 </div>
 <p:dialog header="PlanT" widgetVar="comprarArbol"
