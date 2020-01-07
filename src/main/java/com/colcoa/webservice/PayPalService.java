@@ -71,5 +71,40 @@ public class PayPalService {
 			return null;
 		} 
 	}
+	
+	
+	@GET
+	@Path("/paypalDonation")
+	public Response paypalDonation(@QueryParam("paymentId") String paymentID, @QueryParam("token") String token,
+			@QueryParam("PayerID") String PayerID) {
+		
+		APIContext context = new APIContext(clientId, clientSecret, "live");
+		
+		try {
+			
+			Payment payment = new Payment();
+			payment.setId(paymentID);
+			
+
+			PaymentExecution paymentExecution = new PaymentExecution();
+			paymentExecution.setPayerId(PayerID);
+			
+			Payment paymentFinish =payment.execute(context, paymentExecution);
+			if(paymentFinish.getState().equals("approved")) {
+				URI url = new URI("https://plantreforestation.com/index.xhtml");
+				return Response.temporaryRedirect(url).build();
+			}
+			
+			
+			return null;
+		} catch (PayPalRESTException ex) {
+			System.err.println(ex.getDetails());
+			return null;
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} 
+	}
 
 }

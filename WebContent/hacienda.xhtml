@@ -92,6 +92,7 @@
 	</h:form>
 </p:dialog>
 
+
 <p:dialog header="Save the planet" widgetVar="registrar"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="RegistrarModal">
@@ -110,32 +111,19 @@
 			<h:outputLabel for="nombres" value="First name:" style="color:white;" />
 			<p:inputText value="#{registrarUsuarioBean.usuario.nombre}"
 				id="nombres" required="true" label="nombres" />
-
+				
 			<h:outputLabel for="apellidos" value="Last name:"
-				style="color:white;" />
+				style="color:white;"/>
 			<p:inputText value="#{registrarUsuarioBean.usuario.apellidos}"
-				id="apellidos" label="apellidos" />
-
-			<p:outputLabel for="tipoDocumento" value="Type document: "
+				id="apellidos" label="apellidos"/>
+				
+			<h:outputLabel for="organizacion" value="Organization:"
 				style="color:white;" />
-			<p:selectOneMenu id="tipoDocumento"
-				value="#{registrarUsuarioBean.usuario.tipoDocumento}"
-				required="true">
-				<f:selectItem itemLabel="Select" noSelectionOption="true" />
-				<f:selectItems value="#{registrarUsuarioBean.tiposDocumento}"
-					var="tiposDocumentoItem" itemValue="#{tiposDocumentoItem}"
-					itemLabel="#{tiposDocumentoItem.value} - #{tiposDocumentoItem.message}" />
-			</p:selectOneMenu>
-
-			<h:outputLabel for="numeroDeIdentificacion" value="Document number:"
-				style="color:white;" />
-			<p:inputText
-				value="#{registrarUsuarioBean.usuario.numeroDeIdentificacion}"
-				id="numeroDeIdentificacion" required="true"
-				label="numeroDeIdentificacion" />
-
+			<p:inputText value="#{registrarUsuarioBean.usuario.organizacion}"
+				id="organizacion" label="organizacion"/>
+		
 			<h:outputLabel for="telefono" value="Phone number:"
-				style="color:white;" />
+				style="color:white;"/>
 			<p:inputText value="#{registrarUsuarioBean.usuario.telefono}"
 				id="telefono" required="true" label="telefono" />
 
@@ -158,7 +146,7 @@
 
 			<p:selectBooleanCheckbox
 				value="#{registrarUsuarioBean.tratamientoDeDatos}" />
-			<h:link value="I accept personal data processing" target="_blank"
+			<h:link value="Processing of personal data" target="_blank"
 				outcome="politica" />
 
 			<br />
@@ -171,6 +159,7 @@
 		</h:panelGrid>
 	</h:form>
 </p:dialog>
+
 <p:dialog header="Registered user" widgetVar="usuarioRegistrado"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="usuarioRegistrado">

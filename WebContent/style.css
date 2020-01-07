@@ -31,7 +31,6 @@ p {
 	border-radius: 4px;
 }
 .contenedor {
-	position: absolute;
 	text-align: center;	
 }
 .centrado {
@@ -109,3 +108,18 @@ p {
 	50% {margin-left: -200%;}
 	70% {margin-left: -200%;}
 }
+
+.bronze {
+    background-image: url(imagenes/bronze.png)
+}
+
+.silver {
+    background-image: url(imagenes/silver.png)
+}
+.gold {
+    background-image: url(imagenes/gold.png)
+}
+.platinum {
+    background-image: url(imagenes/platinum.png)
+}
+

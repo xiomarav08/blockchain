@@ -49,6 +49,16 @@
 							icon="fa fa-fw fa-user">
 
 						</p:menuitem>
+						<p:menuitem value="Membership" onclick="PF('membership').show();"
+							style="margin-right:20px; color:white; background:transparent; border: none;"
+							icon="fa fa-fw  fa-star">
+						</p:menuitem>
+						
+						<p:menuitem value="CO² Calculator" target="_blank" url="https://calculator.carbonfootprint.com/calculator.aspx"
+							style="margin-right:20px; color:white; background:transparent; border: none;"
+							icon="fa fa-fw  fa-globe">
+						</p:menuitem>
+						
                
 					</p:tabMenu>
  
@@ -77,7 +87,7 @@
 	<img src="imagenes/footer.png" style="width:100%;" />
 
 <div class="contenedor">
-	<img src="imagenes/tierra.png" style="margin-top:-16px; width:100%;"/>
+	<img src="imagenes/tierra.png" style="margin-top:-30px; width:100%;"/>
 	<div class="centrado">
 		Contact us<br /> <br />Administrative Direction:Cll 54 No. 26 - 154
 		<br />Telephone: + (57)6 8859009<br />Email:
@@ -178,6 +188,40 @@
 				style="color:white"></h:outputText>
 			<p:commandButton value="Accept"
 				onclick="PF('usuarioRegistrado').hide(); PF('registrar').hide();" />
+		</h:panelGrid>
+	</h:form>
+</p:dialog>
+<p:dialog header="Membership" widgetVar="membership"
+	showEffect="explode" minHeight="40" resizable="false" modal="true">
+	<h:form id="membership">
+	
+		<h:panelGrid columns="4" cellpadding="0">
+			<h:panelGrid>
+				<p:commandLink action="#{membershipBean.donar('bronze')}" process="@this">
+					<h:graphicImage value="imagenes/bronze.png" />
+				</p:commandLink>
+			</h:panelGrid>
+				 
+			<h:panelGrid>
+				<p:commandLink action="#{membershipBean.donar('silver')}" process="@this">
+					<h:graphicImage value="imagenes/silver.png" />
+				</p:commandLink>
+			</h:panelGrid>
+			
+			<h:panelGrid>
+				<p:commandLink action="#{membershipBean.donar('gold')}" process="@this">
+					<h:graphicImage value="imagenes/gold.png" />
+				</p:commandLink>
+			</h:panelGrid>
+			
+			<h:panelGrid>
+				<p:commandLink action="#{membershipBean.donar('platinum')}">
+					<h:graphicImage value="imagenes/platinum.png" style= "padding-top:55px;"/>
+				</p:commandLink>
+				<h:outputLabel for="valorDonacion" value="Enter the value in USD:" style="color:white;" />
+				<p:inputText value="#{membershipBean.valorDonacion}" id="valorDonacion" required="true" label="valorDonacion" />
+			</h:panelGrid>
+			
 		</h:panelGrid>
 	</h:form>
 </p:dialog>
