@@ -16,7 +16,7 @@ p {
 	font-family: 'Roboto', sans-serif;
 }
 .header {
-	background: #7EBB76;
+	background: #ffffff;
 	overflow: hidden;
 	padding: 19px 10px;
 }
@@ -31,14 +31,15 @@ p {
 	border-radius: 4px;
 }
 .contenedor {
-	text-align: center;	
+  display: block;
+  position: relative;
 }
 .centrado {
 	font-family: 'Roboto', sans-serif;
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	display: block
+	bottom: -16px;
+    left: 0;
 	color: white;
 	fontsize: 1.5em;
 	width:100%;

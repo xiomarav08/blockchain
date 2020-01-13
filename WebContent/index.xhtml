@@ -22,13 +22,14 @@
 
 			<div class="menu">
 				<h:panelGrid columns="5">
-					<img src="imagenes/logo-plant-web.png"/>
+					<img src="imagenes/logo-plant-web1.png"/> <br />
 					<a href="https://www.facebook.com/PlanT-102396917814300/"
-						target="_blank"><img src="imagenes/facebook-white.png"/></a>
+						target="_blank"><img src="imagenes/facebook-green.png"/></a>
 					<a href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"
-						target="_blank"><img src="imagenes/insta-white.png"/></a>
+						target="_blank"><img src="imagenes/insta-green.png"/> </a>
+						
 
-					<p:tabMenu style="background:transparent; border: none;">
+					<p:tabMenu style= "margin-left: 50px; border: none;">
 						<p:menuitem outcome="index" value="Our project"
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw fa-leaf">
@@ -62,7 +63,8 @@
                
 					</p:tabMenu>
  
-				</h:panelGrid>		
+				</h:panelGrid>
+					
 			</div>
 		</header>
 	</h:form>						
@@ -80,11 +82,15 @@
     </ul>
     </div>	
 
-		<img src="imagenes/banner-explicacion.png" style="width:100%; margin-top:-21px;"/>
-		<img src="imagenes/Banner-cifras.png" style="width:100%;"/>	
+		<img src="imagenes/banner-explicacion2.png" style="width:100%; margin-top:-21px;"/>
+		<img src="imagenes/Banner-cifras.png" style="width:100%;"/>
+		<img src="imagenes/categorias.png" style="width:100%; margin-top:-21px;"/>
+		
+		
 
 </h:body>
 	<img src="imagenes/footer.png" style="width:100%;" />
+	
 
 <div class="contenedor">
 	<img src="imagenes/tierra.png" style="margin-top:-30px; width:100%;"/>
@@ -95,7 +101,7 @@
 		Colombia <br /> <br />&#169; Copyright 2019 plantreforestation.com<br /> Beta Version
 	</div>
 </div>
-
+	
 <p:dialog header="Save the planet" widgetVar="login"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="loginModal">
@@ -194,14 +200,16 @@
 <p:dialog header="Membership" widgetVar="membership"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="membership">
-	
-		<h:panelGrid columns="4" cellpadding="0">
+	<div style="text-align: center; color: white;">
+			<p>¡¡Now you can donate more for reforestation projects in caldas!! </p>
+			<p>Every donation you make will be trees planted in Victoria Caldas </p> </div>
+			
+		<h:panelGrid columns="4" cellpadding="0" style="margin-top: -54px;">
 			<h:panelGrid>
 				<p:commandLink action="#{membershipBean.donar('bronze')}" process="@this">
 					<h:graphicImage value="imagenes/bronze.png" />
 				</p:commandLink>
-			</h:panelGrid>
-				 
+			</h:panelGrid>		 
 			<h:panelGrid>
 				<p:commandLink action="#{membershipBean.donar('silver')}" process="@this">
 					<h:graphicImage value="imagenes/silver.png" />
