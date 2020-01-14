@@ -223,11 +223,11 @@
 			</h:panelGrid>
 			
 			<h:panelGrid>
-				<p:commandLink action="#{membershipBean.donar('platinum')}">
+				<p:commandLink action="#{membershipBean.donar('platinum')}" update="indexForm">
 					<h:graphicImage value="imagenes/platinum.png" style= "padding-top:55px;"/>
 				</p:commandLink>
-				<h:outputLabel for="valorDonacion" value="Enter the value in USD:" style="color:white;" />
-				<p:inputText value="#{membershipBean.valorDonacion}" id="valorDonacion" required="true" label="valorDonacion" />
+				<h:outputLabel for="valorDonacion" value="Enter the number of trees:" style="color:white;" />
+				<p:inputText id="valorDonacion" value="#{membershipBean.valorDonacion}" onkeyup="$(this).val($(this).val().replace(/[^0-9]/g, ''));"/>
 			</h:panelGrid>
 			
 		</h:panelGrid>

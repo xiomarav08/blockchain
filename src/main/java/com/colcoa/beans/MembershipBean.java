@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
@@ -38,9 +39,12 @@ public class MembershipBean implements Serializable{
 	private String clientSecret = "EFi-bJ7V5jDxBUOk7jzDuVuK1oWAkEuPGyuYxZQY586CQQ21D5TmpplCb_qUiPg9jkGDYfh1JuhljXlk";
 	
 	private String valorDonacion;
-	
+
 	
 	public void donar(String donacion) {
+		
+		
+		FacesMessage msg = null;
 		
 		Usuarios usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("LOGGEDIN_USER");
 		
@@ -66,13 +70,24 @@ public class MembershipBean implements Serializable{
 		
 		amount.setDetails(details);
 		if(donacion.equals("bronze")) {
-				amount.setTotal("50.0");
+				amount.setTotal("30.0");
 		}else if(donacion.equals("silver")) {
-			amount.setTotal("100.0");
+			amount.setTotal("150.0");
 		}else if(donacion.equals("gold")) {
 			amount.setTotal("300.0");	
 		}else if(donacion.equals("platinum")){
-			amount.setTotal(valorDonacion);
+			
+			if(valorDonacion.equals("") || Integer.parseInt(valorDonacion) <= 100) {
+				msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong value", "Enter a number value more than 100(one hundred) trees");
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+				return;
+			}else{
+				Integer valorArboles = Integer.parseInt(valorDonacion);
+				Integer valorTotal = valorArboles * 3;
+				String valorTotalString = Integer.toString(valorTotal);
+				amount.setTotal(valorTotalString);
+			}
+			
 		}
 
 		
