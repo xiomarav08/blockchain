@@ -39,8 +39,9 @@ p {
 	position: absolute;
 	display: block
 	bottom: -16px;
-    left: 0;
-	color: white;
+    text-align:center;
+    margin-top:-212;
+    color: white;
 	fontsize: 1.5em;
 	width:100%;
 }
@@ -123,4 +124,5 @@ p {
 .platinum {
     background-image: url(imagenes/platinum.png)
 }
+
 
