@@ -165,6 +165,9 @@ public class TransactionBean{
 		this.numeroArboles = transactionEntity.getValue().intValue();
 		this.valorCompra = transactionEntity.getValueTransaction();
 		this.signature = transactionEntity.getSignature();
+		this.usuario =transactionEntity.getUserSender();
+		String nombreUsuario = usuario.getNombre() + " " + usuario.getApellidos();
+		FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().put("NOMBRE_USUARIO", nombreUsuario);
 		listUbicacionGeografica = manejadorUbicacionGeografica.consultarUbicacionPorTransacion(transactionEntity);
 	}
 	
@@ -183,7 +186,6 @@ public class TransactionBean{
 	
 	public void mostrarUbicacionGeografica() {
 		try {
-			ubicacionGeograficaBean.inicializarPuntos(listUbicacionGeografica);
 			ubicacionGeograficaBean.setListUbicacionGeografica(listUbicacionGeografica);
 			FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().put("PUNTOS", listUbicacionGeografica);
 		} catch (Exception e) {

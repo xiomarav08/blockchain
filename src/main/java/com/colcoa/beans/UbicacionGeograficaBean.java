@@ -30,20 +30,20 @@ public class UbicacionGeograficaBean{
     	if(FacesContext.getCurrentInstance() != null) {
     		 
     		List<UbicacionGeograficaEntity> listaUbicacionGeografica = (List<UbicacionGeograficaEntity>)FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("PUNTOS");
-    		
+    		String userName =  (String)FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("NOMBRE_USUARIO");
     		if(listaUbicacionGeografica != null) {
-    			inicializarPuntos(listaUbicacionGeografica);
+    			inicializarPuntos(listaUbicacionGeografica, userName);
     		}
     	}
     }
   
-    public void inicializarPuntos(List<UbicacionGeograficaEntity> listaUbicacionGeografica) {
+    public void inicializarPuntos(List<UbicacionGeograficaEntity> listaUbicacionGeografica, String userName) {
     	MapModel simpleModel = new DefaultMapModel();
     	for(UbicacionGeograficaEntity ug: listaUbicacionGeografica) {
     		Double ubicacionX = new Double(ug.getUbicacionX().replace(",", "."));
     		Double ubicacionY = new Double(ug.getUbicacionY().replace(",", "."));
     		LatLng coord = new LatLng(ubicacionX, ubicacionY);
-			simpleModel.addOverlay(new Marker(coord, "Hacienda la tentacion"));
+			simpleModel.addOverlay(new Marker(coord, userName));
     	}
     	if(FacesContext.getCurrentInstance().getExternalContext() != null) {
     		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("MODEL", simpleModel);

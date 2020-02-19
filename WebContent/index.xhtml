@@ -2,18 +2,20 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+	
 
 <h:head>
+<link rel="stylesheet" href="style.css"></link>
+	<style>
+@import
+	url('https://fonts.googleapis.com/css?family=Roboto&amp;display=swap');
+</style>
 	<title>PlanT</title>
 	<meta charset="UTF-8"></meta>
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, maximun-scale=1, minimun-scale=1">
 	</meta>
-	<link rel="stylesheet" href="style.css"></link>
-	<style>
-@import
-	url('https://fonts.googleapis.com/css?family=Roboto&amp;display=swap');
-</style>
+	
 	<link rel="icon" type="image/icon" href="imagenes/favicon.ico" />
 
 	<h:form id="indexForm" style="margin-top: -48px;">
@@ -55,7 +57,7 @@
 							icon="fa fa-fw  fa-star">
 						</p:menuitem>
 						
-						<p:menuitem value="CO² Calculator" target="_blank" url="https://calculator.carbonfootprint.com/calculator.aspx"
+						<p:menuitem value="CO² Calculator" target="_blank" url="https://calculator.carbonfootprint.com/calculator.aspx?lang=en-US "
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw  fa-globe">
 						</p:menuitem>
@@ -85,20 +87,30 @@
 		<img src="imagenes/Banner-cifras.png" style="width:100%;"/>
 		<img src="imagenes/categorias.png" style="width:100%; margin-top:-21px;"/>	
 
-</h:body>
-	<img src="imagenes/footer.png" style="width:100%;" />
-	
 
-<div class="contenedor">
-	<img src="imagenes/tierra.png" style="margin-top:-30px; width:100%;"/>
-	<div class="centrado">
-		Contact us<br /> <br />Administrative Direction:Cll 54 No. 26 - 154
-		<br />Telephone: + (57)6 8859009<br />Email:
-		info@plantreforestation.com <br />La Arboleda- Manizales <br />Caldas-
-		Colombia <br /> <br />&#169; Copyright 2019 plantreforestation.com<br /> Beta Version
-	</div>
+
+</h:body>
+
+    <img src="imagenes/footer.png" style="width:100%;" />
+
+<div class="footer" style= "padding: 2px;
+  background-image: url('imagenes/tierra.png');
+  font-size: 16px;
+  font-family:Roboto;
+  color: white;">
+  
+<p style="font-size:16px;text-align: center;"> CONTACT US </p> <br />
+<p style="font-size:16px;text-align: center;" > Administrative Direction:Cll 54 No. 26 - 154 <br />
+Telephone: + (57)6 8859009 <br />
+Email: info@plantreforestation.com <br />
+La Arboleda- Manizales <br />
+Caldas- Colombia <br />
+&#169; Copyright 2019 plantreforestation.com <br />
+Beta Version </p>
+
+ <img src="imagenes/logo-ceres.png"/>
 </div>
-	
+
 <p:dialog header="Save the planet" widgetVar="login"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="loginModal">
@@ -198,8 +210,8 @@
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="membership">
 	<div style="text-align: center; color: white;">
-			<p>¡¡Now you can donate more for reforestation projects in caldas!! </p>
-			<p>Every donation you make will be trees planted in Victoria Caldas </p> </div>
+			<p>¡¡Now you can plant more for reforestation projects in Colombia!! </p>
+			<p>Each tree will be planted in Victoria - Caldas</p> </div>
 			
 		<h:panelGrid columns="4" cellpadding="0" style="margin-top: -54px;">
 			<h:panelGrid>
@@ -221,10 +233,12 @@
 			
 			<h:panelGrid>
 				<p:commandLink action="#{membershipBean.donar('platinum')}" update="indexForm">
-					<h:graphicImage value="imagenes/platinum.png" style= "padding-top:55px;"/>
+					<h:graphicImage value="imagenes/platinum.png" style= "padding-top:91px;"/>
 				</p:commandLink>
 				<h:outputLabel for="valorDonacion" value="Enter the number of trees:" style="color:white;" />
 				<p:inputText id="valorDonacion" value="#{membershipBean.valorDonacion}" onkeyup="$(this).val($(this).val().replace(/[^0-9]/g, ''));"/>
+				<p:commandButton value="PlanT"
+				/>
 			</h:panelGrid>
 			
 		</h:panelGrid>

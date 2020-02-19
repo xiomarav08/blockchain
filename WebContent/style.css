@@ -30,21 +30,15 @@ p {
 	line-height: 25px;
 	border-radius: 4px;
 }
-.contenedor {
-  display: block;
-  position: relative;
+.footer {
+  padding: 4px;
+  text-align: center;
+  background-image: url ('tierra.png');
+  font-size: 20px;
+  font-family:Roboto;
+  color: white;
 }
-.centrado {
-	font-family: 'Roboto', sans-serif;
-	position: absolute;
-	display: block
-	bottom: -16px;
-    text-align:center;
-    margin-top:-212;
-    color: white;
-	fontsize: 1.5em;
-	width:100%;
-}
+
 .slider {
 	width: 100%;
 	margin-top: -32px;

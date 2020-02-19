@@ -45,7 +45,7 @@ public class PayPalService {
 			
 			Payment paymentFinish =payment.execute(context, paymentExecution);
 			if(paymentFinish.getState().equals("approved")) {
-				URI url = new URI("https://plantreforestation.com/billetera.xhtml");
+				URI url = new URI("https://www.plantreforestation.com//billetera.xhtml");
 				
 				Integer numeroArbolesInt = Integer.parseInt(numeroArboles);
 				String arbol = paymentFinish.getTransactions().get(0).getDescription();
@@ -91,7 +91,7 @@ public class PayPalService {
 			
 			Payment paymentFinish =payment.execute(context, paymentExecution);
 			if(paymentFinish.getState().equals("approved")) {
-				URI url = new URI("https://plantreforestation.com/index.xhtml");
+				URI url = new URI("https://www.plantreforestation.com/index.xhtml");
 				return Response.temporaryRedirect(url).build();
 			}
 			
