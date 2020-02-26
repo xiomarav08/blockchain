@@ -63,6 +63,9 @@ public class Usuarios extends BaseEntity{
 	@Column(name = "ORGANIZACION")
 	private String organizacion;
 	
+	@Column(name = "TOKEN")
+	private String token;
+	
 	
 	public Integer getId() {
 		return id;
@@ -166,6 +169,14 @@ public class Usuarios extends BaseEntity{
 
 	public void setOrganizacion(String organizacion) {
 		this.organizacion = organizacion;
+	}
+	
+	public String getToken() {
+		return token;
+	}
+	
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	@Override

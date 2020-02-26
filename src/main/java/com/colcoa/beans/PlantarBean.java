@@ -43,7 +43,9 @@ public class PlantarBean{
 	
 	@PostConstruct
 	public void Init() {
-		arboles = Arrays.asList("Abarco", "Caoba", "Moncoro", "Cacao");
+		//lista de arboles que se necesitaran en un futuro
+		//arboles = Arrays.asList("Abarco", "Caoba", "Moncoro", "Cacao");
+		arboles = Arrays.asList("Abarco", "Cacao");
 		imagesSlide = Arrays.asList("why-planT.png","Forest-Species.png","Species.png");
 	}
 

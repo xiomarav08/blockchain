@@ -31,6 +31,19 @@ public class ManejadorUsuarios {
 		}
 	}
 	
+	public Usuarios consultarUsuarioPorEmail(String email) {
+		Query query=em.createQuery("SELECT u FROM Usuarios u WHERE u.email = :email and u.estado = :estado");
+		try {
+			query.setParameter("estado", EnumEstado.ACTIVO);
+			query.setParameter("email", email);
+			Usuarios u=(Usuarios)query.getSingleResult();
+			return u;
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
 	
 	public List<Usuarios> findAll() {
 		try {
@@ -52,6 +65,27 @@ public class ManejadorUsuarios {
 		}
 	}
 	
+	public void updateUser(Usuarios user){
+		Query query=em.createQuery("UPDATE Usuarios u SET u.token = :token WHERE u.id = :id");
+		try {
+			query.setParameter("token", user.getToken());
+			query.setParameter("id", user.getId());
+			query.executeUpdate();
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void updatePassword(Usuarios user, String password){
+		Query query=em.createQuery("UPDATE Usuarios u SET u.clave = :clave WHERE u.id = :id");
+		try {
+			query.setParameter("clave", password);
+			query.setParameter("id", user.getId());
+			query.executeUpdate();
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 	
 	public Boolean almacenarUsuario(Usuarios usuario) {
 		usuario.setEstado(EnumEstado.ACTIVO);

@@ -11,7 +11,7 @@ import javax.ws.rs.core.Application;
 public class ServicesPaypal extends Application {
 
 	public Set<Class<?>> getClasses() {
-		return new HashSet<Class<?>>(Arrays.asList(PayPalService.class));
+		return new HashSet<Class<?>>(Arrays.asList(PayPalService.class, RecoverPasswordService.class));
 	}
 
 }

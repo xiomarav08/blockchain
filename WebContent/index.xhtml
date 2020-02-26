@@ -2,10 +2,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 
 <h:head>
-<link rel="stylesheet" href="style.css"></link>
+	<link rel="stylesheet" href="style.css"></link>
 	<style>
 @import
 	url('https://fonts.googleapis.com/css?family=Roboto&amp;display=swap');
@@ -15,7 +15,7 @@
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, maximun-scale=1, minimun-scale=1">
 	</meta>
-	
+
 	<link rel="icon" type="image/icon" href="imagenes/favicon.ico" />
 
 	<h:form id="indexForm" style="margin-top: -48px;">
@@ -24,29 +24,31 @@
 
 			<div class="menu">
 				<h:panelGrid columns="5">
-					<img src="imagenes/logo-plant-web1.png"/> <br />
+					<img src="imagenes/logo-plant-web1.png" />
+					<br />
 					<a href="https://www.facebook.com/PlanT-102396917814300/"
-						target="_blank"><img src="imagenes/facebook-green.png"/></a>
-					<a href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"
-						target="_blank"><img src="imagenes/insta-green.png"/> </a>
-						
+						target="_blank"><img src="imagenes/facebook-green.png" /></a>
+					<a
+						href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"
+						target="_blank"><img src="imagenes/insta-green.png" /> </a>
 
-					<p:tabMenu style= "margin-left: 50px; border: none;">
+
+					<p:tabMenu style="margin-left: 50px; border: none;">
 						<p:menuitem outcome="index" value="Our project"
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw fa-leaf">
 						</p:menuitem>
-						
+
 						<p:menuitem value="Plant a tree" onclick="PF('registrar').show();"
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw fa-tree">
 						</p:menuitem>
-						
+
 						<p:menuitem outcome="hacienda" value="BlockChain"
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw fa-chain">
 						</p:menuitem>
-						
+
 						<p:menuitem value="Login" onclick="PF('login').show();"
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw fa-user">
@@ -56,81 +58,82 @@
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw  fa-star">
 						</p:menuitem>
-						
-						<p:menuitem value="CO² Calculator" target="_blank" url="https://calculator.carbonfootprint.com/calculator.aspx?lang=en-US "
+
+						<p:menuitem value="CO² Calculator" target="_blank"
+							url="https://calculator.carbonfootprint.com/calculator.aspx?lang=en-US "
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw  fa-globe">
 						</p:menuitem>
-						
-               
+
+
 					</p:tabMenu>
- 
+
 				</h:panelGrid>
-					
+
 			</div>
 		</header>
-	</h:form>						
+	</h:form>
 </h:head>
 
 <h:body>
 
-<div class="slider">
-    <ul>
-    <li><img src="imagenes/banner-agua.png" alt=""/></li>
-    <li><img src="imagenes/banner-aire.png" alt=""/></li>
-    <li><img src="imagenes/banner-biodiversidad.png" alt=""/></li>
-    <li><img src="imagenes/banner-bosques.png" alt=""/></li>
-    <li><img src="imagenes/banner-comunidades.png" alt=""/></li>  
-    </ul>
-    </div>	
-   <div> 
-    <p style="color:#8DB500;font-size: 100px; text-align: center"> <img style="float: right; margin: 0px 15px 15px 0px;" src="imagenes/Hand.png" width="500" />
-   ¡There is a Plan and <br/> it’s about Trees! </p>
-   <p style="color:#000000;font-size: 50px; text-align: center;"> Plant a tree, grow the future. <br/>
-     The best solution we have so far to <br/> fight climate change, is to plant trees.
-   </p>
-  </div> 
-		<img src="imagenes/cifras.png" style="width:100%;"/>
-		<img src="imagenes/member.png" style="width:100%; margin-top:-21px;"/>
-		
-			
-		<div> <p style="color:#000000;font-size: 50px; text-align: center; font-family:Roboto;"> Associate Companies </p>
-    <marquee>
-<table>
-<tr>
-   <td>
-      <img src="imagenes/logoGF.JPG"/> 
-         <img src="imagenes/aiesec.png" style="margin-bottom:-40px;"/> 
-            <img src="imagenes/Hacienda.png" style="margin-bottom:40px;"/> 
-               <img src="imagenes/garde.png" style="margin-bottom:40px;"/> 
-   </td>
-</tr>
-</table>
-</marquee>
- 
-    </div>
-   
+	<div class="slider">
+		<ul>
+			<li><img src="imagenes/banner-agua.png" alt="" /></li>
+			<li><img src="imagenes/banner-aire.png" alt="" /></li>
+			<li><img src="imagenes/banner-biodiversidad.png" alt="" /></li>
+			<li><img src="imagenes/banner-bosques.png" alt="" /></li>
+			<li><img src="imagenes/banner-comunidades.png" alt="" /></li>
+		</ul>
+	</div>
+	<div>
+		<p style="color: #8DB500; font-size: 100px; text-align: center">
+			<img style="float: right; margin: 0px 15px 15px 0px;"
+				src="imagenes/Hand.png" width="500" /> ¡There is a Plan and <br />
+			it’s about Trees!
+		</p>
+		<p style="color: #000000; font-size: 50px; text-align: center;">
+			Plant a tree, grow the future. <br /> The best solution we have so
+			far to <br /> fight climate change, is to plant trees.
+		</p>
+	</div>
+	<img src="imagenes/cifras.png" style="width: 100%;" />
+	<img src="imagenes/member.png" style="width: 100%; margin-top: -21px;" />
+
+
+	<div>
+		<p
+			style="color: #000000; font-size: 50px; text-align: center; font-family: Roboto;">
+			Associate Companies</p>
+		<marquee>
+			<table>
+				<tr>
+					<td><img src="imagenes/logoGF.JPG" /> <img
+						src="imagenes/aiesec.png" style="margin-bottom: -40px;" /> <img
+						src="imagenes/Hacienda.png" style="margin-bottom: 40px;" /> <img
+						src="imagenes/garde.png" style="margin-bottom: 40px;" /></td>
+				</tr>
+			</table>
+		</marquee>
+
+	</div>
+
 </h:body>
 
-    <img src="imagenes/footer.png" style="width:100%; " />  
-<div class="footer" style= "padding: 2px;
-  background-image: url('imagenes/banner-final.png');
-  font-size: 16px;
-  font-family:Roboto;
-  color: white;
-  position: relative;
-  margin-top: -26px;"> 
-<br /><p style="font-size:16px;text-align: center;"> CONTACT US </p> 
-<p style="font-size:16px;text-align: center;" > Administrative Direction:Cll 54 No. 26 - 154 <br />
-Telephone: + (57)6 8859009 <br />
-Email: info@plantreforestation.com <br />
-La Arboleda- Manizales <br />
-Caldas- Colombia <br />
-&#169; Copyright 2019 plantreforestation.com <br />
-Beta Version </p>
- <img src="imagenes/logo-ceres.png"/>
+<img src="imagenes/footer.png" style="width: 100%;" />
+<div class="footer"
+	style="padding: 2px; background-image: url('imagenes/banner-final.png'); font-size: 16px; font-family: Roboto; color: white; position: relative; margin-top: -26px;">
+	<br />
+	<p style="font-size: 16px; text-align: center;">CONTACT US</p>
+	<p style="font-size: 16px; text-align: center;">
+		Administrative Direction:Cll 54 No. 26 - 154 <br /> Telephone: +
+		(57)6 8859009 <br /> Email: info@plantreforestation.com <br /> La
+		Arboleda- Manizales <br /> Caldas- Colombia <br /> &#169; Copyright
+		2019 plantreforestation.com <br /> Beta Version
+	</p>
+	<img src="imagenes/logo-ceres.png" />
 </div>
- 
+
 
 <p:dialog header="Save the planet" widgetVar="login"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
@@ -146,6 +149,24 @@ Beta Version </p>
 
 			<p:commandButton id="loginButton" value="Login"
 				actionListener="#{loginBean.login}" update="indexForm" />
+
+			<p:commandLink id="recordarContraseña" value="Forget user/password?"
+				update="indexForm" onclick="PF('recoverPasword').show();"/>
+		</h:panelGrid>
+	</h:form>
+</p:dialog>
+
+<p:dialog header="Recovery password" widgetVar="recoverPasword"
+	showEffect="explode" minHeight="40" resizable="false" modal="true">
+	<h:form id="recoverPasswordModal">
+		<h:panelGrid columns="2" cellpadding="5">
+			<h:outputLabel for="emailRecover" value="Email:" style="color:white;" />
+			<p:inputText value="#{loginBean.recoverEmail}" id="emailRecover"
+				required="true" label="emailRecover" />
+
+			<p:commandButton id="loginButton" value="Send"
+				actionListener="#{loginBean.recuperarContrasena}" update="indexForm" />
+
 		</h:panelGrid>
 	</h:form>
 </p:dialog>
@@ -168,19 +189,19 @@ Beta Version </p>
 			<h:outputLabel for="nombres" value="First name:" style="color:white;" />
 			<p:inputText value="#{registrarUsuarioBean.usuario.nombre}"
 				id="nombres" required="true" label="nombres" />
-				
+
 			<h:outputLabel for="apellidos" value="Last name:"
-				style="color:white;"/>
+				style="color:white;" />
 			<p:inputText value="#{registrarUsuarioBean.usuario.apellidos}"
-				id="apellidos" label="apellidos"/>
-				
+				id="apellidos" label="apellidos" />
+
 			<h:outputLabel for="organizacion" value="Organization:"
 				style="color:white;" />
 			<p:inputText value="#{registrarUsuarioBean.usuario.organizacion}"
-				id="organizacion" label="organizacion"/>
-		
+				id="organizacion" label="organizacion" />
+
 			<h:outputLabel for="telefono" value="Phone number:"
-				style="color:white;"/>
+				style="color:white;" />
 			<p:inputText value="#{registrarUsuarioBean.usuario.telefono}"
 				id="telefono" required="true" label="telefono" />
 
@@ -230,38 +251,47 @@ Beta Version </p>
 <p:dialog header="Membership" widgetVar="membership"
 	showEffect="explode" minHeight="40" resizable="false" modal="true">
 	<h:form id="membership">
-	<div style="text-align: center; color: white;">
-			<p>¡¡Now you can plant more for reforestation projects in Colombia!! </p>
-			<p>Each tree will be planted in Victoria - Caldas</p> </div>
-			
+		<div style="text-align: center; color: white;">
+			<p>¡¡Now you can plant more for reforestation projects in
+				Colombia!!</p>
+			<p>Each tree will be planted in Victoria - Caldas</p>
+		</div>
+
 		<h:panelGrid columns="4" cellpadding="0" style="margin-top: -54px;">
 			<h:panelGrid>
-				<p:commandLink action="#{membershipBean.donar('bronze')}" process="@this">
+				<p:commandLink action="#{membershipBean.donar('bronze')}"
+					process="@this">
 					<h:graphicImage value="imagenes/bronze.png" />
 				</p:commandLink>
-			</h:panelGrid>		 
+			</h:panelGrid>
 			<h:panelGrid>
-				<p:commandLink action="#{membershipBean.donar('silver')}" process="@this">
+				<p:commandLink action="#{membershipBean.donar('silver')}"
+					process="@this">
 					<h:graphicImage value="imagenes/silver.png" />
 				</p:commandLink>
 			</h:panelGrid>
-			
+
 			<h:panelGrid>
-				<p:commandLink action="#{membershipBean.donar('gold')}" process="@this">
+				<p:commandLink action="#{membershipBean.donar('gold')}"
+					process="@this">
 					<h:graphicImage value="imagenes/gold.png" />
 				</p:commandLink>
 			</h:panelGrid>
-			
+
 			<h:panelGrid>
-				<p:commandLink action="#{membershipBean.donar('platinum')}" update="indexForm">
-					<h:graphicImage value="imagenes/platinum.png" style= "padding-top:91px;"/>
+				<p:commandLink action="#{membershipBean.donar('platinum')}"
+					update="indexForm">
+					<h:graphicImage value="imagenes/platinum.png"
+						style="padding-top:91px;" />
 				</p:commandLink>
-				<h:outputLabel for="valorDonacion" value="Enter the number of trees:" style="color:white;" />
-				<p:inputText id="valorDonacion" value="#{membershipBean.valorDonacion}" onkeyup="$(this).val($(this).val().replace(/[^0-9]/g, ''));"/>
-				<p:commandButton value="PlanT"
-				/>
+				<h:outputLabel for="valorDonacion"
+					value="Enter the number of trees:" style="color:white;" />
+				<p:inputText id="valorDonacion"
+					value="#{membershipBean.valorDonacion}"
+					onkeyup="$(this).val($(this).val().replace(/[^0-9]/g, ''));" />
+				<p:commandButton value="PlanT" />
 			</h:panelGrid>
-			
+
 		</h:panelGrid>
 	</h:form>
 </p:dialog>
