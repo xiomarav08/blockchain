@@ -1,9 +1,8 @@
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-
-
 <h:head>
 	<link rel="stylesheet" href="style.css"></link>
 	<style>
@@ -31,63 +30,54 @@
 					<a
 						href="https://www.instagram.com/plan_t_reforestation/?igshid=11ioe5kuwdidz/"
 						target="_blank"><img src="imagenes/insta-green.png" /> </a>
+
+
+					<p:tabMenu style="margin-left: 50px; border: none;">
+						<p:menuitem outcome="index" value="Our project"
+							style="margin-right:20px; color:white; background:transparent; border: none;"
+							icon="fa fa-fw fa-leaf">
+						</p:menuitem>
+
+						<p:menuitem outcome="hacienda" value="BlockChain"
+							style="margin-right:20px; color:white; background:transparent; border: none;"
+							icon="fa fa-fw fa-chain">
+						</p:menuitem>
+						<p:menuitem value="Membership" onclick="PF('membership').show();"
+							style="margin-right:20px; color:white; background:transparent; border: none;"
+							icon="fa fa-fw  fa-star">
+						</p:menuitem>
+
+						<p:menuitem value="CO² Calculator" target="_blank"
+							url="https://calculator.carbonfootprint.com/calculator.aspx?lang=en-US "
+							style="margin-right:20px; color:white; background:transparent; border: none;"
+							icon="fa fa-fw  fa-globe">
+						</p:menuitem>
+
+
+					</p:tabMenu>
+
 				</h:panelGrid>
+
 			</div>
 		</header>
 	</h:form>
 </h:head>
 <h:body>
-
-	<div class="slider">
-		<ul>
-			<li><img src="imagenes/banner-agua.png" alt="" /></li>
-			<li><img src="imagenes/banner-aire.png" alt="" /></li>
-			<li><img src="imagenes/banner-biodiversidad.png" alt="" /></li>
-			<li><img src="imagenes/banner-bosques.png" alt="" /></li>
-			<li><img src="imagenes/banner-comunidades.png" alt="" /></li>
-		</ul>
-	</div>
-	<div>
-		<p style="color: #8DB500; font-size: 100px; text-align: center">
-			<img style="float: right; margin: 0px 15px 15px 0px;"
-				src="imagenes/Hand.png" width="500" /> ¡There is a Plan and <br />
-			it’s about Trees!
-		</p>
-		<p style="color: #000000; font-size: 50px; text-align: center;">
-			Plant a tree, grow the future. <br /> The best solution we have so
-			far to <br /> fight climate change, is to plant trees.
-		</p>
-	</div>
-	<img src="imagenes/cifras.png" style="width: 100%;" />
-	<img src="imagenes/member.png" style="width: 100%; margin-top: -21px;" />
-
-
-	<div>
-		<p
-			style="color: #000000; font-size: 50px; text-align: center; font-family: Roboto;">
-			Associate Companies</p>
-		<marquee>
-			<table>
-				<tr>
-					<td><img src="imagenes/logoGF.JPG" /> <img
-						src="imagenes/aiesec.png" style="margin-bottom: -40px;" /> <img
-						src="imagenes/Hacienda.png" style="margin-bottom: 40px;" /> <img
-						src="imagenes/garde.png" style="margin-bottom: 40px;" /></td>
-				</tr>
-			</table>
-		</marquee>
+<div>
+		<p style="color: #000000; font-size: 40px; text-align: center; font-family: Roboto;">
+			Recover your password</p>
 		<h:form id="recoverForm" style="margin-top: -48px;">
 			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel for="user" value="User:" style="color:white;" />
+				<h:outputLabel for="user" value="User:" style="color:black;" />
 				<p:inputText value="#{recoverBean.username}" id="user"
 					required="true" label="user" disabled="true"/>
 			
-				<h:outputLabel for="password" value="Password: " style="color:white;" />
+				<h:outputLabel for="password" value="New password: " style="color:black;" />
 				<p:inputText value="#{recoverBean.password}" id="password"
 					required="true" label="password" />
 					
 					
-				<h:outputLabel for="repeatPassword" value="Password:" style="color:white;" />
+				<h:outputLabel for="repeatPassword" value=" Repeat password:" style="color:black;" />
 				<p:inputText value="#{recoverBean.repeatPassword}" id="repeatPassword"
 					required="true" label="password" />
 	
@@ -96,9 +86,22 @@
 	
 			</h:panelGrid>
 		</h:form>
-
-	</div>
+		</div>
 
 </h:body>
+
+<img src="imagenes/footer.png" style="width: 100%;" />
+<div class="footer"
+	style="padding: 2px; background-image: url('imagenes/banner-final.png'); font-size: 16px; font-family: Roboto; color: white; position: relative; margin-top: -26px; text-align: center;">
+	<br />
+	<p style="font-size: 16px; text-align: center;">CONTACT US</p>
+	<p style="font-size: 16px; text-align: center;">
+		Administrative Direction:Cll 54 No. 26 - 154 <br /> Telephone: +
+		(57)6 8859009 <br /> Email: info@plantreforestation.com <br /> La
+		Arboleda- Manizales <br /> Caldas- Colombia <br /> &#169; Copyright
+		2019 plantreforestation.com <br /> Beta Version
+	</p>
+	<img src="imagenes/logo-ceres.png" />
+</div>
 
 </html>
