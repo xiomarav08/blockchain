@@ -70,11 +70,11 @@ public class MembershipBean implements Serializable{
 		
 		amount.setDetails(details);
 		if(donacion.equals("bronze")) {
-				amount.setTotal("30.0");
+				amount.setTotal("35.0");
 		}else if(donacion.equals("silver")) {
-			amount.setTotal("150.0");
+			amount.setTotal("175.0");
 		}else if(donacion.equals("gold")) {
-			amount.setTotal("300.0");	
+			amount.setTotal("350.0");	
 		}else if(donacion.equals("platinum")){
 			
 			if(valorDonacion.equals("") || Integer.parseInt(valorDonacion) <= 100) {
@@ -83,14 +83,20 @@ public class MembershipBean implements Serializable{
 				return;
 			}else{
 				Integer valorArboles = Integer.parseInt(valorDonacion);
-				Integer valorTotal = valorArboles * 3;
-				String valorTotalString = Integer.toString(valorTotal);
-				amount.setTotal(valorTotalString);
+				if(valorArboles >= 4999) {
+					Double valorArbol = new Double("2.5");
+					Double valorTotal = valorArboles * valorArbol;
+					String valorTotalString = Double.toString(valorTotal);
+					amount.setTotal(valorTotalString);
+				}else {
+					Double valorArbol = new Double("3.5");
+					Double valorTotal = valorArboles * valorArbol;
+					String valorTotalString = Double.toString(valorTotal);
+					amount.setTotal(valorTotalString);	
+				}
 			}
 			
 		}
-
-		
 
 		// Transaction information
 		Transaction transaction = new Transaction();
