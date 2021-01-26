@@ -77,19 +77,41 @@ public class PlantarBean{
 		
 		amount.setDetails(details);
 		if(this.getArbol().equals("Your Trees")) {
-			if(numeroArboles <= 999) {
-				Double value = new Double("3.5");
-				value = value * numeroArboles;
-				details.setSubtotal(value.toString());
-				// Total must be equal to sum of shipping, tax and subtotal.
-				amount.setTotal(value.toString());
-			}else if(numeroArboles >= 1000) {
-				Double value = new Double("2.0");
-				value = value * numeroArboles;
-				details.setSubtotal(value.toString());
-				// Total must be equal to sum of shipping, tax and subtotal.
-				amount.setTotal(value.toString());
-			}	
+			if(usuario.getId().equals(22)) {
+				if(numeroArboles <= 999) {
+					Double value = new Double("3.5");
+					value = value * numeroArboles;
+					details.setSubtotal(value.toString());
+					// Total must be equal to sum of shipping, tax and subtotal.
+					amount.setTotal(value.toString());
+				}else if(numeroArboles >= 1000) {
+					Double value = new Double("2.0");
+					value = value * numeroArboles;
+					details.setSubtotal(value.toString());
+					// Total must be equal to sum of shipping, tax and subtotal.
+					amount.setTotal(value.toString());
+				}
+			}else {
+				if(numeroArboles <= 4999) {
+					Double value = new Double("3.5");
+					value = value * numeroArboles;
+					details.setSubtotal(value.toString());
+					// Total must be equal to sum of shipping, tax and subtotal.
+					amount.setTotal(value.toString());
+				}else if(numeroArboles >= 4999 && numeroArboles <= 9999) {
+					Double value = new Double("2.75");
+					value = value * numeroArboles;
+					details.setSubtotal(value.toString());
+					// Total must be equal to sum of shipping, tax and subtotal.
+					amount.setTotal(value.toString());
+				}else if(numeroArboles >= 9999) {
+					Double value = new Double("1.75");
+					value = value * numeroArboles;
+					details.setSubtotal(value.toString());
+					// Total must be equal to sum of shipping, tax and subtotal.
+					amount.setTotal(value.toString());
+				}
+			}
 		}else {
 			Double value = new Double("3.0");
 			value = value * numeroArboles;

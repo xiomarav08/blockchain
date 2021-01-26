@@ -2,8 +2,8 @@ package com.colcoa.enums;
 
 public enum EnumTipoPersona {
 	
-	NATURAL("Natural"),
-	JURIDICA("Juridical");
+	NATURAL("Individual"),
+	JURIDICA("Organization");
 	
 	private String message;
 	
