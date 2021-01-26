@@ -79,12 +79,14 @@
 
 	<div class="slider">
 		<ul>
+		    <li><img src="imagenes/banner-biodiversidad.png" alt="" /></li>
+			<li><img src="imagenes/banner-bosques.png" alt="" /></li>
 			<li><img src="imagenes/banner-agua.png" alt="" /></li>
 			<li><img src="imagenes/banner-aire.png" alt="" /></li>
-			<li><img src="imagenes/banner-biodiversidad.png" alt="" /></li>
-			<li><img src="imagenes/banner-bosques.png" alt="" /></li>
 			<li><img src="imagenes/banner-comunidades.png" alt="" /></li>
 		</ul>
+	</div>
+	<div><img src="imagenes/banner-precios.png" style="width: 100%;"/>
 	</div>
 	<div>
 		<p style="color: #8DB500; font-size: 50px; text-align: center">
@@ -104,14 +106,15 @@
 	<div>
 		<p
 			style="color: #000000; font-size: 40px; text-align: center; font-family: Roboto;">
-			Associate Companies</p>
+			Associate Organizations</p>
 		<marquee>
 			<table>
 				<tr>
 					<td><img src="imagenes/logoGF.JPG" /> 
-						<img src="imagenes/aieseclife.png" style="margin-bottom: 34px; margin-right: 29px;" /> 
-						<img src="imagenes/lagarde.png" style="margin-bottom: 40px;margin-right: 29px;" /> 
-						<img src="imagenes/Hacienda.png" style="margin-bottom: 26px;" /> 
+					    <img src="imagenes/domaine.png" style="margin-bottom: 37px;" />
+						<img src="imagenes/AIESEC_LIFE.png" style="margin-bottom: 50px; margin-right: 29px;" /> 
+						<img src="imagenes/Hacienda.png" style="margin-bottom: 32px;" /> 
+						<img src="imagenes/nonamepage.png" style="margin-bottom: 10px;"/> 
 						</td>
 				</tr>
 			</table>
@@ -290,7 +293,8 @@
 				<p:inputText id="valorDonacion"
 					value="#{membershipBean.valorDonacion}"
 					onkeyup="$(this).val($(this).val().replace(/[^0-9]/g, ''));" />
-				<p:commandButton value="PlanT" />
+				<p:commandButton value="PlanT" action="#{membershipBean.donar('platinum')}"
+					update="indexForm"/>
 			</h:panelGrid>
 
 		</h:panelGrid>

@@ -45,7 +45,7 @@ public class PlantarBean{
 	public void Init() {
 		//lista de arboles que se necesitaran en un futuro
 		//arboles = Arrays.asList("Abarco", "Caoba", "Moncoro", "Cacao");
-		arboles = Arrays.asList("Abarco", "Cacao");
+		arboles = Arrays.asList("Your Trees");
 		imagesSlide = Arrays.asList("why-planT.png","Forest-Species.png","Species.png");
 	}
 
@@ -76,15 +76,15 @@ public class PlantarBean{
 		amount.setCurrency("USD");
 		
 		amount.setDetails(details);
-		if(this.getArbol().equals("Abarco") || this.getArbol().equals("Caoba") || this.getArbol().equals("Moncoro")) {
-			if(numeroArboles <= 4999) {
-				Double value = new Double("3.5");
+		if(this.getArbol().equals("Your Trees")) {
+			if(numeroArboles <= 999) {
+				Double value = new Double("3.0");
 				value = value * numeroArboles;
 				details.setSubtotal(value.toString());
 				// Total must be equal to sum of shipping, tax and subtotal.
 				amount.setTotal(value.toString());
-			}else if(numeroArboles >= 4999) {
-				Double value = new Double("2.5");
+			}else if(numeroArboles >= 1000) {
+				Double value = new Double("2.0");
 				value = value * numeroArboles;
 				details.setSubtotal(value.toString());
 				// Total must be equal to sum of shipping, tax and subtotal.
