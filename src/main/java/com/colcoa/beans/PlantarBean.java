@@ -78,7 +78,7 @@ public class PlantarBean{
 		amount.setDetails(details);
 		if(this.getArbol().equals("Your Trees")) {
 			if(numeroArboles <= 999) {
-				Double value = new Double("3.0");
+				Double value = new Double("3.5");
 				value = value * numeroArboles;
 				details.setSubtotal(value.toString());
 				// Total must be equal to sum of shipping, tax and subtotal.
