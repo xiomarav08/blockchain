@@ -51,6 +51,22 @@ public class ManejadorTransacciones {
 		}
 	}
 	
+	public Float obtenerArbolesPlantados(Usuarios usuario) {
+		try {
+			Query query= em.createQuery("SELECT t FROM TransactionEntity t WHERE t.userSender = :usuario");
+			query.setParameter("usuario", usuario);
+			List<TransactionEntity> listTransaction =(List<TransactionEntity>)query.getResultList();
+			Float value = 0f;
+			for(TransactionEntity transaction : listTransaction) {
+				value += transaction.getValue(); 
+			}
+			return value;
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
 	public TransactionEntity almacenarTransaccion(TransactionEntity transactionEntity) {
 		try {
 			em.persist(transactionEntity);

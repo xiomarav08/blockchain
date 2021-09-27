@@ -13,8 +13,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 import com.colcocoa.entities.Usuarios;
+import com.colcocoa.manejadores.ManejadorTransacciones;
 import com.paypal.api.payments.Amount;
 import com.paypal.api.payments.Details;
 import com.paypal.api.payments.Links;
@@ -41,12 +43,22 @@ public class PlantarBean{
 	
 	private List<String> imagesSlide;
 	
+	private Integer arbolesPlantados;
+	
+	private String nombreUsuario;
+	
+	@Inject
+	private ManejadorTransacciones manejadorTransacciones;
+	
 	@PostConstruct
 	public void Init() {
 		//lista de arboles que se necesitaran en un futuro
 		//arboles = Arrays.asList("Abarco", "Caoba", "Moncoro", "Cacao");
 		arboles = Arrays.asList("Your Trees");
 		imagesSlide = Arrays.asList("why-planT.png","Forest-Species.png","Species.png");
+		Usuarios usuario = (Usuarios) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("LOGGEDIN_USER");
+		nombreUsuario = usuario.getNombre();
+		arbolesPlantados = Math.round(manejadorTransacciones.obtenerArbolesPlantados(usuario));
 	}
 
 
@@ -194,6 +206,20 @@ public class PlantarBean{
 		this.imagesSlide = imagesSlide;
 	}
 	
-
+	public Integer getArbolesPlantados() {
+		return arbolesPlantados;
+	}
+	
+	public void setArbolesPlantados(Integer arbolesPlantados) {
+		this.arbolesPlantados = arbolesPlantados;
+	}
+	
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+	
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
 	
 }

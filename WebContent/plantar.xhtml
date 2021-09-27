@@ -22,7 +22,7 @@
 
 			<div class="menu">
 				<h:panelGrid columns="5">
-					<img src="imagenes/logo-plant-web1.png"/>
+					<img src="imagenes/logo-plant-web1.png" />
 
 					<p:tabMenu style="background:transparent; border: none;">
 						<p:menuitem outcome="index" value="Our project"
@@ -33,15 +33,16 @@
 							style="margin-right:20px; color:white; background:transparent; border: none;"
 							icon="fa fa-fw fa-chain">
 						</p:menuitem>
-					
-                     <p:menuitem id="logout" value="Logout"
-				    actionListener="#{loginBean.logout}" style="margin-right:20px; color:white; background:transparent; border: none;"
-				    icon="fa fa-fw fa-user-times"> 
-				    </p:menuitem>
-               
+
+						<p:menuitem id="logout" value="Logout"
+							actionListener="#{loginBean.logout}"
+							style="margin-right:20px; color:white; background:transparent; border: none;"
+							icon="fa fa-fw fa-user-times">
+						</p:menuitem>
+
 					</p:tabMenu>
- 
-				</h:panelGrid>		
+
+				</h:panelGrid>
 			</div>
 		</header>
 	</h:form>
@@ -49,55 +50,67 @@
 
 <h:body>
 
-<h:form>
-	<div class="container">
-		<div style="text-align: center; width: 100%;">
-			<p:ring id="custom" value="#{plantarBean.arboles}" var="arbol"
-				styleClass="image-ring" easing="easeInOutBack">
-				<h:outputText value="#{arbol}" />
-				<img src="imagenes/#{arbol}.png"/>
-				<p:commandButton value="Start Now" oncomplete="PF('comprarArbol').show();" action="#{plantarBean.escogerArbol(arbol)}" />
-			</p:ring>
+
+
+	<h:form>
+		<div>
+			<p style="font-size: 24px; text-align: center;">
+				<b> ¡Hello! #{plantarBean.nombreUsuario}  CONGRATULATIONS</b><br /> <br />
+			</p>
+			<p style="font-size: 20px; text-align: left;">
+				You have #{plantarBean.arbolesPlantados} trees PlanT in Hacienda la Tentacion<br /> <br />
+				¡Plant more and create your own forest!
+			</p>
 		</div>
-	</div>
+		<div class="container">
+			<div style="text-align: center; width: 100%;">
+				<p:ring id="custom" value="#{plantarBean.arboles}" var="arbol"
+					styleClass="image-ring" easing="easeInOutBack">
+					<h:outputText value="#{arbol}" />
+					<img src="imagenes/#{arbol}.png" />
+					<p:commandButton value="Start Now"
+						oncomplete="PF('comprarArbol').show();"
+						action="#{plantarBean.escogerArbol(arbol)}" />
+				</p:ring>
+			</div>
+		</div>
 
 	</h:form>
-	<br /><br /><br /><br />
+	<br />
+	<br />
+	<br />
+	<br />
 
-    <img src="imagenes/banner-precios.png" style="width: 100%;"/>	
-	
-	
+	<img src="imagenes/banner-precios.png" style="width: 100%;" />
+
+
 </h:body>
 
-<img src="imagenes/footer.png" style="width:100%; " />  
-<div class="footer" style= "padding: 2px;
-  background-image: url('imagenes/banner-final.png');
-  font-size: 16px;
-  font-family:Roboto;
-  color: white;
-  position: relative;
-  margin-top: -26px; text-align: center;"> 
-<br /><p style="font-size:16px; text-align: center;"> CONTACT US </p> 
-<p style="font-size:16px;text-align: center;" > Administrative Direction:Cll 54 No. 26 - 154 <br />
-Telephone: + (57)6 8859009 <br />
-Email: info@plantreforestation.com <br />
-La Arboleda- Manizales <br />
-Caldas- Colombia <br />
-&#169; Copyright 2019 plantreforestation.com <br />
-Beta Version </p>
- <img src="imagenes/logo-ceres.png"/>
+<img src="imagenes/footer.png" style="width: 100%;" />
+<div class="footer"
+	style="padding: 2px; background-image: url('imagenes/banner-final.png'); font-size: 16px; font-family: Roboto; color: white; position: relative; margin-top: -26px; text-align: center;">
+	<br />
+	<p style="font-size: 16px; text-align: center;">CONTACT US</p>
+	<p style="font-size: 16px; text-align: center;">
+		Administrative Direction:Cll 54 No. 26 - 154 <br /> Telephone: +
+		(57)6 8859009 <br /> Email: info@plantreforestation.com <br /> La
+		Arboleda- Manizales <br /> Caldas- Colombia <br /> &#169; Copyright
+		2019 plantreforestation.com <br /> Beta Version
+	</p>
+	<img src="imagenes/logo-ceres.png" />
 </div>
 
 
-<p:dialog header="PlanT" widgetVar="comprarArbol"
-	showEffect="explode" minHeight="40" resizable="false" modal="true">
+<p:dialog header="PlanT" widgetVar="comprarArbol" showEffect="explode"
+	minHeight="40" resizable="false" modal="true">
 	<h:form id="comprarArbol">
 		<h:panelGrid columns="2" cellpadding="0">
 			<h:outputText value="Number of trees" style="color:white;"></h:outputText>
-			<p:spinner id="basic" value="#{plantarBean.numeroArboles}" min="0" style="color:white;"/>
+			<p:spinner id="basic" value="#{plantarBean.numeroArboles}" min="0"
+				style="color:white;" />
 		</h:panelGrid>
 		<p:commandButton value="Accept" oncomplete="PF('comprarArbol').hide;"
-			actionListener="#{plantarBean.comprar}"/>
+			actionListener="#{plantarBean.comprar}" />
 	</h:form>
 </p:dialog>
 </html>
