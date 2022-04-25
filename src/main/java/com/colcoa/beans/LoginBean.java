@@ -43,6 +43,8 @@ public class LoginBean implements Serializable {
 	private String recoverEmail;
 
 	private final String USUARIO_ADMIN = "admin";
+	
+	private final String USUARIO_SECO = "seco";
 
 	private static final String SMTP_SERVER = "plantreforestation.com";
 	private static final String USERNAME = "admin@plantreforestation.com";
@@ -78,6 +80,8 @@ public class LoginBean implements Serializable {
 					usuarioBD.getNombre() + " " + usuarioBD.getApellidos());
 			if (logeado && usuarioBD.getUsuario().equals(USUARIO_ADMIN)) {
 				FacesContext.getCurrentInstance().getExternalContext().redirect("adminMenu/historialContratos.xhtml");
+			} else if (logeado && usuarioBD.getUsuario().equals(USUARIO_SECO)) {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("seco.xhtml");
 			} else {
 				FacesContext.getCurrentInstance().getExternalContext().redirect("plantar.xhtml");
 			}

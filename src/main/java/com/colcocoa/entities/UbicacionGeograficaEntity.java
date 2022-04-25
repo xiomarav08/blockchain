@@ -41,6 +41,10 @@ public class UbicacionGeograficaEntity extends BaseEntity{
 	private Usuarios userPayer;
 	
 	@ManyToOne
+	@JoinColumn(name="ID_USUARIO_PRODUCTOR")
+	private Productores productor;
+	
+	@ManyToOne
 	@JoinColumn(name="ID_TRANSACTION")
 	private TransactionEntity transaction;
 	
@@ -102,6 +106,14 @@ public class UbicacionGeograficaEntity extends BaseEntity{
 	
 	public void setTipoArbol(EnumTipoArbol tipoArbol) {
 		this.tipoArbol = tipoArbol;
+	}
+	
+	public Productores getProductor() {
+		return productor;
+	}
+	
+	public void setProductor(Productores productor) {
+		this.productor = productor;
 	}
 
 	@Override

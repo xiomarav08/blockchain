@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>Poject SECO</title>
+	<meta charset="UTF-8"></meta>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, maximun-scale=1, minimun-scale=1">
+	</meta>
+	<link rel="stylesheet" href="style.css"></link>
+	<style>
+@import
+	url('https://fonts.googleapis.com/css?family=Roboto&amp;display=swap');
+</style>
+	<link rel="icon" type="image/icon" href="../imagenes/favicon.ico" />
+
+	<h:form id="indexForm" style="margin-top: -48px;">
+		<p:growl id="mensajes" showDetail="true" life="3000" sticky="true" />
+		<header class="header">
+		<div class="menu">
+			<h:panelGrid columns="2">
+				<img src="../imagenes/logo-plant-web1.png" style="max-width: 100%;" />
+
+				<p:menuitem id="logout" value="Logout"
+					actionListener="#{loginBean.logout}"
+					style="margin-right:20px; color:white; background:transparent; border: none;"
+					icon="fa fa-fw fa-user-times">
+				</p:menuitem>
+			</h:panelGrid>
+		</div>
+		</header>
+	</h:form>
+</h:head>
+<h:body style="text-align:center">
+	<div>
+			<p style="font-size: 24px; text-align: center;">
+				<b> Proyecto SECO </b><br />
+			</p>
+			<p style="font-size: 20px; text-align: center;">
+				Desarrollo estratégico de agroforestería y siembra en Colombia con la Fundación Local Partners y Pachamama Consulting S.A.S
+			</p>
+			<img src="../imagenes/colcocoa.png" style="max-width: 100%;" /> <img src="../imagenes/seco.png" style="max-width: 100%;" /><img src="../imagenes/swiss.png" style="max-width: 100%;" />
+		</div>
+	<h:form id="formSecoBusqueda">
+		<p:panel header="Búsqueda productores">
+			<h:panelGrid columns="2" style="margin-top: 51px">
+				
+                <p:outputLabel for="productores" value="Productor:"/>
+                <p:selectOneMenu id="productores" value="#{secoBean.productorBusqueda}">
+					<f:selectItem itemLabel="Seleccione uno" itemValue=""/>
+					<f:selectItems value="#{secoBean.productores}"/>
+					<p:ajax event="change" update="@this" />
+				</p:selectOneMenu>
+                
+                <p:outputLabel for="especies" value="Nombre Especie:"/>	
+				<p:selectOneMenu id="especies" value="#{secoBean.especieBusqueda}">
+					<f:selectItems value="#{secoBean.especies}" var="especieItem" itemValue="#{especieItem}" itemLabel="#{especieItem.message}" />
+					<p:ajax event="change" update="@this" />
+				</p:selectOneMenu>
+           	</h:panelGrid>
+           	<div>
+           		<p:commandButton id="buscar" value="Buscar" actionListener="#{secoBean.busquedaProductores()}" immediate="true" update="formSecoDatos formSeco_Ubicacion"/>
+           	</div>
+        </p:panel>
+     </h:form>
+     <h:form id="formSecoDatos">
+		<p:panel id="datos" header="Datos productor">
+			<h:panelGrid columns="2">
+				
+				<p:outputLabel for="nombrePredio" value="Nombre Predio:"
+					style="color: white" />
+				<p:outputLabel id="nombrePredio" value="#{secoBean.productor.nombrePredio}"
+					style="color: white" />
+					
+				<p:outputLabel for="departamento" value="Departamento:"
+					style="color: white" />
+				<p:outputLabel id="departamento" value="#{secoBean.productor.departamento}"
+					style="color: white" />
+					
+				<p:outputLabel for="municipio" value="Municipio"
+					style="color: white" />
+				<p:outputLabel id="municipio" value="#{secoBean.productor.municipio}"
+					style="color: white" />
+					
+				<p:outputLabel for="vereda" value="Vereda:"
+					style="color: white" />
+				<p:outputLabel id="vereda" value="#{secoBean.productor.vereda}"
+					style="color: white" />
+					
+				<p:outputLabel for="nombreProductor" value="Nombre productor:"
+					style="color: white" />
+				<p:outputLabel id="nombreProductor" value="#{secoBean.productor.nombre}"
+					style="color: white" />
+					
+				<p:outputLabel for="fechaSiembra" value="Fecha siembra:"
+					style="color: white" />
+				<p:outputLabel id="fechaSiembra" value="#{secoBean.productor.fechaSiembra}"
+					style="color: white" />
+					
+				<p:outputLabel for="hectareas" value="Hectáreas sembradas totales:"
+					style="color: white" />
+				<p:outputLabel id="hectareas" value="#{secoBean.productor.hectareas}"
+					style="color: white" />
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5BWZ1Xdm3hDIDhXDPNQG2wPU9htkvZJc&amp;callback=initMap"></script>
+	<h:form id="formSeco_Ubicacion">
+		<p:panel id="datos" header="Ubicación geográfica">
+			<p:gmap center="6.5533333333333,-74.787222222222" zoom="13" type="HYBRID" style="width:100%;height:400px" model="#{ubicacionGeografica.simpleModel}" />
+		</p:panel>
+	</h:form>
+</h:body>
+<img src="../imagenes/footer.png" style="width: 100%;"/>
+<div class="footer" style="padding: 2px; background-image: url('../imagenes/banner-final.png'); font-size: 16px; font-family: Roboto; color: white; position: relative; margin-top: -26px; text-align: center;">
+	<br/>
+	<p style="font-size: 16px; text-align: center;">CONTACT US</p>
+	<p style="font-size: 16px; text-align: center;">
+		Administrative Direction:Cll 54 No. 26 - 154 <br /> Telephone: +
+		(57)6 8859009 <br /> Email: info@plantreforestation.com <br /> La
+		Arboleda- Manizales <br /> Caldas- Colombia <br /> &#169; Copyright
+		2019 plantreforestation.com <br /> Beta Version
+	</p>
+	<img src="../imagenes/logo-ceres.png" />
+</div>
+</html>

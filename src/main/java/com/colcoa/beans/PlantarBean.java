@@ -29,7 +29,6 @@ import com.paypal.base.rest.PayPalRESTException;
 
 @ManagedBean(name = "plantarBean")
 @ViewScoped
-
 public class PlantarBean{
 	
 	private List<String> arboles;
