@@ -96,7 +96,7 @@ public class PlantarBean{
 					// Total must be equal to sum of shipping, tax and subtotal.
 					amount.setTotal(value.toString());
 				}else if(numeroArboles >= 1000) {
-					Double value = new Double("2.0");
+					Double value = new Double("0.001");
 					value = value * numeroArboles;
 					details.setSubtotal(value.toString());
 					// Total must be equal to sum of shipping, tax and subtotal.
